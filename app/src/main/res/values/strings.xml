@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IoNutrizionista</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_funzionalita1">Funzionalita1</string>
+
+    <!-- Funzionalità 1 - Dati Anagrafici-->
+    <string name="textViewNome">Nome: </string>
+    <string name="nome_paziente">Inserire nome</string>
+    <string name="textViewCognome">Cognome: </string>
+    <string name="cognome_paziente">Inserire cognome</string>
+    <string name="textViewSesso">Sesso: </string>
+    <string name="textViewEta">Età: </string>
+
+    <!-- Funzionalità 1 - Barra Colorata -->
+    <string name="barra_viola_dark">16-</string>
+    <string name="barra_blu">16~19</string>
+    <string name="barra_verde">19~25</string>
+    <string name="barra_giallo">25~30</string>
+    <string name="barra_arancione">30~35</string>
+    <string name="barra_rosso">35~40</string>
+    <string name="barra_rosso_dark">40+ </string>
+
+</resources>

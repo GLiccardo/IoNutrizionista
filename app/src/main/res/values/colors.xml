@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="nero" type="color">#000000</item>
+    <item name="nero_chiaro" type="color">#161616</item>
+    <item name="viola_extreme" type="color">#8100b5</item>
+    <item name="viola_dark" type="color">#9360db</item>
+    <item name="viola2blu" type="color">#98a7e2</item>
+    <item name="blu" type="color">#29c1d8</item>
+    <item name="blu2verde" type="color">#60dbb0</item>
+    <item name="verde" type="color">#31e200</item>
+    <item name="verde2giallo" type="color">#cddd73</item>
+    <item name="giallo" type="color">#fff600</item>
+    <item name="giallo2aranciochiaro" type="color">#ffe65b</item>
+    <item name="aranciochiaro" type="color">#ffc21c</item>
+    <item name="aranciochiaro2arancioscuro" type="color">#f7b95b</item>
+    <item name="arancioscuro" type="color">#ff6600</item>
+    <item name="arancioscuro2rosso" type="color">#d14d1d</item>
+    <item name="rosso" type="color">#ff1e1e</item>
+    <item name="rosso_dark" type="color">#d30000</item>
+    <item name="rosso_extreme" type="color">#9b0000</item>
+
+</resources>

@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentDatiAnagrafici">
+
+    <TableLayout
+        android:id="@+id/tablelayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:shrinkColumns="1" >
+
+        <!-- RIGA 1: Nome | EditText -->
+        <TableRow>
+            <TextView
+                android:text="@string/textViewNome"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+            <EditText
+                android:id="@+id/editTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
+                android:layout_marginRight="10dp" android:layout_marginEnd="10dp"
+                android:inputType="textPersonName"
+                android:hint="@string/nome_paziente"
+                android:textSize="@dimen/font_size_medio"
+                android:ems="10"
+                android:textStyle="italic" />
+        </TableRow>
+
+        <!-- RIGA 2: Cognome | EditText  -->
+        <TableRow>
+            <TextView
+                android:text="@string/textViewCognome"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+            <EditText
+                android:id="@+id/editTextCognome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
+                android:layout_marginRight="10dp" android:layout_marginEnd="10dp"
+                android:inputType="textPersonName"
+                android:hint="@string/cognome_paziente"
+                android:textSize="@dimen/font_size_medio"
+                android:ems="10"
+                android:textStyle="italic" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tablelayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="1"
+        android:weightSum="1.0"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/tablelayout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- RIGA 3: Sesso | Combobox | Età | Combobox -->
+        <TableRow>
+            <TextView
+                android:text="@string/textViewSesso"
+                android:layout_weight="0.25"
+                android:paddingRight="10dp"
+                android:background="@color/verde"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+
+            <Spinner
+                android:id="@+id/spinnerSesso"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.35"
+                android:background="@color/rosso"
+                android:textSize="@dimen/font_size_medio" />
+
+            <TextView
+                android:text="@string/textViewEta"
+                android:layout_weight="0.25"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:onClick="showDatePickerDialog" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

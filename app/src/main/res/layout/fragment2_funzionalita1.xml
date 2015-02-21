@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentBarraColorata" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient1_viola_blu"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_viola_dark"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient2_blu_verde"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_blu"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/prova"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient3_verde_giallo"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_verde"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient4_giallo_arancione"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_giallo"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient5_arancione_rosso"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_arancione"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient6_rosso_rossoscuro"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_rosso"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:background="@drawable/gradient7_rossoscuro_scurissimo"
+            android:textSize="@dimen/font_size_minuscolo"
+            android:textColor="@color/nero_chiaro"
+            android:text="@string/barra_rosso_dark"
+            android:padding="5dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>
