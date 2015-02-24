@@ -100,5 +100,4 @@ public class Funzionalita1Activity extends ActionBarActivity {
 
     }
 
-
 }

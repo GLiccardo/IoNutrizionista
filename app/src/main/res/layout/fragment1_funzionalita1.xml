@@ -2,10 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp" android:paddingStart="10dp"
+    android:paddingRight="10dp" android:paddingEnd="10dp"
     tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentDatiAnagrafici">
 
     <TableLayout
-        android:id="@+id/tablelayout1"
+        android:id="@+id/table_layout_nome_cognome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
@@ -14,18 +16,16 @@
         <!-- RIGA 1: Nome | EditText -->
         <TableRow>
             <TextView
-                android:text="@string/textViewNome"
-                android:paddingLeft="10dp"
+                android:paddingRight="5dp" android:paddingEnd="5dp"
+                android:text="@string/text_view_nome"
                 android:textSize="@dimen/font_size_medio"
                 android:textColor="#ff000000" />
             <EditText
-                android:id="@+id/editTextNome"
+                android:id="@+id/edit_text_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
-                android:layout_marginRight="10dp" android:layout_marginEnd="10dp"
                 android:inputType="textPersonName"
-                android:hint="@string/nome_paziente"
+                android:hint="@string/hint_nome_paziente"
                 android:textSize="@dimen/font_size_medio"
                 android:ems="10"
                 android:textStyle="italic" />
@@ -34,18 +34,16 @@
         <!-- RIGA 2: Cognome | EditText  -->
         <TableRow>
             <TextView
-                android:text="@string/textViewCognome"
-                android:paddingLeft="10dp"
+                android:paddingRight="5dp" android:paddingEnd="5dp"
+                android:text="@string/text_view_cognome"
                 android:textSize="@dimen/font_size_medio"
                 android:textColor="#ff000000" />
             <EditText
-                android:id="@+id/editTextCognome"
+                android:id="@+id/edit_text_cognome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
-                android:layout_marginRight="10dp" android:layout_marginEnd="10dp"
                 android:inputType="textPersonName"
-                android:hint="@string/cognome_paziente"
+                android:hint="@string/hint_cognome_paziente"
                 android:textSize="@dimen/font_size_medio"
                 android:ems="10"
                 android:textStyle="italic" />
@@ -53,22 +51,21 @@
 
     </TableLayout>
 
+
+    <!-- RIGA 3: Sesso | Combobox | Età | Combobox -->
     <TableLayout
-        android:id="@+id/tablelayout2"
+        android:id="@+id/table_layout_sesso_eta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:shrinkColumns="1"
         android:weightSum="1.0"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_below="@+id/tablelayout1"
+        android:layout_below="@+id/table_layout_nome_cognome"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <!-- RIGA 3: Sesso | Combobox | Età | Combobox -->
         <TableRow>
             <TextView
-                android:text="@string/textViewSesso"
+                android:text="@string/text_view_sesso"
                 android:layout_weight="0.25"
                 android:paddingRight="10dp"
                 android:background="@color/verde"
@@ -76,7 +73,7 @@
                 android:textColor="#ff000000" />
 
             <Spinner
-                android:id="@+id/spinnerSesso"
+                android:id="@+id/spinner_sesso"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.35"
@@ -84,7 +81,7 @@
                 android:textSize="@dimen/font_size_medio" />
 
             <TextView
-                android:text="@string/textViewEta"
+                android:text="@string/text_view_eta"
                 android:layout_weight="0.25"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -92,6 +89,7 @@
                 android:textColor="#ff000000" />
 
             <Button
+                android:id="@+id/button_eta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.15"
@@ -100,5 +98,292 @@
         </TableRow>
 
     </TableLayout>
+
+
+    <!-- RIGA 4: Altezza | EditText | cm | Peso | EditText | kg -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/table_layout_sesso_eta"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_altezza_peso">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/text_view_altezza"
+            android:background="@color/verde"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000" />
+
+        <EditText
+            android:id="@+id/edit_text_altezza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="@dimen/font_size_medio"
+            android:textStyle="italic"
+            android:ems="4"
+            android:gravity="right|end" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_view_cm"
+            android:background="@color/aranciochiaro"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right|end"
+            android:text="@string/text_view_peso"
+            android:background="@color/verde"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000" />
+
+        <EditText
+            android:id="@+id/edit_text_peso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="@dimen/font_size_medio"
+            android:textStyle="italic"
+            android:ems="4"
+            android:gravity="right|end" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/text_view_kg"
+            android:background="@color/giallo"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000" />
+
+    </LinearLayout>
+
+
+    <!-- RIGA 5: Pliche Girovita | Pliche Schiena | Pliche Braccio -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/linear_layout_altezza_peso"
+        android:id="@+id/table_layout_pliche">
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/text_view_pliche_girovita"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+
+            <EditText
+                android:id="@+id/edit_text_pliche_girovita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end"
+                android:ems="4" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="start|left" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/text_view_pliche_schiena"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+
+            <EditText
+                android:id="@+id/edit_text_pliche_schiena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end"
+                android:ems="4" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="start|left" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/text_view_pliche_braccio"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000" />
+
+            <EditText
+                android:id="@+id/edit_text_pliche_braccio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end"
+                android:ems="4" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="start|left" />
+
+        </TableRow>
+
+    </TableLayout>
+
+<!--
+
+    <TextView
+        android:id="@+id/text_view_pliche"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/linear_layout_altezza_peso"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:text="@string/text_view_pliche"
+        android:textSize="@dimen/font_size_grande"
+        android:textColor="#ff000000" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_pliche"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout_pliche">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_view_pliche_girovita"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_view_pliche_schiena"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_view_pliche_braccio"
+            android:textSize="@dimen/font_size_medio"
+            android:textColor="#ff000000"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_layout_pliche"
+        android:id="@+id/linear_layout_pliche_labels">
+
+        <TableRow>
+            <EditText
+                android:id="@+id/edit_text_pliche_girovita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="left|start" />
+
+            <EditText
+                android:id="@+id/edit_text_pliche_schiena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="left|start" />
+
+            <EditText
+                android:id="@+id/edit_text_pliche_braccio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
+                android:gravity="right|end" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/text_view_mm"
+                android:textSize="@dimen/font_size_medio"
+                android:textColor="#ff000000"
+                android:gravity="start|left" />
+
+        </TableRow>
+
+    </TableLayout>
+-->
 
 </RelativeLayout>
