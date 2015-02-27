@@ -3,7 +3,9 @@
     <dimen name="activity_horizontal_margin">10dp</dimen>
     <dimen name="activity_vertical_margin">5dp</dimen>
 
-    <dimen name="elenco_misurazioni">25dp</dimen>
+    <dimen name="padding_sx_elenco_misurazioni">25dp</dimen>
+    <dimen name="padding_bottom_edit_text">6dp</dimen>
+    <dimen name="padding_top_edit_text">0dp</dimen>
 
     <!-- Dimensioni Font -->
     <dimen name="font_size_minuscolo">10sp</dimen>

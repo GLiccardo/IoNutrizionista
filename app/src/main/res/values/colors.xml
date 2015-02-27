@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Colori Barra -->
     <item name="nero" type="color">#000000</item>
     <item name="nero_chiaro" type="color">#161616</item>
     <item name="viola_extreme" type="color">#8100b5</item>
@@ -19,5 +20,8 @@
     <item name="rosso" type="color">#ff1e1e</item>
     <item name="rosso_dark" type="color">#d30000</item>
     <item name="rosso_extreme" type="color">#9b0000</item>
+
+    <!-- Altri colori -->
+    <item name="verde_acqua" type="color">#2bffb1</item>
 
 </resources>
