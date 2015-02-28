@@ -22,6 +22,13 @@
     <item name="rosso_extreme" type="color">#9b0000</item>
 
     <!-- Altri colori -->
-    <item name="verde_acqua" type="color">#2bffb1</item>
+    <item name="bianco" type="color">#ffffff</item>
+    <item name="verde_acqua" type="color">#1fd38e</item>
+    <item name="verde_acqua_chiaro" type="color">#7fffdf</item>
+    <item name="verde_acqua_chiarissimo" type="color">#e2fff8</item>
+    <item name="azzurro_chiaro" type="color">#99eeff</item>
+    <item name="azzurro_chiarissimo" type="color">#e0f9ff</item>
+    <item name="rosso_chiaro" type="color">#ffa0a0</item>
+    <item name="rosso_chiarissimo" type="color">#ffdbdb</item>
 
 </resources>

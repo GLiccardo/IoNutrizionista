@@ -2,21 +2,30 @@
 <resources>
 
     <string name="app_name">IoNutrizionista</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_funzionalita1">Funzionalita1</string>
+    <string name="title_activity_funzionalita1">Valori Energetici</string>
 
     <!-- Funzionalità 1 - Dati Anagrafici-->
-    <string name="text_view_nome">Nome: </string>
-    <string name="hint_nome_paziente">Inserire nome</string>
-    <string name="text_view_cognome">Cognome: </string>
-    <string name="hint_cognome_paziente">Inserire cognome</string>
-    <string name="text_view_sesso">Sesso: </string>
-    <string name="text_view_eta">Età: </string>
+    <string name="text_view_dati_anagrafici">Dati Anagrafici</string>
     <string name="text_view_misurazioni">Misurazioni</string>
+    <string name="text_view_risultati">Risultati</string>
+
+    <string name="text_view_nome">Nome: </string>
+    <string name="text_view_cognome">Cognome: </string>
+    <string name="hint_nome_paziente">Inserire nome</string>
+    <string name="hint_cognome_paziente">Inserire cognome</string>
+
+    <string name="text_view_sesso">Sesso: </string>
+    <string name="radio_button_maschio">M</string>
+    <string name="radio_button_femmina">F</string>
+
+    <string name="text_view_data_di_nascita">Nascita: </string>
+    <string name="hint_data_di_nascita">gg/mm/aaaa</string>
+
     <string name="text_view_pesoforma">Pesoforma</string>
     <string name="text_view_pliche">Pliche</string>
     <string name="text_view_circonferenza">Circonferenza</string>
+
     <string name="text_view_altezza">Altezza: </string>
     <string name="text_view_peso">Peso: </string>
     <string name="text_view_pliche_girovita">Girovita: </string>

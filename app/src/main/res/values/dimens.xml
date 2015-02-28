@@ -3,7 +3,21 @@
     <dimen name="activity_horizontal_margin">10dp</dimen>
     <dimen name="activity_vertical_margin">5dp</dimen>
 
+    <!-- Margini tra le sezioni della funzionalità1 -->
+    <dimen name="margins_sezioni">2dp</dimen>
+
+    <!-- Padding interni dei titoli delle sezioni -->
+    <dimen name="padding_sezioni_titolo_top_bottom">1dp</dimen>
+    <dimen name="padding_sezioni_contenuto_top_bottom">2dp</dimen>
+    <dimen name="padding_sezioni_contenuto_right_left">5dp</dimen>
+
+    <!-- Rientri per le voci di Pesoforma, Pliche e Circonferenza -->
     <dimen name="padding_sx_elenco_misurazioni">25dp</dimen>
+
+    <!-- Altezza barra colorata -->
+    <dimen name="padding_barra_colorata">6dp</dimen>
+
+    <!-- Padding per gli edit text -->
     <dimen name="padding_bottom_edit_text">6dp</dimen>
     <dimen name="padding_top_edit_text">0dp</dimen>
 

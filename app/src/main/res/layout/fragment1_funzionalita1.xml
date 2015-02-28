@@ -3,20 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
     tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentDatiAnagrafici">
 
+
+    <TextView
+        android:id="@+id/text_view_dati_anagrafici"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+        android:gravity="center"
+        android:background="@color/azzurro_chiaro"
+        android:text="@string/text_view_dati_anagrafici"
+        android:textSize="@dimen/font_size_enorme"
+        android:textColor="@color/nero"
+        android:textStyle="bold" />
+
+
     <TableLayout
         android:id="@+id/table_layout_dati_anagrafici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@drawable/border_misurazioni"
-        android:weightSum="10" >
+        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+        android:background="@color/azzurro_chiarissimo"
+        android:weightSum="10"
+        android:layout_below="@+id/text_view_dati_anagrafici" >
 
         <!-- RIGA 1: Nome | EditText -->
         <TableRow>
@@ -70,58 +89,101 @@
                 android:text="@string/text_view_sesso"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:paddingRight="10dp"
+                android:layout_weight="1.8"
                 android:textSize="@dimen/font_size_medio"
                 android:textColor="#ff000000" />
-            <Spinner
-                android:id="@+id/spinner_sesso"
+            <RadioGroup
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="4"
-                android:background="@color/rosso"
-                android:textSize="@dimen/font_size_medio" />
+                android:layout_weight="2.5"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true" >
+                <RadioButton
+                    android:id="@+id/radio_button_maschio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_button_selector"
+                    android:paddingLeft="4dp"
+                    android:checked="true"
+                    android:text="@string/radio_button_maschio" />
+                <RadioButton
+                    android:id="@+id/radio_button_femmina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:button="@drawable/radio_button_selector"
+                    android:paddingLeft="4dp"
+                    android:text="@string/radio_button_femmina" />
+            </RadioGroup>
+            <!--
+            <RadioGroup
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_button_maschio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_button_maschio"
+                    android:onClick="onRadioButtonClicked" />
+                <RadioButton android:id="@+id/radio_butotn_femmina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/radio_button_femmina"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+            -->
             <TextView
-                android:text="@string/text_view_eta"
+                android:text="@string/text_view_data_di_nascita"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="1.7"
+                android:layout_weight="2.5"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:textSize="@dimen/font_size_medio"
                 android:textColor="#ff000000" />
-            <Button
-                android:id="@+id/button_eta"
+            <EditText
+                android:id="@+id/edit_text_eta"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_weight="2.3"
+                android:layout_weight="3.2"
+                android:paddingTop="@dimen/padding_top_edit_text"
+                android:paddingBottom="@dimen/padding_bottom_edit_text"
+                android:inputType="date"
+                android:hint="@string/hint_data_di_nascita"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_medio"
+                android:textStyle="italic"
                 android:onClick="showDatePickerDialog" />
         </TableRow>
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/text_view_misurazioni"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:layout_marginTop="@dimen/margins_sezioni"
+        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+        android:gravity="center"
+        android:background="@color/verde_acqua_chiaro"
+        android:text="@string/text_view_misurazioni"
+        android:textSize="@dimen/font_size_enorme"
+        android:textColor="@color/nero"
+        android:textStyle="bold"
+        android:layout_below="@+id/table_layout_dati_anagrafici" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10"
-        android:padding="5dp"
-        android:background="@drawable/border_misurazioni"
-        android:layout_below="@+id/table_layout_dati_anagrafici">
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_weight="10"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:gravity="center"
-                android:text="@string/text_view_misurazioni"
-                android:textSize="@dimen/font_size_enorme"
-                android:textColor="@color/nero"
-                android:textStyle="bold" />
-        </TableRow>
+        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+        android:background="@color/verde_acqua_chiarissimo"
+        android:layout_below="@+id/text_view_misurazioni">
 
         <TableRow>
             <TextView
@@ -256,8 +318,7 @@
                 android:layout_weight="2.8"
                 android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
                 android:text="@string/text_view_circonferenza_coscia"
-                android:textColor="@color/nero"
-                android:textStyle="italic" />
+                android:textColor="@color/nero" />
             <EditText
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
@@ -308,8 +369,7 @@
                 android:layout_weight="2.8"
                 android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
                 android:text="@string/text_view_circonferenza_polso"
-                android:textColor="@color/nero"
-                android:textStyle="italic" />
+                android:textColor="@color/nero" />
             <EditText
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
@@ -360,8 +420,7 @@
                 android:layout_weight="2.8"
                 android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
                 android:text="@string/text_view_circonferenza_braccio"
-                android:textColor="@color/nero"
-                android:textStyle="italic" />
+                android:textColor="@color/nero" />
             <EditText
                 android:layout_width="0px"
                 android:layout_height="wrap_content"

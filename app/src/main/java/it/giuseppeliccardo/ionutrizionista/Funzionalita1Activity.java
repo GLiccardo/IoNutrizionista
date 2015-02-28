@@ -90,7 +90,7 @@ public class Funzionalita1Activity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment2_funzionalita1, container, false);
 
             // Aggiungere il bordo ad una delle TextView della barra colorata
-            TextView rettangolino = (TextView) rootView.findViewById(R.id.prova);
+            TextView rettangolino = (TextView) rootView.findViewById(R.id.barra_colorata_25_30);
             GradientDrawable backgroundGradient = (GradientDrawable) rettangolino.getBackground();
             //backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
 

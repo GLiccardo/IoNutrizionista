@@ -2,103 +2,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentBarraColorata" >
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/text_view_risultati"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="10"
+        android:layout_marginTop="@dimen/margins_sezioni"
+        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+        android:gravity="center"
+        android:background="@color/rosso_chiaro"
+        android:text="@string/text_view_risultati"
+        android:textSize="@dimen/font_size_enorme"
+        android:textColor="@color/nero"
+        android:textStyle="bold" />
+
+
+    <TableLayout
+        android:id="@+id/table_layout_risultati"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:id="@+id/linearLayout">
+        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+        android:background="@color/rosso_chiarissimo"
+        android:weightSum="7"
+        android:layout_below="@+id/text_view_risultati" >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient1_viola_blu"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_viola_dark"
-            android:padding="5dp"
-            android:textStyle="bold" />
+        <TableRow
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp" >
+            <TextView
+                android:id="@+id/barra_colorata_16meno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient1_viola_blu"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_viola_dark"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_16_19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient2_blu_verde"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_blu"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_19_25"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient3_verde_giallo"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_verde"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_25_30"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient4_giallo_arancione"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_giallo"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_30_35"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient5_arancione_rosso"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_arancione"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_35_40"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient6_rosso_rossoscuro"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_rosso"
+                android:paddingTop="@dimen/padding_barra_colorata"
+                android:paddingBottom="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/barra_colorata_40piu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:background="@drawable/gradient7_rossoscuro_scurissimo"
+                android:textSize="@dimen/font_size_minuscolo"
+                android:textColor="@color/nero_chiaro"
+                android:text="@string/barra_rosso_dark"
+                android:padding="@dimen/padding_barra_colorata"
+                android:textStyle="bold" />
+        </TableRow>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient2_blu_verde"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_blu"
-            android:padding="5dp"
-            android:textStyle="bold" />
+    </TableLayout>
 
-        <TextView
-            android:id="@+id/prova"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient3_verde_giallo"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_verde"
-            android:padding="5dp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient4_giallo_arancione"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_giallo"
-            android:padding="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient5_arancione_rosso"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_arancione"
-            android:padding="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient6_rosso_rossoscuro"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_rosso"
-            android:padding="5dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:gravity="center"
-            android:background="@drawable/gradient7_rossoscuro_scurissimo"
-            android:textSize="@dimen/font_size_minuscolo"
-            android:textColor="@color/nero_chiaro"
-            android:text="@string/barra_rosso_dark"
-            android:padding="5dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 
 </RelativeLayout>
