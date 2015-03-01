@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,13 +20,9 @@ public class Funzionalita1Activity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_funzionalita1);
         if (savedInstanceState == null) {
-            // Aggiungo FragmentDatiAnagrfici al componente FrameLayout1 dell'activity host
+            // Aggiungo FragmentFunzionalita1 al componente FrameLayout1 dell'activity host
             getFragmentManager().beginTransaction()
-                    .add(R.id.container1, new FragmentDatiAnagrafici())
-                    .commit();
-            // Aggiungo FragmentBarraColorata al componente FrameLayout2 dell'activity host
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container2, new FragmentBarraColorata())
+                    .add(R.id.container1, new FragmentFunzionalita1())
                     .commit();
         }
     }
@@ -54,50 +51,33 @@ public class Funzionalita1Activity extends ActionBarActivity {
     }
 
     /**
-     * Fragment per la gestione dei dati anagrafici della "Funzionalità 1":
-     * - Nome
-     * - Cognome
-     * - Sesso
-     * - Età
+     * Fragment per la gestione della "Funzionalità 1":
+     * - Dati Anagrafici (Nome, Cognome, Sesso, Età)
+     * - Misurazioni (Altezza, Peso, Pliche, Circonferenze)
+     * - Barra Colorata
+     * - Risultati (BMI, Peso Calc Ideale, Metab Basale, Fabb Energetico, Raz Calorica)
      */
-    public static class FragmentDatiAnagrafici extends Fragment {
+    public static class FragmentFunzionalita1 extends Fragment {
 
-        public FragmentDatiAnagrafici() {
+        public FragmentFunzionalita1() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Aggiungo la UI al fragment
-            View rootView = inflater.inflate(R.layout.fragment1_funzionalita1, container, false);
-            return rootView;
-        }
-    }
-
-    /**
-     * Fragment per la gestione dei dati anagrafici della "Funzionalità 1":
-     * - Barra colorata
-     */
-    public static class FragmentBarraColorata extends Fragment {
-
-        public FragmentBarraColorata() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Aggiungo la UI al fragment
-            View rootView = inflater.inflate(R.layout.fragment2_funzionalita1, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_funzionalita1, container, false);
 
             // Aggiungere il bordo ad una delle TextView della barra colorata
             TextView rettangolino = (TextView) rootView.findViewById(R.id.barra_colorata_25_30);
             GradientDrawable backgroundGradient = (GradientDrawable) rettangolino.getBackground();
-            //backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
+            backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
+
+            TextView kgm2 = (TextView) rootView.findViewById(R.id.text_view_kgm2);
+            //kgm2.setText(Html.fromHtml("kg/m<sup><small>" + 2 + "</small></sup>"));
 
             return rootView;
         }
-
-
     }
 
 }
