@@ -23,6 +23,7 @@
 
     <!-- Altri colori -->
     <item name="bianco" type="color">#ffffff</item>
+    <item name="grigio_chiaro" type="color">#ffb3b3b3</item>
     <item name="verde_acqua" type="color">#1fd38e</item>
     <item name="verde_acqua_chiaro" type="color">#7fffdf</item>
     <item name="verde_acqua_chiarissimo" type="color">#e2fff8</item>
