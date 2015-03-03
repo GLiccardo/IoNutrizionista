@@ -1,16 +1,9 @@
 package it.giuseppeliccardo.ionutrizionista;
 
-import android.app.Fragment;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 public class Funzionalita1Activity extends ActionBarActivity {
@@ -26,7 +19,6 @@ public class Funzionalita1Activity extends ActionBarActivity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,36 +40,6 @@ public class Funzionalita1Activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * Fragment per la gestione della "Funzionalità 1":
-     * - Dati Anagrafici (Nome, Cognome, Sesso, Età)
-     * - Misurazioni (Altezza, Peso, Pliche, Circonferenze)
-     * - Barra Colorata
-     * - Risultati (BMI, Peso Calc Ideale, Metab Basale, Fabb Energetico, Raz Calorica)
-     */
-    public static class FragmentFunzionalita1 extends Fragment {
-
-        public FragmentFunzionalita1() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Aggiungo la UI al fragment
-            View rootView = inflater.inflate(R.layout.fragment_funzionalita1, container, false);
-
-            // Aggiungere il bordo ad una delle TextView della barra colorata
-            TextView rettangolino = (TextView) rootView.findViewById(R.id.barra_colorata_25_30);
-            GradientDrawable backgroundGradient = (GradientDrawable) rettangolino.getBackground();
-            backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
-
-            TextView kgm2 = (TextView) rootView.findViewById(R.id.text_view_kgm2);
-            //kgm2.setText(Html.fromHtml("kg/m<sup><small>" + 2 + "</small></sup>"));
-
-            return rootView;
-        }
     }
 
 }
