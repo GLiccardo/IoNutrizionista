@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
     };
 
     void clickLinearLayout1() {
-        startActivity(new Intent(this, Funzionalita1Activity.class));
+        startActivity(new Intent(this, CalcoloValoriEnergeticiActivity.class));
         Toast.makeText(getApplicationContext(), "Menu calorie selezionato", Toast.LENGTH_SHORT).show();
     }
 

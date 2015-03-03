@@ -24,7 +24,7 @@ import java.util.Locale;
  * - Barra Colorata
  * - Risultati (BMI, Peso Calc Ideale, Metab Basale, Fabb Energetico, Raz Calorica)
  */
-public class FragmentFunzionalita1 extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
+public class FragmentCalcoloValoriEnergetici extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
 
     // TODO: Dichiarare qui tutti gli elementi grafici che saranno individuati nel metodo findViewsById
     // TODO: Eliminare questi inseriti come esempio
@@ -33,7 +33,7 @@ public class FragmentFunzionalita1 extends Fragment implements View.OnClickListe
     private DatePickerDialog mEtaPickerDialog;
     private SimpleDateFormat mDateFormatter;
 
-    public FragmentFunzionalita1() {
+    public FragmentCalcoloValoriEnergetici() {
     }
 
     @Override
@@ -42,10 +42,7 @@ public class FragmentFunzionalita1 extends Fragment implements View.OnClickListe
         // Aggiungo la UI al fragment
         View rootView = inflater.inflate(R.layout.fragment_funzionalita1, container, false);
 
-        // Aggiungere il bordo ad una delle TextView della barra colorata
-        TextView rettangolino = (TextView) rootView.findViewById(R.id.barra_colorata_25_30);
-        GradientDrawable backgroundGradient = (GradientDrawable) rettangolino.getBackground();
-        backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
+
 
         TextView kgm2 = (TextView) rootView.findViewById(R.id.text_view_kgm2);
         //kgm2.setText(Html.fromHtml("kg/m<sup><small>" + 2 + "</small></sup>"));
@@ -87,14 +84,19 @@ public class FragmentFunzionalita1 extends Fragment implements View.OnClickListe
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mDateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
+        mDateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
 
         findViewsById();
+
+        // Aggiungere il bordo ad una delle TextView della barra colorata
+        GradientDrawable backgroundGradient = (GradientDrawable) mBordoCellaBarraColorata.getBackground();
+        backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
     }
 
     private void findViewsById() {
         // TODO: Inserire qui tutti i findViewById
-        EditText mEtaEditText = (EditText) getView().findViewById(R.id.edit_text_eta);
+        mEtaEditText = (EditText) getView().findViewById(R.id.edit_text_eta);
+        mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_25_30);
     }
 
     @Override

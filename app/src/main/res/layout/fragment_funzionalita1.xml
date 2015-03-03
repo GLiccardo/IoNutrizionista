@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
-    tools:context="it.giuseppeliccardo.ionutrizionista.Funzionalita1Activity.FragmentDatiAnagrafici">
+    tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivity.FragmentDatiAnagrafici">
 
 
     <TextView
@@ -115,24 +115,6 @@
                     android:paddingLeft="4dp"
                     android:text="@string/radio_button_femmina" />
             </RadioGroup>
-            <!--
-            <RadioGroup
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:orientation="horizontal">
-                <RadioButton android:id="@+id/radio_button_maschio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/radio_button_maschio"
-                    android:onClick="onRadioButtonClicked" />
-                <RadioButton android:id="@+id/radio_butotn_femmina"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/radio_button_femmina"
-                    android:onClick="onRadioButtonClicked"/>
-            </RadioGroup>
-            -->
             <TextView
                 android:text="@string/text_view_data_di_nascita"
                 android:layout_height="wrap_content"

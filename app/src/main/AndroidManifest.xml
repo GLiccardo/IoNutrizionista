@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Funzionalita1Activity"
+            android:name=".CalcoloValoriEnergeticiActivity"
             android:label="@string/title_activity_funzionalita1"
             android:parentActivityName=".MainActivity" >
             <meta-data

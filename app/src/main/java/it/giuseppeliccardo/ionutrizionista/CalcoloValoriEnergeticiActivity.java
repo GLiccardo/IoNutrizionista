@@ -6,16 +6,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Funzionalita1Activity extends ActionBarActivity {
+public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_funzionalita1);
         if (savedInstanceState == null) {
-            // Aggiungo FragmentFunzionalita1 al componente FrameLayout1 dell'activity host
+            // Aggiungo FragmentCalcoloValoriEnergetici al componente FrameLayout dell'activity host
             getFragmentManager().beginTransaction()
-                    .add(R.id.container1, new FragmentFunzionalita1())
+                    .add(R.id.container1, new FragmentCalcoloValoriEnergetici())
                     .commit();
         }
     }
