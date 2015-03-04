@@ -29,7 +29,7 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
     // TODO: Dichiarare qui tutti gli elementi grafici che saranno individuati nel metodo findViewsById
     // TODO: Eliminare questi inseriti come esempio
     private TextView mBordoCellaBarraColorata;
-    private EditText mEtaEditText;
+    private EditText mEtaEditText, mCirconferenzaPolsoEditText ;
     private DatePickerDialog mEtaPickerDialog;
     private SimpleDateFormat mDateFormatter;
 
@@ -91,12 +91,16 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
         // Aggiungere il bordo ad una delle TextView della barra colorata
         GradientDrawable backgroundGradient = (GradientDrawable) mBordoCellaBarraColorata.getBackground();
         backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
+
+        // Aggiungo il padding dinamicamente alle EditText
+        mCirconferenzaPolsoEditText.setPadding(0, 0, 0, 4);
     }
 
     private void findViewsById() {
         // TODO: Inserire qui tutti i findViewById
         mEtaEditText = (EditText) getView().findViewById(R.id.edit_text_eta);
         mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_25_30);
+        mCirconferenzaPolsoEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_polso);
     }
 
     @Override
