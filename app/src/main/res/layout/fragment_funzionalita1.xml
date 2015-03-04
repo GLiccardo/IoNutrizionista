@@ -1,798 +1,805 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingStart="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingEnd="@dimen/activity_horizontal_margin"
-    tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivity.FragmentDatiAnagrafici">
+    >
 
-
-    <TextView
-        android:id="@+id/text_view_dati_anagrafici"
-        android:layout_height="wrap_content"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_weight="10"
-        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
-        android:gravity="center"
-        android:background="@color/azzurro_chiaro"
-        android:text="@string/text_view_dati_anagrafici"
-        android:textSize="@dimen/font_size_grande"
-        android:textColor="@color/nero"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivity.FragmentDatiAnagrafici">
 
 
-    <TableLayout
-        android:id="@+id/table_layout_dati_anagrafici"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
-        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
-        android:background="@color/azzurro_chiarissimo"
-        android:weightSum="10"
-        android:layout_below="@+id/text_view_dati_anagrafici" >
+        <TextView
+            android:id="@+id/text_view_dati_anagrafici"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="10"
+            android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+            android:gravity="center"
+            android:background="@color/azzurro_chiaro"
+            android:text="@string/text_view_dati_anagrafici"
+            android:textSize="@dimen/font_size_grande"
+            android:textColor="@color/nero"
+            android:textStyle="bold" />
 
-        <!-- RIGA 1: Nome | EditText -->
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.3"
-                android:text="@string/text_view_nome"
-                android:textSize="@dimen/font_size_medio"
-                android:textColor="#ff000000" />
-            <EditText
-                android:id="@+id/edit_text_nome"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="7.7"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="textPersonName"
-                android:hint="@string/hint_nome_paziente"
-                android:textSize="@dimen/font_size_medio"
-                android:ems="10"
-                android:textStyle="italic" />
-        </TableRow>
 
-        <!-- RIGA 2: Cognome | EditText  -->
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.3"
-                android:text="@string/text_view_cognome"
-                android:textSize="@dimen/font_size_medio"
-                android:textColor="#ff000000" />
-            <EditText
-                android:id="@+id/edit_text_cognome"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="7.7"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="textPersonName"
-                android:hint="@string/hint_cognome_paziente"
-                android:textSize="@dimen/font_size_medio"
-                android:ems="10"
-                android:textStyle="italic" />
-        </TableRow>
+        <TableLayout
+            android:id="@+id/table_layout_dati_anagrafici"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+            android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+            android:background="@color/azzurro_chiarissimo"
+            android:weightSum="10"
+            android:layout_below="@+id/text_view_dati_anagrafici" >
 
-        <!-- RIGA 3: Sesso | Combobox | Età | Combobox -->
-        <TableRow>
-            <TextView
-                android:text="@string/text_view_sesso"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1.8"
-                android:textSize="@dimen/font_size_medio"
-                android:textColor="#ff000000" />
-            <RadioGroup
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true" >
-                <RadioButton
-                    android:id="@+id/radio_button_maschio"
-                    android:layout_width="wrap_content"
+            <!-- RIGA 1: Nome | EditText -->
+            <TableRow>
+                <TextView
                     android:layout_height="wrap_content"
-                    android:button="@drawable/radio_button_selector"
-                    android:paddingLeft="4dp"
-                    android:checked="true"
-                    android:text="@string/radio_button_maschio" />
-                <RadioButton
-                    android:id="@+id/radio_button_femmina"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.3"
+                    android:text="@string/text_view_nome"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_nome"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:button="@drawable/radio_button_selector"
-                    android:paddingLeft="4dp"
-                    android:text="@string/radio_button_femmina" />
-            </RadioGroup>
-            <TextView
-                android:text="@string/text_view_data_di_nascita"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingLeft="10dp"
-                android:textSize="@dimen/font_size_medio"
-                android:textColor="#ff000000" />
-            <EditText
-                android:id="@+id/edit_text_eta"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="3.2"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="date"
-                android:hint="@string/hint_data_di_nascita"
-                android:gravity="center"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:onClick="showDatePickerDialog" />
-        </TableRow>
+                    android:layout_width="0dp"
+                    android:layout_weight="7.7"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="textPersonName"
+                    android:hint="@string/hint_nome_paziente"
+                    android:textSize="@dimen/font_size_medio"
+                    android:ems="10"
+                    android:textStyle="italic" />
+            </TableRow>
 
-    </TableLayout>
+            <!-- RIGA 2: Cognome | EditText  -->
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.3"
+                    android:text="@string/text_view_cognome"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_cognome"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="7.7"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="textPersonName"
+                    android:hint="@string/hint_cognome_paziente"
+                    android:textSize="@dimen/font_size_medio"
+                    android:ems="10"
+                    android:textStyle="italic" />
+            </TableRow>
 
-    <TextView
-        android:id="@+id/text_view_misurazioni"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_weight="10"
-        android:layout_marginTop="@dimen/margins_sezioni"
-        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
-        android:gravity="center"
-        android:background="@color/verde_acqua_chiaro"
-        android:text="@string/text_view_misurazioni"
-        android:textSize="@dimen/font_size_grande"
-        android:textColor="@color/nero"
-        android:textStyle="bold"
-        android:layout_below="@+id/table_layout_dati_anagrafici" />
+            <!-- RIGA 3: Sesso | Combobox | Età | Combobox -->
+            <TableRow>
+                <TextView
+                    android:text="@string/text_view_sesso"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.8"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:orientation="horizontal"
+                    android:layout_centerInParent="true" >
+                    <RadioButton
+                        android:id="@+id/radio_button_maschio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_button_selector"
+                        android:paddingLeft="4dp"
+                        android:checked="true"
+                        android:text="@string/radio_button_maschio" />
+                    <RadioButton
+                        android:id="@+id/radio_button_femmina"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:button="@drawable/radio_button_selector"
+                        android:paddingLeft="4dp"
+                        android:text="@string/radio_button_femmina" />
+                </RadioGroup>
+                <TextView
+                    android:text="@string/text_view_data_di_nascita"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingLeft="10dp"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_eta"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.2"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="date"
+                    android:hint="@string/hint_data_di_nascita"
+                    android:gravity="center"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:onClick="showDatePickerDialog" />
+            </TableRow>
 
-    <TableLayout
-        android:id="@+id/table_layout_misurazioni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="10"
-        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
-        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
-        android:background="@color/verde_acqua_chiarissimo"
-        android:layout_below="@+id/text_view_misurazioni">
+        </TableLayout>
 
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/text_view_pesoforma"
-                android:textColor="@color/verde_acqua"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/text_view_circonferenza"
-                android:textColor="@color/verde_acqua"
-                android:textStyle="bold|italic"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_altezza"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end"  />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_circonferenza_addome"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_peso"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_kg"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_circonferenza_fianchi"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/text_view_pliche"
-                android:textColor="@color/verde_acqua"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_circonferenza_coscia"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_pliche_girovita"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_mm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_circonferenza_polso"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_pliche_schiena"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_mm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_circonferenza_braccio"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number|numberDecimal"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_cm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.8"
-                android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
-                android:text="@string/text_view_pliche_braccio"
-                android:textColor="@color/nero" />
-            <EditText
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:paddingTop="@dimen/padding_top_edit_text"
-                android:paddingBottom="@dimen/padding_bottom_edit_text"
-                android:inputType="number"
-                android:textSize="@dimen/font_size_medio"
-                android:textStyle="italic"
-                android:gravity="right|end" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="@string/text_view_mm"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="5" />
-        </TableRow>
-
-    </TableLayout>
-
-
-    <TextView
-        android:id="@+id/text_view_risultati"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_weight="10"
-        android:layout_marginTop="@dimen/margins_sezioni"
-        android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
-        android:gravity="center"
-        android:background="@color/rosso_chiaro"
-        android:text="@string/text_view_risultati"
-        android:textSize="@dimen/font_size_grande"
-        android:textColor="@color/nero"
-        android:textStyle="bold"
-        android:layout_below="@id/table_layout_misurazioni"/>
-
-
-    <TableLayout
-        android:id="@+id/table_layout_risultati"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
-        android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
-        android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
-        android:background="@color/rosso_chiarissimo"
-        android:weightSum="7"
-        android:layout_below="@+id/text_view_risultati" >
-
-        <TableRow
-            android:layout_marginBottom="@dimen/padding_sezioni_contenuto_top_bottom"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp" >
-            <TextView
-                android:id="@+id/barra_colorata_16meno"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient1_viola_blu"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_viola_dark"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_16_19"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient2_blu_verde"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_blu"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_19_25"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient3_verde_giallo"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_verde"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_25_30"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient4_giallo_arancione"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_giallo"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_30_35"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient5_arancione_rosso"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_arancione"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_35_40"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient6_rosso_rossoscuro"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_rosso"
-                android:paddingTop="@dimen/padding_barra_colorata"
-                android:paddingBottom="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/barra_colorata_40piu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/gradient7_rossoscuro_scurissimo"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textColor="@color/nero_chiaro"
-                android:text="@string/barra_rosso_dark"
-                android:padding="@dimen/padding_barra_colorata"
-                android:textStyle="bold" />
-        </TableRow>
-
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_bmi"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:id="@+id/text_view_kgm2"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kg_m2"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_peso_calcolato_ideale"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kg"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_metabolismo_basale"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kcal"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_fabbisogno_energetico"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kcal"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_razione_calorica_leggera"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kcal"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_razione_calorica_moderata"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kcal"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="6.5"
-                android:text="@string/text_view_razione_calorica_pesante"
-                android:textColor="@color/rosso_dark"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="2.5"
-                android:paddingRight="5dp"
-                android:gravity="end"
-                android:textColor="@color/nero"
-                android:textStyle="bold|italic" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/text_view_kcal"
-                android:textSize="@dimen/font_size_minuscolo"
-                android:textStyle="italic" />
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true" >
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <TextView
+            android:id="@+id/text_view_misurazioni"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="A"
-            android:id="@+id/button" />
+            android:layout_width="match_parent"
+            android:layout_weight="10"
+            android:layout_marginTop="@dimen/margins_sezioni"
+            android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+            android:gravity="center"
+            android:background="@color/verde_acqua_chiaro"
+            android:text="@string/text_view_misurazioni"
+            android:textSize="@dimen/font_size_grande"
+            android:textColor="@color/nero"
+            android:textStyle="bold"
+            android:layout_below="@+id/table_layout_dati_anagrafici" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <TableLayout
+            android:id="@+id/table_layout_misurazioni"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="B"
-            android:id="@+id/button2" />
+            android:weightSum="10"
+            android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+            android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+            android:background="@color/verde_acqua_chiarissimo"
+            android:layout_below="@+id/text_view_misurazioni">
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="@string/text_view_pesoforma"
+                    android:textColor="@color/verde_acqua"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="@string/text_view_circonferenza"
+                    android:textColor="@color/verde_acqua"
+                    android:textStyle="bold|italic"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_altezza"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end"  />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_circonferenza_addome"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_peso"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_circonferenza_fianchi"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="@string/text_view_pliche"
+                    android:textColor="@color/verde_acqua"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_circonferenza_coscia"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_pliche_girovita"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_mm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_circonferenza_polso"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_pliche_schiena"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_mm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_circonferenza_braccio"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:paddingLeft="@dimen/padding_sx_elenco_misurazioni"
+                    android:text="@string/text_view_pliche_braccio"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:paddingTop="@dimen/padding_top_edit_text"
+                    android:paddingBottom="@dimen/padding_bottom_edit_text"
+                    android:inputType="number"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="right|end" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_mm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5" />
+            </TableRow>
+
+        </TableLayout>
+
+
+        <TextView
+            android:id="@+id/text_view_risultati"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:id="@+id/button3" />
+            android:layout_width="match_parent"
+            android:layout_weight="10"
+            android:layout_marginTop="@dimen/margins_sezioni"
+            android:paddingTop="@dimen/padding_sezioni_titolo_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
+            android:gravity="center"
+            android:background="@color/rosso_chiaro"
+            android:text="@string/text_view_risultati"
+            android:textSize="@dimen/font_size_grande"
+            android:textColor="@color/nero"
+            android:textStyle="bold"
+            android:layout_below="@id/table_layout_misurazioni"/>
 
-    </LinearLayout>
 
-</RelativeLayout>
+        <TableLayout
+            android:id="@+id/table_layout_risultati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+            android:paddingStart="@dimen/padding_sezioni_contenuto_right_left"
+            android:paddingEnd="@dimen/padding_sezioni_contenuto_right_left"
+            android:background="@color/rosso_chiarissimo"
+            android:weightSum="7"
+            android:layout_below="@+id/text_view_risultati" >
+
+            <TableRow
+                android:layout_marginBottom="@dimen/padding_sezioni_contenuto_top_bottom"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp" >
+                <TextView
+                    android:id="@+id/barra_colorata_16meno"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient1_viola_blu"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_viola_dark"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_16_19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient2_blu_verde"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_blu"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_19_25"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient3_verde_giallo"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_verde"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_25_30"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient4_giallo_arancione"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_giallo"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_30_35"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient5_arancione_rosso"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_arancione"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_35_40"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient6_rosso_rossoscuro"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_rosso"
+                    android:paddingTop="@dimen/padding_barra_colorata"
+                    android:paddingBottom="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/barra_colorata_40piu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:background="@drawable/gradient7_rossoscuro_scurissimo"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textColor="@color/nero_chiaro"
+                    android:text="@string/barra_rosso_dark"
+                    android:padding="@dimen/padding_barra_colorata"
+                    android:textStyle="bold" />
+            </TableRow>
+
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_bmi"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_kgm2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kg_m2"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_peso_calcolato_ideale"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_metabolismo_basale"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_fabbisogno_energetico"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_razione_calorica_leggera"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_razione_calorica_moderata"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:text="@string/text_view_razione_calorica_pesante"
+                    android:textColor="@color/rosso_dark"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2.5"
+                    android:paddingRight="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true" >
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="A"
+                android:id="@+id/button" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="B"
+                android:id="@+id/button2" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:id="@+id/button3" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
