@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +114,10 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity(), "Click successivi", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Click successivi", Toast.LENGTH_SHORT).show();
+        float px1 = 4.0f * (getResources().getDisplayMetrics().densityDpi / 160f);
+        float px2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+        Toast.makeText(getActivity(), "DP1: " + px1 + "\nDP2" + px2, Toast.LENGTH_LONG).show();
         mEtaPickerDialog.show();
     }
 
