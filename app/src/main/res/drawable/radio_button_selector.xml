@@ -19,7 +19,7 @@
             -->
 
             <solid
-                android:color="@color/blu" />
+                android:color="@color/azzurro_chiaro" />
 
             <stroke
                 android:width="1dp"
