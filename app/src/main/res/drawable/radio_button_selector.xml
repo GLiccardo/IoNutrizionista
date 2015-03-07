@@ -10,12 +10,16 @@
                 android:height="15dp"
                 android:width="15dp" />
 
+            <!--
             <gradient
                 android:startColor="@color/blu"
                 android:endColor="@color/bianco"
                 android:type="radial"
-                android:gradientRadius="50%"
-                />
+                android:gradientRadius="50%p" />
+            -->
+
+            <solid
+                android:color="@color/blu" />
 
             <stroke
                 android:width="1dp"
@@ -33,12 +37,17 @@
                 android:height="15dp"
                 android:width="15dp" />
 
+            <!--
             <gradient
                 android:startColor="@color/bianco"
                 android:endColor="@color/blu"
                 android:type="radial"
-                android:gradientRadius="180%"
+                android:gradientRadius="180%p"
                 />
+            -->
+
+            <solid
+                android:color="@color/bianco" />
 
             <stroke
                 android:width="1dp"
@@ -48,32 +57,3 @@
     </item>
 
 </selector>
-
-    <!--
-    <item
-        android:state_checked="true"
-        android:drawable="@drawable/radio_button_checked" >
-    </item>
-
-    <item
-        android:drawable="@drawable/radio_button_unchecked" >
-    </item>
-    -->
-
-
-    <!--
-    <item>
-        <shape android:shape="ring"  >
-            <stroke android:width="1dip" android:color="#cccccc" />
-            <solid android:color="#ffffff" />
-        </shape>
-    </item>
-
-    <item android:state_checked="true">
-        <shape android:shape="ring" >
-            <corners android:radius="3dip" />
-            <stroke android:width="1dip" android:color="#333333" />
-            <solid android:color="#cccccc" />
-        </shape>
-    </item>
-    -->
