@@ -10,15 +10,19 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
 
 /**
  * Fragment per la gestione della "Funzionalità 1":
@@ -30,16 +34,50 @@ import java.util.Locale;
 public class FragmentCalcoloValoriEnergetici extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
 
     // TODO: Dichiarare qui tutti gli elementi grafici che saranno individuati nel metodo findViewsById
-    // TODO: Eliminare questi inseriti come esempio
-    private TextView mBordoCellaBarraColorata;
-    private EditText mNomeEditText, mCognomeEditText, mEtaEditText, mAltezzaEditText, mPesoEditText,
-            mPlicheGirovitaEditText, mPlicheSchienaEditText, mPlicheBraccioEditText,
-            mCirconferenzaAddomeEditText, mCirconferenzaFianchiEditText, mCirconferenzaCosciaEditText, mCirconferenzaPolsoEditText, mCirconferenzaBraccioEditText;
+    private TextView mBordoCellaBarraColorata,
+            mBmiTextView,
+            mPesoCalcolatoIdealeTextView,
+            mMetabolismoBasaleTextView,
+            mFabbisognoEnergeticoTextView,
+            mRazioneCaloricaLeggeraTextView,
+            mRazioneCaloricaModerataTextView,
+            mRazioneCaloricaPesanteTextView;
+
+    private EditText mNomeEditText,
+            mCognomeEditText,
+            mEtaEditText,
+            mAltezzaEditText,
+            mPesoEditText,
+            mPlicheGirovitaEditText,
+            mPlicheSchienaEditText,
+            mPlicheBraccioEditText,
+            mCirconferenzaAddomeEditText,
+            mCirconferenzaFianchiEditText,
+            mCirconferenzaCosciaEditText,
+            mCirconferenzaPolsoEditText,
+            mCirconferenzaBraccioEditText;
+
+    private Button mButtonCalcola;
+
     private DatePickerDialog mEtaPickerDialog;
     private SimpleDateFormat mDateFormatter;
 
+
+    // Esternalizzazione stringhe
+    private static final String TAG_INSERIRE_ALTEZZA_PESO           = "Inserire Altezza e Peso";
+    private static final String TAG_INSERIRE_ALTEZZA                = "Inserire Altezza";
+    private static final String TAG_INSERIRE_ALTEZZA_CORRETTA       = "Altezza non valida";
+    private static final String TAG_INSERIRE_PESO                   = "Inserire Peso";
+    private static final String TAG_INSERIRE_PESO_CORRETTO          = "Peso non valido";
+
+
+    /*
+        Costruttore
+     */
     public FragmentCalcoloValoriEnergetici() {
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +90,10 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
         //TextView kgm2 = (TextView) rootView.findViewById(R.id.text_view_kgm2);
         //kgm2.setText(Html.fromHtml("kg/m<sup><small>" + 2 + "</small></sup>"));
 
-
-
-
         return rootView;
     }
+
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -70,16 +107,20 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
         mostraDatePicker();
 
 
-
-
-
-
-
-        // Aggiungere il bordo ad una delle TextView della barra colorata
-        GradientDrawable backgroundGradient = (GradientDrawable) mBordoCellaBarraColorata.getBackground();
-        backgroundGradient.setStroke(5, getResources().getColor(R.color.nero_chiaro));
+        //create a variable that contain your button
+        mButtonCalcola.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                float bmi = calcolaBMI();
+                float bmiArrotondato = (float) Math.round(bmi * 100) / 100;
+                mBmiTextView.setText(Float.toString(bmiArrotondato));
+                settaBordoBarraColorata(bmi);
+            }
+        });
 
     }
+
+
 
     private void findViewsById() {
         // TODO: Inserire qui tutti i findViewById
@@ -102,12 +143,17 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
             mCirconferenzaPolsoEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_polso);
 
             // Risultati
-            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_25_30);
+            mBmiTextView = (TextView) getView().findViewById(R.id.text_view_bmi);
+
+            // Buttons
+            mButtonCalcola = (Button) getView().findViewById((R.id.button3));
 
         } catch (NullPointerException exc) {
             exc.printStackTrace();
         }
     }
+
+
 
     private void paddingEditText() {
         // Calcolo il valore in pixel di 4dpi in relazione al tipo di dispositivo utilizzato
@@ -132,6 +178,7 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
         mCirconferenzaFianchiEditText.setPadding(valoreInPixelInt8Dp, 0, valoreInPixelInt8Dp, valoreInPixelInt4Dp);
         mCirconferenzaPolsoEditText.setPadding(valoreInPixelInt8Dp, 0, valoreInPixelInt8Dp, valoreInPixelInt4Dp);
     }
+
 
 
     private void mostraDatePicker() {
@@ -174,6 +221,63 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
     public void onClick(View v) {
         Toast.makeText(getActivity(), "Click successivi", Toast.LENGTH_SHORT).show();
         mEtaPickerDialog.show();
+    }
+
+
+
+    private float calcolaBMI() {
+
+        float bmi = 0.0f;
+        if (mAltezzaEditText.getText().toString().equals("") && mPesoEditText.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA_PESO , Toast.LENGTH_SHORT).show();
+        } else if (mPesoEditText.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), TAG_INSERIRE_PESO, Toast.LENGTH_SHORT).show();
+        } else if (mAltezzaEditText.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA, Toast.LENGTH_SHORT).show();
+        } else {
+            int altezzaCM = Integer.parseInt(mAltezzaEditText.getText().toString());
+            float altezzaM = (float) altezzaCM / 100;
+            float peso = Float.parseFloat(mPesoEditText.getText().toString());
+
+            if (altezzaCM < 80 || altezzaCM > 220) {
+                Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA_CORRETTA, Toast.LENGTH_SHORT).show();
+            } else if (peso < 30 || peso > 250) {
+                Toast.makeText(getActivity(), TAG_INSERIRE_PESO_CORRETTO, Toast.LENGTH_SHORT).show();
+            } else {
+                return (float) ((1.3f * peso) / (Math.pow(altezzaM, 2.5f)));
+            }
+
+            //BigDecimal bmiNuovo = new BigDecimal(bmi);
+            //float bmiArrotondato = (float) Math.round(bmi * 100) / 100;
+            //Toast.makeText(getActivity(), "Altezza: " + altezzaM + "\nPeso: " + peso + "\nBMI Puro: " + bmi + "\nBMI arrotondato: " + bmiArrotondato, Toast.LENGTH_SHORT).show();
+        }
+
+        return bmi;
+    }
+
+    private void settaBordoBarraColorata(float bmi) {
+
+        // Aggiungere il bordo ad una delle TextView della barra colorata
+        if (bmi < 16f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_16meno);
+        } else if (16f <= bmi && bmi < 19f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_16_19);
+        } else if (19f <= bmi && bmi < 25f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_19_25);
+        } else if (25f <= bmi && bmi < 30f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_25_30);
+        } else if (30f <= bmi && bmi < 35f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_30_35);
+        } else if (35f <= bmi && bmi < 40f) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_35_40);
+        } else if (40 <= bmi) {
+            mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_40piu);
+        }
+        GradientDrawable backgroundGradient = (GradientDrawable) mBordoCellaBarraColorata.getBackground();
+        backgroundGradient.setStroke(0, getResources().getColor(R.color.nero_chiaro));
+
+        // TODO: Rimuovere vecchi bordi
+
     }
 
 }
