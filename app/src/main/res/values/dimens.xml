@@ -22,10 +22,10 @@
     <dimen name="padding_top_edit_text">0dp</dimen>
 
     <!-- Dimensioni Font -->
-    <dimen name="font_size_minuscolo">9sp</dimen>
-    <dimen name="font_size_piccolo">11sp</dimen>
-    <dimen name="font_size_medio">13sp</dimen>
-    <dimen name="font_size_grande">15sp</dimen>
-    <dimen name="font_size_enorme">17sp</dimen>
+    <dimen name="font_size_minuscolo">10sp</dimen>
+    <dimen name="font_size_piccolo">12sp</dimen>
+    <dimen name="font_size_medio">14sp</dimen>
+    <dimen name="font_size_grande">16sp</dimen>
+    <dimen name="font_size_enorme">18sp</dimen>
 
 </resources>

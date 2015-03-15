@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    LinearLayout mMenuCalorie, mMenu2, mMenu3, mMenu4;
+    LinearLayout mMenuValoriEnergetici, mMenu2, mMenu3, mMenu4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class MainActivity extends ActionBarActivity {
         actionBar.hide();
 
         // Gestione del click sugli elementi del LinearLayout
-        mMenuCalorie = (LinearLayout) findViewById(R.id.primo);
-        mMenuCalorie.setOnClickListener(myListener);
+        mMenuValoriEnergetici = (LinearLayout) findViewById(R.id.primo);
+        mMenuValoriEnergetici.setOnClickListener(myListener);
         mMenu2 = (LinearLayout) findViewById(R.id.secondo);
         mMenu2.setOnClickListener(myListener);
         mMenu3 = (LinearLayout) findViewById(R.id.terzo);
@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
     View.OnClickListener myListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (view == mMenuCalorie) clickLinearLayout1();
+            if (view == mMenuValoriEnergetici) clickLinearLayout1();
             if (view == mMenu2) clickLinearLayout2();
             if (view == mMenu3) clickLinearLayout3();
             if (view == mMenu4) clickLinearLayout4();
@@ -53,6 +53,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     void clickLinearLayout2() {
+        startActivity(new Intent(this, CalcoloValoriEnergeticiActivityv2.class));
         Toast.makeText(getApplicationContext(), "Menu 2 selezionato", Toast.LENGTH_SHORT).show();
     }
 

@@ -11,7 +11,7 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_funzionalita1);
+        setContentView(R.layout.activity_calcolo_valori_energetici);
         if (savedInstanceState == null) {
             // Aggiungo FragmentCalcoloValoriEnergetici al componente FrameLayout dell'activity host
             getFragmentManager().beginTransaction()

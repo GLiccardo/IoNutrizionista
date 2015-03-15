@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lista_sezione_dati_anagrafici"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_lista_dati_anagrafici"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/text_view_lista_dati_anagrafici"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Description"
+            android:textSize="@dimen/font_size_piccolo"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lista_sezione_misurazioni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_lista_misurazioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/text_view_lista_misurazioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Description"
+            android:textSize="@dimen/font_size_piccolo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lista_sezione_risultati"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_lista_risultati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/text_view_lista_risultati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Description"
+            android:textSize="@dimen/font_size_piccolo" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -13,11 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -83,7 +79,7 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Aggiungo la UI al fragment
-        View rootView = inflater.inflate(R.layout.fragment_funzionalita1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_calcolo_valori_energetici, container, false);
 
 
         // Uso la classe Html per scrivere pedice e apice

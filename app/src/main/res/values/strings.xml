@@ -3,7 +3,8 @@
 
     <string name="app_name">IoNutrizionista</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_funzionalita1">Valori Energetici</string>
+    <string name="title_activity_calcolo_valori_energetici">Valori Energetici</string>
+    <string name="title_activity_calcolo_valori_energetici_v2">Valori Energetici</string>
 
     <!-- Funzionalità 1 - Dati Anagrafici-->
     <string name="text_view_dati_anagrafici">Dati Anagrafici</string>
@@ -19,7 +20,7 @@
     <string name="radio_button_maschio">M</string>
     <string name="radio_button_femmina">F</string>
 
-    <string name="text_view_data_di_nascita">Nascita: </string>
+    <string name="text_view_data_di_nascita">Data nascita:</string>
     <string name="hint_data_di_nascita">gg/mm/aaaa</string>
 
     <string name="text_view_pesoforma">Pesoforma</string>
@@ -61,8 +62,10 @@
     <string name="barra_rosso">35~40</string>
     <string name="barra_rosso_dark">40+</string>
 
+
+    <string name="hello_world">Hello world!</string>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>
