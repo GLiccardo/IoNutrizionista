@@ -40,6 +40,10 @@
     <item name="red700" type="color">#D32F2F</item>
     <item name="red800" type="color">#C62828</item>
     <item name="red900" type="color">#B71C1C</item>
+    <item name="redA100" type="color">#FF8A80</item>
+    <item name="redA200" type="color">#FF5252</item>
+    <item name="redA400" type="color">#FF1744</item>
+    <item name="redA700" type="color">#D50000</item>
 
     <!-- Material Design: Pink -->
     <item name="pink50" type="color">#FCE4EC</item>
@@ -52,6 +56,10 @@
     <item name="pink700" type="color">#C2185B</item>
     <item name="pink800" type="color">#AD1457</item>
     <item name="pink900" type="color">#880E4F</item>
+    <item name="pinkA100" type="color">#FF80AB</item>
+    <item name="pinkA200" type="color">#FF4081</item>
+    <item name="pinkA400" type="color">#F50057</item>
+    <item name="pinkA700" type="color">#C51162</item>
 
     <!-- Material Design: Purple -->
     <item name="purple50" type="color">#F3E5F5</item>
@@ -64,6 +72,10 @@
     <item name="purple700" type="color">#7B1FA2</item>
     <item name="purple800" type="color">#6A1B9A</item>
     <item name="purple900" type="color">#4A148C</item>
+    <item name="purpleA100" type="color">#EA80FC</item>
+    <item name="purpleA200" type="color">#E040FB</item>
+    <item name="purpleA400" type="color">#D500F9</item>
+    <item name="purpleA700" type="color">#AA00FF</item>
 
     <!-- Material Design: Deep Purple -->
     <item name="deep_purple50" type="color">#EDE7F6</item>
@@ -76,6 +88,10 @@
     <item name="deep_purple700" type="color">#512DA8</item>
     <item name="deep_purple800" type="color">#4527A0</item>
     <item name="deep_purple900" type="color">#311B92</item>
+    <item name="deep_purpleA100" type="color">#B388FF</item>
+    <item name="deep_purpleA200" type="color">#7C4DFF</item>
+    <item name="deep_purpleA400" type="color">#651FFF</item>
+    <item name="deep_purpleA700" type="color">#6200EA</item>
 
     <!-- Material Design: Indigo -->
     <item name="indigo50" type="color">#E8EAF6</item>
@@ -88,6 +104,10 @@
     <item name="indigo700" type="color">#303F9F</item>
     <item name="indigo800" type="color">#283593</item>
     <item name="indigo900" type="color">#1A237E</item>
+    <item name="indigoA100" type="color">#8C9EFF</item>
+    <item name="indigoA200" type="color">#536DFE</item>
+    <item name="indigoA400" type="color">#3D5AFE</item>
+    <item name="indigoA700" type="color">#304FFE</item>
 
     <!-- Material Design: Blue -->
     <item name="blue50" type="color">#E3F2FD</item>
@@ -100,6 +120,10 @@
     <item name="blue700" type="color">#1976D2</item>
     <item name="blue800" type="color">#1565C0</item>
     <item name="blue900" type="color">#0D47A1</item>
+    <item name="blueA100" type="color">#82B1FF</item>
+    <item name="blueA200" type="color">#448AFF</item>
+    <item name="blueA400" type="color">#2979FF</item>
+    <item name="blueA700" type="color">#2962FF</item>
 
     <!-- Material Design: Light Blue -->
     <item name="light_blue50" type="color">#E1F5FE</item>
@@ -112,6 +136,10 @@
     <item name="light_blue700" type="color">#0288D1</item>
     <item name="light_blue800" type="color">#0277BD</item>
     <item name="light_blue900" type="color">#01579B</item>
+    <item name="light_blueA100" type="color">#80D8FF</item>
+    <item name="light_blueA200" type="color">#40C4FF</item>
+    <item name="light_blueA400" type="color">#00B0FF</item>
+    <item name="light_blueA700" type="color">#0091EA</item>
 
     <!-- Material Design: Cyan -->
     <item name="cyan50" type="color">#E0F7FA</item>
@@ -124,6 +152,10 @@
     <item name="cyan700" type="color">#0097A7</item>
     <item name="cyan800" type="color">#00838F</item>
     <item name="cyan900" type="color">#006064</item>
+    <item name="cyanA100" type="color">#84FFFF</item>
+    <item name="cyanA200" type="color">#18FFFF</item>
+    <item name="cyanA400" type="color">#00E5FF</item>
+    <item name="cyanA700" type="color">#00B8D4</item>
 
     <!-- Material Design: Teal -->
     <item name="teal50" type="color">#E0F2F1</item>
@@ -136,6 +168,10 @@
     <item name="teal700" type="color">#00796B</item>
     <item name="teal800" type="color">#00695C</item>
     <item name="teal900" type="color">#004D40</item>
+    <item name="tealA100" type="color">#A7FFEB</item>
+    <item name="tealA200" type="color">#64FFDA</item>
+    <item name="tealA400" type="color">#1DE9B6</item>
+    <item name="tealA700" type="color">#00BFA5</item>
 
     <!-- Material Design: Green -->
     <item name="green50" type="color">#E8F5E9</item>
@@ -148,6 +184,10 @@
     <item name="green700" type="color">#388E3C</item>
     <item name="green800" type="color">#2E7D32</item>
     <item name="green900" type="color">#1B5E20</item>
+    <item name="greenA100" type="color">#B9F6CA</item>
+    <item name="greenA200" type="color">#69F0AE</item>
+    <item name="greenA400" type="color">#00E676</item>
+    <item name="greenA700" type="color">#00C853</item>
 
     <!-- Material Design: Light Green -->
     <item name="light_green50" type="color">#F1F8E9</item>
@@ -160,6 +200,10 @@
     <item name="light_green700" type="color">#689F38</item>
     <item name="light_green800" type="color">#558B2F</item>
     <item name="light_green900" type="color">#33691E</item>
+    <item name="light_greenA100" type="color">#CCFF90</item>
+    <item name="light_greenA200" type="color">#B2FF59</item>
+    <item name="light_greenA400" type="color">#76FF03</item>
+    <item name="light_greenA700" type="color">#64DD17</item>
 
     <!-- Material Design: Lime -->
     <item name="lime50" type="color">#F9FBE7</item>
@@ -172,6 +216,10 @@
     <item name="lime700" type="color">#AFB42B</item>
     <item name="lime800" type="color">#9E9D24</item>
     <item name="lime900" type="color">#827717</item>
+    <item name="limeA100" type="color">#F4FF81</item>
+    <item name="limeA200" type="color">#EEFF41</item>
+    <item name="limeA400" type="color">#C6FF00</item>
+    <item name="limeA700" type="color">#AEEA00</item>
 
     <!-- Material Design: Yellow -->
     <item name="yellow50" type="color">#FFFDE7</item>
@@ -184,6 +232,10 @@
     <item name="yellow700" type="color">#FBC02D</item>
     <item name="yellow800" type="color">#F9A825</item>
     <item name="yellow900" type="color">#F57F17</item>
+    <item name="yellowA100" type="color">#FFFF8D</item>
+    <item name="yellowA200" type="color">#FFFF00</item>
+    <item name="yellowA400" type="color">#FFEA00</item>
+    <item name="yellowA700" type="color">#FFD600</item>
 
     <!-- Material Design: Amber -->
     <item name="amber50" type="color">#FFF8E1</item>
@@ -196,6 +248,10 @@
     <item name="amber700" type="color">#FFA000</item>
     <item name="amber800" type="color">#FF8F00</item>
     <item name="amber900" type="color">#FF6F00</item>
+    <item name="amberA100" type="color">#FFE57F</item>
+    <item name="amberA200" type="color">#FFD740</item>
+    <item name="amberA400" type="color">#FFC400</item>
+    <item name="amberA700" type="color">#FFAB00</item>
 
     <!-- Material Design: Orange -->
     <item name="orange50" type="color">#FFF3E0</item>
@@ -208,6 +264,10 @@
     <item name="orange700" type="color">#F57C00</item>
     <item name="orange800" type="color">#EF6C00</item>
     <item name="orange900" type="color">#E65100</item>
+    <item name="orangeA100" type="color">#FFD180</item>
+    <item name="orangeA200" type="color">#FFAB40</item>
+    <item name="orangeA400" type="color">#FF9100</item>
+    <item name="orangeA700" type="color">#FF6D00</item>
 
     <!-- Material Design: Deep Orange -->
     <item name="deep_orange50" type="color">#FBE9E7</item>
@@ -220,6 +280,10 @@
     <item name="deep_orange700" type="color">#E64A19</item>
     <item name="deep_orange800" type="color">#D84315</item>
     <item name="deep_orange900" type="color">#BF360C</item>
+    <item name="deep_orangeA100" type="color">#FF9E80</item>
+    <item name="deep_orangeA200" type="color">#FF6E40</item>
+    <item name="deep_orangeA400" type="color">#FF3D00</item>
+    <item name="deep_orangeA700" type="color">#DD2C00</item>
 
     <!-- Material Design: Brown -->
     <item name="brown50" type="color">#EFEBE9</item>

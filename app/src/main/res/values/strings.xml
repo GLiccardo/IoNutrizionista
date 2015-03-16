@@ -8,7 +8,9 @@
 
     <!-- Funzionalità 1 - Dati Anagrafici-->
     <string name="text_view_dati_anagrafici">Dati Anagrafici</string>
-    <string name="text_view_misurazioni">Misurazioni</string>
+    <string name="text_view_misurazioni_pesoforma">Pesoforma</string>
+    <string name="text_view_misurazioni_circonferenza">Circonferenza</string>
+    <string name="text_view_misurazioni_pliche">Pliche</string>
     <string name="text_view_risultati">Risultati</string>
 
     <string name="text_view_nome">Nome: </string>

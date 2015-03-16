@@ -155,7 +155,7 @@
             android:paddingBottom="@dimen/padding_sezioni_titolo_top_bottom"
             android:gravity="center"
             android:background="@color/verde_acqua_chiaro"
-            android:text="@string/text_view_misurazioni"
+            android:text="@string/text_view_misurazioni_pesoforma"
             android:textSize="@dimen/font_size_grande"
             android:textColor="@color/nero"
             android:textStyle="bold"
