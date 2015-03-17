@@ -7,8 +7,8 @@
             android:shape="oval" >
 
             <size
-                android:height="15dp"
-                android:width="15dp" />
+                android:height="16dp"
+                android:width="16dp" />
 
             <!--
             <gradient
@@ -19,11 +19,11 @@
             -->
 
             <solid
-                android:color="@color/light_blue400" />
+                android:color="@color/light_blue300" />
 
             <stroke
                 android:width="2dp"
-                android:color="@color/blue800" />
+                android:color="@color/blue700" />
 
         </shape>
     </item>
@@ -34,8 +34,8 @@
             android:shape="oval" >
 
             <size
-                android:height="15dp"
-                android:width="15dp" />
+                android:height="16dp"
+                android:width="16dp" />
 
             <!--
             <gradient
@@ -51,7 +51,7 @@
 
             <stroke
                 android:width="2dp"
-                android:color="@color/blue800" />
+                android:color="@color/blue500" />
 
         </shape>
     </item>

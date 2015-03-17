@@ -1,11 +1,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="4dp" >
 
         <!-- PESOFORMA -->
@@ -26,7 +25,7 @@
             android:id="@+id/table_layout_pesoforma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="@dimen/valori_energetici_padding_all_table_layout"
             android:background="@color/light_green50"
             android:layout_below="@+id/text_view_misurazioni">
 
@@ -34,7 +33,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_altezza"
                     android:textSize="@dimen/font_size_medio"
@@ -43,13 +42,13 @@
                     android:id="@+id/edit_text_altezza"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -64,7 +63,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_peso"
                     android:textSize="@dimen/font_size_medio"
@@ -73,13 +72,13 @@
                     android:id="@+id/edit_text_peso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -91,7 +90,7 @@
             </TableRow>
         </TableLayout>
 
-        <!-- CIRCONRERENZA -->
+        <!-- PLICHE -->
 
         <TextView
             android:id="@+id/text_view_pliche"
@@ -111,7 +110,7 @@
             android:id="@+id/table_layout_pliche"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="@dimen/valori_energetici_padding_all_table_layout"
             android:background="@color/green50"
             android:layout_below="@+id/text_view_pliche">
 
@@ -119,7 +118,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_pliche_girovita"
                     android:textSize="@dimen/font_size_medio"
@@ -128,13 +127,13 @@
                     android:id="@+id/edit_text_pliche_girovita"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -149,7 +148,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_pliche_schiena"
                     android:textSize="@dimen/font_size_medio"
@@ -158,13 +157,13 @@
                     android:id="@+id/edit_text_pliche_schiena"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -179,7 +178,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_pliche_braccio"
                     android:textSize="@dimen/font_size_medio"
@@ -188,13 +187,13 @@
                     android:id="@+id/edit_text_pliche_braccio"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -205,10 +204,9 @@
                     android:textStyle="italic" />
             </TableRow>
 
-
-
         </TableLayout>
 
+        <!-- CIRCONFERENZA -->
 
         <TextView
             android:id="@+id/text_view_circonferenza"
@@ -228,7 +226,7 @@
             android:id="@+id/table_layout_circonferenza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="@dimen/valori_energetici_padding_all_table_layout"
             android:background="@color/teal50"
             android:layout_below="@+id/text_view_circonferenza">
 
@@ -236,7 +234,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_circonferenza_addome"
                     android:textSize="@dimen/font_size_medio"
@@ -245,13 +243,13 @@
                     android:id="@+id/edit_text_circonferenza_addome"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -266,7 +264,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_circonferenza_fianchi"
                     android:textSize="@dimen/font_size_medio"
@@ -275,13 +273,13 @@
                     android:id="@+id/edit_text_circonferenza_fianchi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -296,7 +294,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_circonferenza_coscia"
                     android:textSize="@dimen/font_size_medio"
@@ -305,13 +303,13 @@
                     android:id="@+id/edit_text_circonferenza_coscia"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -326,7 +324,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_circonferenza_polso"
                     android:textSize="@dimen/font_size_medio"
@@ -335,13 +333,13 @@
                     android:id="@+id/edit_text_circonferenza_polso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -356,7 +354,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_view_circonferenza_braccio"
                     android:textSize="@dimen/font_size_medio"
@@ -365,13 +363,13 @@
                     android:id="@+id/edit_text_circonferenza_braccio"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="number|numberDecimal"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic"
-                    android:gravity="right|end" />
+                    android:gravity="end" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
