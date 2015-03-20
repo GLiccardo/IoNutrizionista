@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentMisurazioni extends Fragment {
 
-
     private static final String TAG = "ioNutrizionista";
+    public int provaMisurazioni = 10;
+
 
     public FragmentMisurazioni() {
         // Required empty public constructor
@@ -28,6 +26,5 @@ public class FragmentMisurazioni extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_misurazioni, container, false);
     }
-
 
 }

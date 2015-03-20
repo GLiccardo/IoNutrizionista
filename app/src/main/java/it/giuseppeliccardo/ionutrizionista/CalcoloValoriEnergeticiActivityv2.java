@@ -1,16 +1,12 @@
 package it.giuseppeliccardo.ionutrizionista;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -40,7 +36,6 @@ public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
         if (mFragmentDatiAnagrafici.isVisible()) {
             Toast.makeText(getApplicationContext(), "Lista Sezioni Visibile", Toast.LENGTH_SHORT).show();
         }
-
 
     }
 
