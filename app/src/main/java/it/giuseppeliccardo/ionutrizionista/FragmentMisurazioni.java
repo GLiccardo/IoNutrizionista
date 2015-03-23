@@ -23,6 +23,9 @@ public class FragmentMisurazioni extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onCreateView()");
+
+        ((CalcoloValoriEnergeticiActivityv2) getActivity()).provaValoriEnergetici2 = 21;
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_misurazioni, container, false);
     }

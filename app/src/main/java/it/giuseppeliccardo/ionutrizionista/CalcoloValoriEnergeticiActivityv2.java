@@ -9,15 +9,49 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.Date;
+
 
 public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
 
     private static final String TAG = "ioNutrizionista";
 
     private final FragmentListaSezioni mFragmentListaSezioni = new FragmentListaSezioni();
+    private final FragmentBottoni mFragmentBottoni = new FragmentBottoni();
     private final FragmentDatiAnagrafici mFragmentDatiAnagrafici = new FragmentDatiAnagrafici();
     //private final FragmentMisurazioni mFragmentDatiMisurazioni = new FragmentMisurazioni();
     //private final FragmentRisultati mFragmentDatiRisultati = new FragmentRisultati();
+
+    // Variabili condivise con i fragment
+    public String mNome;
+    public String mCognome;
+    public String mSesso;
+    public Date mDataDiNascita;
+    public int mEta;
+
+    public int mAltezzaCm;
+    public float mPesoKg;
+    public int mPlicheGirovita;
+    public int mPlicheSchiena;
+    public int mPlicheBraccio;
+    public int mCirconferenzaAddome;
+    public int mCirconferenzaFianchi;
+    public int mCirconferenzaCoscia;
+    public int mCirconferenzaPolso;
+    public int mCirconferenzaBraccio;
+
+    public float mIndiceMassaCorporea;
+    public float mPesoCalcolatoIdeale;
+    public int mMetabolismoBasale;
+    public int mFabbisognoEnergetico;
+    public int mRazioneCaloricaLeggera;
+    public int mRazioneCaloricaModerata;
+    public int mRazioneCaloricaPesante;
+
+
+    public int provaValoriEnergetici1;
+    public int provaValoriEnergetici2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +59,12 @@ public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calcolo_valori_energetici_v2);
 
+        // Carico i fragment dinamicamente nell'activity host
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
-        fragmentTransaction.add(R.id.container_sinistro, mFragmentListaSezioni, "LISTA_SEZIONI");
-        //fragmentTransaction.add(R.id.container_destro, mFragmentDatiAnagrafici, "DATI_ANAGRAFICI");
+        fragmentTransaction.add(R.id.container_sinistro, mFragmentListaSezioni);
+        fragmentTransaction.add(R.id.container_destro_basso, mFragmentBottoni);
         fragmentTransaction.commit();
 
         //FragmentListaSezioni myFragment = (FragmentListaSezioni) getFragmentManager().findFragmentByTag("LISTA_SEZIONI");
@@ -39,12 +74,14 @@ public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_calcolo_valori_energetici_activityv2, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,4 +97,5 @@ public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
