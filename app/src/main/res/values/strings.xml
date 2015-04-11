@@ -48,6 +48,10 @@
     <string name="text_view_razione_calorica_moderata">Razione Calorica Moderata</string>
     <string name="text_view_razione_calorica_pesante">Razione Calorica Pesante</string>
 
+    <string name="button_altro1">Altro1</string>
+    <string name="button_altro2">Altro2</string>
+    <string name="button_calcola">Calcola</string>
+
     <!-- Unità di misura -->
     <string name="text_view_cm">cm</string>
     <string name="text_view_mm">mm</string>
@@ -67,7 +71,9 @@
 
     <string name="hello_world">Hello world!</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 </resources>

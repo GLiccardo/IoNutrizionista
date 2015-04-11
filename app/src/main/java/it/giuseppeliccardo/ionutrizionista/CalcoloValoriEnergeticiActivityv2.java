@@ -23,22 +23,25 @@ public class CalcoloValoriEnergeticiActivityv2 extends ActionBarActivity {
     //private final FragmentRisultati mFragmentDatiRisultati = new FragmentRisultati();
 
     // Variabili condivise con i fragment
+    public boolean calcolaRisultati = false;
+
     public String mNome;
     public String mCognome;
     public String mSesso;
     public Date mDataDiNascita;
     public int mEta;
 
-    public int mAltezzaCm;
-    public float mPesoKg;
-    public int mPlicheGirovita;
-    public int mPlicheSchiena;
-    public int mPlicheBraccio;
-    public int mCirconferenzaAddome;
-    public int mCirconferenzaFianchi;
-    public int mCirconferenzaCoscia;
-    public int mCirconferenzaPolso;
-    public int mCirconferenzaBraccio;
+    public int mAltezzaCm = -1;
+    public float mAltezzaM;
+    public float mPesoKg = -1;
+    public float mPlicheGirovita;
+    public float mPlicheSchiena;
+    public float mPlicheBraccio;
+    public float mCirconferenzaAddome;
+    public float mCirconferenzaFianchi;
+    public float mCirconferenzaCoscia;
+    public float mCirconferenzaPolso;
+    public float mCirconferenzaBraccio;
 
     public float mIndiceMassaCorporea;
     public float mPesoCalcolatoIdeale;

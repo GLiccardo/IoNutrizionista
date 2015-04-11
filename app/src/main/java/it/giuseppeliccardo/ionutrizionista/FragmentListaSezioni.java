@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -46,13 +47,17 @@ public class FragmentListaSezioni extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Gestione del click sugli elementi del LinearLayout
-        mListaSezioneDatiAnagrafici = (LinearLayout) getView().findViewById(R.id.lista_sezione_dati_anagrafici);
-        mListaSezioneDatiAnagrafici.setOnClickListener(myListener);
-        mListaSezioneMisurazioni= (LinearLayout) getView().findViewById(R.id.lista_sezione_misurazioni);
-        mListaSezioneMisurazioni.setOnClickListener(myListener);
-        mListaSezioneRisultati = (LinearLayout) getView().findViewById(R.id.lista_sezione_risultati);
-        mListaSezioneRisultati.setOnClickListener(myListener);
+        try {
+            // Gestione del click sugli elementi del LinearLayout
+            mListaSezioneDatiAnagrafici = (LinearLayout) getView().findViewById(R.id.lista_sezione_dati_anagrafici);
+            mListaSezioneDatiAnagrafici.setOnClickListener(myListener);
+            mListaSezioneMisurazioni= (LinearLayout) getView().findViewById(R.id.lista_sezione_misurazioni);
+            mListaSezioneMisurazioni.setOnClickListener(myListener);
+            mListaSezioneRisultati = (LinearLayout) getView().findViewById(R.id.lista_sezione_risultati);
+            mListaSezioneRisultati.setOnClickListener(myListener);
+        } catch (NullPointerException exc) {
+            exc.printStackTrace();
+        }
 
     }
 
@@ -77,7 +82,8 @@ public class FragmentListaSezioni extends Fragment {
     }
 
     void clickLinearLayout2() {
-        //Toast.makeText(getActivity(), "Icona 2", Toast.LENGTH_SHORT).show();
+        // I risultati non vangono ricalcolati all'apertura del fragment "Risultati"
+        ((CalcoloValoriEnergeticiActivityv2) getActivity()).calcolaRisultati = false;
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

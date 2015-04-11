@@ -6,26 +6,26 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:id="@+id/button"
+        android:id="@+id/button_altro1"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="A" />
+        android:text="@string/button_altro1" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:id="@+id/button2"
+        android:id="@+id/button_altro2"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="B" />
+        android:text="@string/button_altro2" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:id="@+id/button3"
+        android:id="@+id/button_calcola"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="C" />
+        android:text="@string/button_calcola" />
 
 </LinearLayout>

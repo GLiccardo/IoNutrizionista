@@ -59,6 +59,7 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
     private SimpleDateFormat mDateFormatter;
 
 
+    // TODO: Gestire gli inserimenti anche nella versione v2
     // Esternalizzazione stringhe
     private static final String TAG_INSERIRE_ALTEZZA_PESO           = "Inserire Altezza e Peso";
     private static final String TAG_INSERIRE_ALTEZZA                = "Inserire Altezza";
@@ -142,7 +143,7 @@ public class FragmentCalcoloValoriEnergetici extends Fragment implements View.On
             mBmiTextView = (TextView) getView().findViewById(R.id.text_view_bmi);
 
             // Buttons
-            mButtonCalcola = (Button) getView().findViewById((R.id.button3));
+            mButtonCalcola = (Button) getView().findViewById((R.id.button_calcola));
 
         } catch (NullPointerException exc) {
             exc.printStackTrace();

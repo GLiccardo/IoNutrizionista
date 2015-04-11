@@ -22,9 +22,9 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
     private static final String TAG = "ioNutrizionista";
 
     // TODO: Dichiarare qui tutti gli elementi grafici che saranno individuati nel metodo findViewsById
-    private EditText mNomeEditText,
-            mCognomeEditText,
-            mDataDiNascitaEditText;
+    private EditText mNomeEditText;
+    private EditText mCognomeEditText;
+    private EditText mDataDiNascitaEditText;
     // TODO: Dichiarare qui l'elemento relativo al sesso
 
     private DatePickerDialog mEtaPickerDialog;
@@ -45,8 +45,6 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onCreateView()");
         View rootView = inflater.inflate(R.layout.fragment_dati_anagrafici, container, false);
 
-        ((CalcoloValoriEnergeticiActivityv2) getActivity()).provaValoriEnergetici1 = 17;
-
         return rootView;
     }
 
@@ -59,6 +57,8 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         findViewsById();
         // Mostro il DatePicker se clicco sulla EditText relativa all'età
         mostraDatePicker();
+
+        ((CalcoloValoriEnergeticiActivityv2) getActivity()).provaValoriEnergetici1 = 17;
 
     }
 

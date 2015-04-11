@@ -1,6 +1,8 @@
 package it.giuseppeliccardo.ionutrizionista;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,10 @@ public class FragmentBottoni extends Fragment {
 
     private static final String TAG = "ioNutrizionista";
 
+    private final FragmentRisultati mFragmentRisultati = new FragmentRisultati();
+
+    private Button mButtonAltro1; // ancora inutilizzato
+    private Button mButtonAltro2; // ancora inutilizzato
     private Button mButtonCalcola;
 
     public FragmentBottoni() {
@@ -25,34 +31,65 @@ public class FragmentBottoni extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onCreateView()");
+        View rootView = inflater.inflate(R.layout.fragment_bottoni, container, false);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottoni, container, false);
+        return rootView;
     }
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in onResume()");
 
-
-
+        // TODO: rinominare i button Altro1 e Altro2 alle operazioni che compiono
+        // Gestione del click sui button
         try {
-            mButtonCalcola = (Button) getView().findViewById((R.id.button3));
+            mButtonAltro1 = (Button) getView().findViewById(R.id.button_altro1);
+            mButtonAltro1.setOnClickListener(myListener);
+            mButtonAltro2 = (Button) getView().findViewById(R.id.button_altro2);
+            mButtonAltro2.setOnClickListener(myListener);
+            mButtonCalcola = (Button) getView().findViewById((R.id.button_calcola));
+            mButtonCalcola.setOnClickListener(myListener);
         } catch (NullPointerException exc) {
             exc.printStackTrace();
         }
+    }
 
-        //create a variable that contain your button
-        mButtonCalcola.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                int risultato = ((CalcoloValoriEnergeticiActivityv2) getActivity()).provaValoriEnergetici1;
-                risultato++;
-                Toast.makeText(getActivity(), "Risultato: " + risultato, Toast.LENGTH_SHORT).show();
-            }
-        });
+    // Events Handler - Listener unico
+    View.OnClickListener myListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (view == mButtonAltro1) clickButtonAltro1();
+            if (view == mButtonAltro2) clickButtonAltro2();
+            if (view == mButtonCalcola) clickButtonCalcola();
+        }
+    };
 
+    void clickButtonAltro1() {
+        Toast.makeText(getActivity(), "Altro1", Toast.LENGTH_SHORT).show();
+    }
+
+    void clickButtonAltro2() {
+        Toast.makeText(getActivity(), "Altro2", Toast.LENGTH_SHORT).show();
+    }
+
+    void clickButtonCalcola() {
+        // I risultati vengono ricalcolati all'apertura del fragment "Risultati"
+        ((CalcoloValoriEnergeticiActivityv2) getActivity()).calcolaRisultati = true;
+
+        // Show fragment "Risultati"
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container_destro, mFragmentRisultati);
+        ft.addToBackStack(null);
+        ft.commit();
+
+        /*
+        if (mFragmentDatiAnagrafici.isAdded()) {
+            Toast.makeText(getActivity(), "Dati Anagrafici Visibile", Toast.LENGTH_SHORT).show();
+        }
+        */
     }
 
 }
