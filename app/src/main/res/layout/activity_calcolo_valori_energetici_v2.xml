@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/grey50"
-    tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivityv2">
+    tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivity">
 
     <FrameLayout
         android:id="@+id/container_sinistro"

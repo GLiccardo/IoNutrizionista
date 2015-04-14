@@ -58,7 +58,7 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         // Mostro il DatePicker se clicco sulla EditText relativa all'età
         mostraDatePicker();
 
-        ((CalcoloValoriEnergeticiActivityv2) getActivity()).provaValoriEnergetici1 = 17;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).provaValoriEnergetici1 = 17;
 
     }
 

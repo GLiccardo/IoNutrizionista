@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -16,8 +15,9 @@ public class FragmentRisultati extends Fragment {
     private static final String TAG = "ioNutrizionista";
 
     // Esternalizzazione stringhe
-    private static final String TAG_DATI_MANCANTI           = "Inserire i seguenti dati:";
+    private static final String TAG_DATI_MANCANTI = "Inserire i seguenti dati:";
 
+    // Conterrà l'elenco dei parametri che non sono stati digitati dall'utente
     private StringBuilder mStringaToast;
 
     // TODO: Aggiungere qui le variabili che conterranno l'esito del valore, cioè se è stato inserito dall'utente o meno
@@ -37,6 +37,7 @@ public class FragmentRisultati extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,10 +54,10 @@ public class FragmentRisultati extends Fragment {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onResume()");
 
         // Verifico se devo ricalcolare i risultati o meno
-        boolean controlloRicalcolo = ((CalcoloValoriEnergeticiActivityv2) getActivity()).calcolaRisultati;
+        boolean controlloRicalcolo = ((CalcoloValoriEnergeticiActivity) getActivity()).calcolaRisultati;
         if (controlloRicalcolo) {
             // Controllo valori mancanti
-            if (controlloTuttiValori()) {
+            if (checkValoriInseriti()) {
 
             }
 
@@ -64,7 +65,7 @@ public class FragmentRisultati extends Fragment {
             //float bmi = calcolaBMI();
             //float bmiArrotondato = (float) Math.round(bmi * 100) / 100;
 
-            int altezzaCm = ((CalcoloValoriEnergeticiActivityv2) getActivity()).mAltezzaCm;
+            int altezzaCm = ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm;
 
 
             // TODO: calcolare tutti i seguenti valori
@@ -81,46 +82,52 @@ public class FragmentRisultati extends Fragment {
     }
 
 
-    private boolean controlloSingoloValore (int intero) {
-        boolean res = (intero != -1) ? true : false;
+    private boolean checkSingoloValoreInserito (int valoreInt) {
+        boolean res = (valoreInt != -1) ? true : false;
         return res;
     }
 
-    private boolean controlloSingoloValore (float decimale) {
-        boolean res = (decimale != -1) ? true : false;
+    private boolean checkSingoloValoreInserito (float valoreFloat) {
+        boolean res = (valoreFloat != -1) ? true : false;
         return res;
     }
 
 
-    private boolean controlloTuttiValori() {
+    private boolean checkValoriInseriti() {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in checkValoriInseriti()");
 
         // TODO: fare controlli sugli inserimenti, sui range di valori consentiti
         mStringaToast = new StringBuilder(TAG_DATI_MANCANTI);
 
-        mCheckAltezza = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mAltezzaCm);
+        mCheckAltezza = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm);
         if (!mCheckAltezza) mStringaToast.append("\nAltezza");
 
-        mCheckPeso = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mPesoKg);
+        mCheckPeso = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg);
         if (!mCheckPeso) mStringaToast.append("\nPeso");
 
-        /*
-        mCheckPlicheGirovita = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mPlicheGirovita);
-        esitoPositivo = (mCheckPlicheGirovita && esitoPositivo) ? true : false;
-        mCheckPlicheSchiena = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mPlicheSchiena);
-        esitoPositivo = (mCheckPlicheSchiena && esitoPositivo) ? true : false;
-        mCheckPlicheBraccio = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mPlicheBraccio);
-        esitoPositivo = (mCheckPlicheBraccio && esitoPositivo) ? true : false;
-        mCheckCirconferenzaAddome = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mCirconferenzaAddome);
-        esitoPositivo = (mCheckCirconferenzaAddome && esitoPositivo) ? true : false;
-        mCheckCirconferenzaFianchi = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mCirconferenzaFianchi);
-        esitoPositivo = (mCheckCirconferenzaFianchi && esitoPositivo) ? true : false;
-        mCheckCirconferenzaCoscia = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mCirconferenzaCoscia);
-        esitoPositivo = (mCheckCirconferenzaCoscia && esitoPositivo) ? true : false;
-        mCheckCirconferenzaPolso = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mCirconferenzaPolso);
-        esitoPositivo = (mCheckCirconferenzaPolso && esitoPositivo) ? true : false;
-        mCheckCirconferenzaBraccio = controlloSingoloValore(((CalcoloValoriEnergeticiActivityv2) getActivity()).mCirconferenzaBraccio);
-        esitoPositivo = (mCheckCirconferenzaBraccio && esitoPositivo) ? true : false;
-        */
+        mCheckPlicheGirovita = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheGirovita);
+        if (!mCheckPlicheGirovita) mStringaToast.append("\nPliche Girovita");
+
+        mCheckPlicheSchiena = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheSchiena);
+        if (!mCheckPlicheSchiena) mStringaToast.append("\nPliche Schiena");
+
+        mCheckPlicheBraccio = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheBraccio);
+        if (!mCheckPlicheBraccio) mStringaToast.append("\nPliche Braccio");
+
+        mCheckCirconferenzaAddome = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaAddome);
+        if (!mCheckCirconferenzaAddome) mStringaToast.append("\nCirconferenza Addome");
+
+        mCheckCirconferenzaFianchi = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaFianchi);
+        if (!mCheckCirconferenzaFianchi) mStringaToast.append("\nCirconferenza Fianchi");
+
+        mCheckCirconferenzaCoscia = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCoscia);
+        if (!mCheckCirconferenzaCoscia) mStringaToast.append("\nCirconferenza Coscia");
+
+        mCheckCirconferenzaPolso = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaPolso);
+        if (!mCheckCirconferenzaPolso) mStringaToast.append("\nCirconferenza Polso");
+
+        mCheckCirconferenzaBraccio = checkSingoloValoreInserito(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaBraccio);
+        if (!mCheckCirconferenzaBraccio) mStringaToast.append("\nCirconferenza Braccio");
 
         //Toast.makeText(getActivity(), "Altezza: " + mCheckAltezza + "\nPeso: " + mCheckPeso + "\nEsito: " + esitoPositivo + mStringaToast, Toast.LENGTH_SHORT).show();
         if (mStringaToast.toString().equals(TAG_DATI_MANCANTI)) {
@@ -135,6 +142,7 @@ public class FragmentRisultati extends Fragment {
 
     /*
     private float calcolaBMI() {
+    Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaBMI()");
 
         float bmi = 0.0f;
 

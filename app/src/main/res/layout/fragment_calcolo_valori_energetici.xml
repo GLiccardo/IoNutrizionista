@@ -12,7 +12,7 @@
         android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingEnd="@dimen/activity_horizontal_margin"
-        tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivity.FragmentDatiAnagrafici">
+        tools:context="it.giuseppeliccardo.ionutrizionista.CalcoloValoriEnergeticiActivityOLD.FragmentDatiAnagrafici">
 
 
         <TextView

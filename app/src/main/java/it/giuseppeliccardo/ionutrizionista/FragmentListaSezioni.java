@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 public class FragmentListaSezioni extends Fragment {
@@ -83,7 +81,7 @@ public class FragmentListaSezioni extends Fragment {
 
     void clickLinearLayout2() {
         // I risultati non vangono ricalcolati all'apertura del fragment "Risultati"
-        ((CalcoloValoriEnergeticiActivityv2) getActivity()).calcolaRisultati = false;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).calcolaRisultati = false;
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CalcoloValoriEnergeticiActivity"
+            android:name=".CalcoloValoriEnergeticiActivityOLD"
             android:label="@string/title_activity_calcolo_valori_energetici"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -25,7 +25,7 @@
                 android:value="it.giuseppeliccardo.ionutrizionista.MainActivity" />
         </activity>
         <activity
-            android:name=".CalcoloValoriEnergeticiActivityv2"
+            android:name=".CalcoloValoriEnergeticiActivity"
             android:label="@string/title_activity_calcolo_valori_energetici_v2"
             android:parentActivityName=".MainActivity" >
             <meta-data

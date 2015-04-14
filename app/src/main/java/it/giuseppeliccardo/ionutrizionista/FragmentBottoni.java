@@ -75,13 +75,21 @@ public class FragmentBottoni extends Fragment {
     }
 
     void clickButtonCalcola() {
+
         // I risultati vengono ricalcolati all'apertura del fragment "Risultati"
-        ((CalcoloValoriEnergeticiActivityv2) getActivity()).calcolaRisultati = true;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).calcolaRisultati = true;
 
         // Show fragment "Risultati"
+        // Se il fragment è già visibile, lo rimuovo e lo riaggiungo in modo che possa ricalcolare i risultati
+        // Se il fragment non è visibile perchè ci troviamo in un altro fragment, lo sostituisco a quello corrente
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container_destro, mFragmentRisultati);
+        if (mFragmentRisultati.isResumed()) {
+            ft.remove(mFragmentRisultati);
+            ft.add(R.id.container_destro, mFragmentRisultati);
+        } else {
+            ft.replace(R.id.container_destro, mFragmentRisultati);
+        }
         ft.addToBackStack(null);
         ft.commit();
 
