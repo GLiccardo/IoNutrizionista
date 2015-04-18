@@ -75,9 +75,10 @@ public class FragmentBottoni extends Fragment {
     }
 
     void clickButtonCalcola() {
+        Log.i(TAG, getClass().getSimpleName() + ": cliccato su Calcola");
 
         // I risultati vengono ricalcolati all'apertura del fragment "Risultati"
-        ((CalcoloValoriEnergeticiActivity) getActivity()).calcolaRisultati = true;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).flagClicButtonCalcola = true;
 
         // Show fragment "Risultati"
         // Se il fragment è già visibile, lo rimuovo e lo riaggiungo in modo che possa ricalcolare i risultati

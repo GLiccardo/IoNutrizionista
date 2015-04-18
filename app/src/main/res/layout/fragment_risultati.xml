@@ -143,7 +143,6 @@
                     android:layout_weight="1.9"
                     android:paddingRight="4dp" android:paddingEnd="4dp"
                     android:gravity="end"
-                    android:text="XXXX"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
                 <TextView
@@ -175,7 +174,6 @@
                     android:layout_weight="1.9"
                     android:paddingRight="4dp" android:paddingEnd="4dp"
                     android:gravity="end"
-                    android:text="XXX,X"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
                 <TextView
@@ -206,7 +204,6 @@
                     android:layout_weight="1.9"
                     android:paddingRight="4dp" android:paddingEnd="4dp"
                     android:gravity="end"
-                    android:text="XXXX"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
                 <TextView
@@ -298,7 +295,6 @@
                     android:layout_weight="1.9"
                     android:paddingRight="4dp" android:paddingEnd="4dp"
                     android:gravity="end"
-                    android:text="XXXX"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
                 <TextView

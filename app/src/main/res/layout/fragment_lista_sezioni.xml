@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="Description"
+            android:text="Dati Anagrafici"
             android:textSize="@dimen/font_size_piccolo"/>
 
     </LinearLayout>
@@ -50,7 +50,7 @@
             android:layout_gravity="center"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="Description"
+            android:text="Misurazioni"
             android:textSize="@dimen/font_size_piccolo" />
 
     </LinearLayout>
@@ -76,7 +76,7 @@
             android:layout_gravity="center"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="Description"
+            android:text="Risultati"
             android:textSize="@dimen/font_size_piccolo" />
 
     </LinearLayout>

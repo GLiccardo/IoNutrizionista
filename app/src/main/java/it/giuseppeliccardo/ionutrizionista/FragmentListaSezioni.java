@@ -80,8 +80,7 @@ public class FragmentListaSezioni extends Fragment {
     }
 
     void clickLinearLayout2() {
-        // I risultati non vangono ricalcolati all'apertura del fragment "Risultati"
-        ((CalcoloValoriEnergeticiActivity) getActivity()).calcolaRisultati = false;
+        //Toast.makeText(getActivity(), "Icona 2", Toast.LENGTH_SHORT).show();
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -92,6 +91,9 @@ public class FragmentListaSezioni extends Fragment {
 
     void clickLinearLayout3() {
         //Toast.makeText(getActivity(), "Icona 3", Toast.LENGTH_SHORT).show();
+
+        // I risultati non vengono ricalcolati all'apertura del fragment "Risultati"
+        ((CalcoloValoriEnergeticiActivity) getActivity()).flagClicButtonCalcola = false;
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();

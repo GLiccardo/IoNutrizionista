@@ -23,7 +23,15 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     //private final FragmentRisultati mFragmentDatiRisultati = new FragmentRisultati();
 
     // Variabili condivise con i fragment
-    public boolean calcolaRisultati = false;
+    public boolean flagClicButtonCalcola = false;        // Quando si clicca sul button 'Calcola'
+    public boolean flagParamAnagraficiInseriti = false;  // Flag che indica se tutti i parametri sono stati inseriti
+    public boolean flagParamMisurazioniInseriti = false; // Flag che indica se tutti i parametri sono stati inseriti
+    public int flagRisultatiGiaCalcolati = 0;            // Per visualizzare in "Risultati" i parametri calcolati in precedenza
+    public StringBuilder mParametriMancantiDatiAnagrafici;
+    public StringBuilder mParametriMancantiMisurazioni;
+
+    public int provaValoriEnergetici1;
+    //int prova = ((CalcoloValoriEnergeticiActivity) getActivity()).provaValoriEnergetici1;
 
     public String mNome;
     public String mCognome;
@@ -32,7 +40,6 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public int mEta;
 
     public int mAltezzaCm;
-    public float mAltezzaM;
     public float mPesoKg;
     public float mPlicheGirovita;
     public float mPlicheSchiena;
@@ -50,10 +57,6 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public int mRazioneCaloricaLeggera;
     public int mRazioneCaloricaModerata;
     public int mRazioneCaloricaPesante;
-
-
-    public int provaValoriEnergetici1;
-    public int provaValoriEnergetici2;
 
 
     @Override
