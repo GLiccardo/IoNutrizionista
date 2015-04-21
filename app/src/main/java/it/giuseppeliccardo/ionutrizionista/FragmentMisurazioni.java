@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class FragmentMisurazioni extends Fragment {
@@ -46,19 +45,27 @@ public class FragmentMisurazioni extends Fragment {
 
     // TODO: Aggiornare range valori consentiti per pliche e circonferenze
     // Esternalizzazione valori
-    private static final float ZERO_MIN = 0;
-    private static final int ALTEZZA_MIN = 80;                      // cm
-    private static final int ALTEZZA_MAX = 220;                     // cm
-    private static final float PESO_MIN = 25;                       // kg
-    private static final float PESO_MAX = 250;                      // kg
-    private static final float PLICHE_GIROVITA_MAX = 9999;          // mm
-    private static final float PLICHE_SCHIENA_MAX = 9999;           // mm
-    private static final float PLICHE_BRACCIO_MAX = 9999;           // mm
-    private static final float CIRCONFERENZA_ADDOME_MAX = 9999;     // mm
-    private static final float CIRCONFERENZA_FIANCHI_MAX = 9999;    // mm
-    private static final float CIRCONFERENZA_COSCIA_MAX = 9999;     // mm
-    private static final float CIRCONFERENZA_POLSO_MAX = 9999;      // mm
-    private static final float CIRCONFERENZA_BRACCIO_MAX = 9999;    // mm
+    private static final float UNO_MIN = 1;
+    private static final int ALTEZZA_MIN = 80;                  // cm
+    private static final int ALTEZZA_MAX = 220;                 // cm
+    private static final float PESO_MIN = 25;                   // kg
+    private static final float PESO_MAX = 250;                  // kg
+    private static final float PLICHE_GIROVITA_MIN = 1;         // mm
+    private static final float PLICHE_GIROVITA_MAX = 70;        // mm
+    private static final float PLICHE_SCHIENA_MIN = 1;          // mm
+    private static final float PLICHE_SCHIENA_MAX = 70;         // mm
+    private static final float PLICHE_BRACCIO_MIN = 1;          // mm
+    private static final float PLICHE_BRACCIO_MAX = 70;         // mm
+    private static final float CIRCONFERENZA_ADDOME_MIN = 50;   // mm
+    private static final float CIRCONFERENZA_ADDOME_MAX = 180;  // mm
+    private static final float CIRCONFERENZA_FIANCHI_MIN = 70;  // mm
+    private static final float CIRCONFERENZA_FIANCHI_MAX = 150; // mm
+    private static final float CIRCONFERENZA_COSCIA_MIN = 20;   // mm
+    private static final float CIRCONFERENZA_COSCIA_MAX = 80;   // mm
+    private static final float CIRCONFERENZA_POLSO_MIN = 10;    // mm
+    private static final float CIRCONFERENZA_POLSO_MAX = 26;    // mm
+    private static final float CIRCONFERENZA_BRACCIO_MIN = 20;  // mm
+    private static final float CIRCONFERENZA_BRACCIO_MAX = 50;  // mm
 
     // Esternalizzazione stringhe
     private static final String TAG_DATI_MANCANTI = "Inserire i seguenti dati:";
@@ -96,7 +103,6 @@ public class FragmentMisurazioni extends Fragment {
 
         // Ottengo un riferimento alle Views della UI
         findViewsById();
-
     }
 
 
@@ -107,7 +113,6 @@ public class FragmentMisurazioni extends Fragment {
 
         // Controllo se i valori dei parametri inseriti sono corretti
         checkValoriParametri();
-
     }
 
 
@@ -116,15 +121,24 @@ public class FragmentMisurazioni extends Fragment {
         super.onPause();
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onPause()");
 
+        // Cancello un eventuale valore errato di un parametro se clicco su 'Calcola'
         checkUltimoParametroModificato(mUltimoParametroModificato);
 
+
+
+        getPesoForma();
+        getPliche();
+        getCirconferenza();
+
+        // Verifico se tutti i parametri sono stati inseriti:
+        // - [caso positivo] acquisisco i valori dei parametri e setto il flag a true
+        // - [caso negativo] setto il flag a false
         if (checkInserimentoParametri()) {
             ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti = true;
-            // Rilevo i parametri e i valori del paziente
-            //getDatiAnagrafici();
-            getPesoForma();
-            getPliche();
-            getCirconferenza();
+            //getDatiAnagrafici(); TODO: Da fare nel fragment DatiAnagrafici
+            //getPesoForma();
+            //getPliche();
+            //getCirconferenza();
         } else {
             ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti = false;
         }
@@ -134,7 +148,7 @@ public class FragmentMisurazioni extends Fragment {
 
     /*
       Metodo che consente di ottenere i reference per tutte le View che verranno utilizzate
-     */
+    */
     private void findViewsById() {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in findViewsById()");
 
@@ -149,7 +163,6 @@ public class FragmentMisurazioni extends Fragment {
             mCirconferenzaCosciaEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_coscia);
             mCirconferenzaPolsoEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_polso);
             mCirconferenzaBraccioEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_braccio);
-
         } catch (NullPointerException exc) {
             exc.printStackTrace();
         }
@@ -161,9 +174,11 @@ public class FragmentMisurazioni extends Fragment {
       Metodo che verifica a runtime se i valori inseriti dall'utente nei vari EditText sono corretti.
       In caso negativo, compare un AlertDialog che notifica l'errore e viene resettato il valore
       errato inserito dall'utente
-     */
+    */
     private void checkValoriParametri() {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in checkValoriParametri()");
+
+        mUltimoParametroModificato = "";
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Attenzione!!!");
@@ -220,12 +235,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mPlicheGirovitaEditText.getText().toString().equals(""))) {
                     float plicheGirovitaPaziente = Float.parseFloat(mPlicheGirovitaEditText.getText().toString());
-                    if (plicheGirovitaPaziente < ZERO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX) {
+                    if (plicheGirovitaPaziente < UNO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX) {
                         // Reset "Pliche Girovita" field
                         mPlicheGirovitaEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + PLICHE_GIROVITA_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_GIROVITA_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -244,12 +259,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mPlicheSchienaEditText.getText().toString().equals(""))) {
                     float plicheSchienaPaziente = Float.parseFloat(mPlicheSchienaEditText.getText().toString());
-                    if (plicheSchienaPaziente < ZERO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX) {
+                    if (plicheSchienaPaziente < UNO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX) {
                         // Reset "Pliche Schiena" field
                         mPlicheSchienaEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + PLICHE_SCHIENA_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_SCHIENA_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -268,12 +283,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mPlicheBraccioEditText.getText().toString().equals(""))) {
                     float plicheBraccioPaziente = Float.parseFloat(mPlicheBraccioEditText.getText().toString());
-                    if (plicheBraccioPaziente < ZERO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX) {
+                    if (plicheBraccioPaziente < UNO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX) {
                         // Reset "Pliche Braccio" field
                         mPlicheBraccioEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + PLICHE_BRACCIO_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_BRACCIO_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -292,12 +307,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaAddomeEditText.getText().toString().equals(""))) {
                     float circonferenzaAddomePaziente = Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString());
-                    if (circonferenzaAddomePaziente < ZERO_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX) {
+                    if (circonferenzaAddomePaziente < UNO_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX) {
                         // Reset "Pliche Braccio" field
                         mCirconferenzaAddomeEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + CIRCONFERENZA_ADDOME_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + CIRCONFERENZA_ADDOME_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -316,12 +331,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaFianchiEditText.getText().toString().equals(""))) {
                     float circonferenzaFianchiPaziente = Float.parseFloat(mCirconferenzaFianchiEditText.getText().toString());
-                    if (circonferenzaFianchiPaziente < ZERO_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX) {
+                    if (circonferenzaFianchiPaziente < UNO_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX) {
                         // Reset "Pliche Braccio" field
                         mCirconferenzaFianchiEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + CIRCONFERENZA_FIANCHI_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + CIRCONFERENZA_FIANCHI_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -340,12 +355,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaCosciaEditText.getText().toString().equals(""))) {
                     float circonferenzaCosciaPaziente = Float.parseFloat(mCirconferenzaCosciaEditText.getText().toString());
-                    if (circonferenzaCosciaPaziente < ZERO_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX) {
+                    if (circonferenzaCosciaPaziente < UNO_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX) {
                         // Reset "Pliche Braccio" field
                         mCirconferenzaCosciaEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + CIRCONFERENZA_COSCIA_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + CIRCONFERENZA_COSCIA_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -364,12 +379,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaPolsoEditText.getText().toString().equals(""))) {
                     float circonferenzaPolsoPaziente = Float.parseFloat(mCirconferenzaPolsoEditText.getText().toString());
-                    if (circonferenzaPolsoPaziente < ZERO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX) {
+                    if (circonferenzaPolsoPaziente < UNO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX) {
                         // Reset "Pliche Braccio" field
                         mCirconferenzaPolsoEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + CIRCONFERENZA_POLSO_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + CIRCONFERENZA_POLSO_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -388,12 +403,12 @@ public class FragmentMisurazioni extends Fragment {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaBraccioEditText.getText().toString().equals(""))) {
                     float circonferenzaBraccioPaziente = Float.parseFloat(mCirconferenzaBraccioEditText.getText().toString());
-                    if (circonferenzaBraccioPaziente < ZERO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX) {
+                    if (circonferenzaBraccioPaziente < UNO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX) {
                         // Reset "Pliche Braccio" field
                         mCirconferenzaBraccioEditText.setText("");
 
                         // Show alert
-                        builder.setMessage("Valori consentiti:\n\n" + ZERO_MIN + " - " + CIRCONFERENZA_BRACCIO_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + CIRCONFERENZA_BRACCIO_MAX + " mm\n\nReinserire valore corretto");
                         builder.setPositiveButton("OK", null);
                         AlertDialog dialog = builder.show();
                         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
@@ -420,7 +435,6 @@ public class FragmentMisurazioni extends Fragment {
     }
 
 
-    // TODO: Fare questo controllo all'interno del fragment Misurazioni. Capire dove metterlo e quando farlo
     /*
       Metodo che verifica se tutti i parametri del paziente sono stati inseriti o meno. Questo
       controllo avviene costruendo uno StringBuilder che conterrà l'elenco dei parametri che non
@@ -564,51 +578,54 @@ public class FragmentMisurazioni extends Fragment {
 
             case EDIT_TEXT_PLICHE_GIROVITA:
                 float plicheGirovitaPaziente = Float.parseFloat(mPlicheGirovitaEditText.getText().toString());
-                if (plicheGirovitaPaziente < ZERO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX)
+                if (plicheGirovitaPaziente < UNO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX)
                     mPlicheGirovitaEditText.setText("");
                 break;
 
             case EDIT_TEXT_PLICHE_SCHIENA:
                 float plicheSchienaPaziente = Float.parseFloat(mPlicheSchienaEditText.getText().toString());
-                if (plicheSchienaPaziente < ZERO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX)
+                if (plicheSchienaPaziente < UNO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX)
                     mPlicheSchienaEditText.setText("");
                 break;
 
             case EDIT_TEXT_PLICHE_BRACCIO:
                 float plicheBraccioPaziente = Float.parseFloat(mPlicheBraccioEditText.getText().toString());
-                if (plicheBraccioPaziente < ZERO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX)
+                if (plicheBraccioPaziente < UNO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX)
                     mPlicheBraccioEditText.setText("");
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_ADDOME:
                 float circonferenzaAddomePaziente = Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString());
-                if (circonferenzaAddomePaziente < ZERO_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX)
+                if (circonferenzaAddomePaziente < UNO_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX)
                     mCirconferenzaAddomeEditText.setText("");
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_FIANCHI:
                 float circonferenzaFianchiPaziente = Float.parseFloat(mCirconferenzaFianchiEditText.getText().toString());
-                if (circonferenzaFianchiPaziente < ZERO_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX)
+                if (circonferenzaFianchiPaziente < UNO_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX)
                     mCirconferenzaFianchiEditText.setText("");
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_COSCIA:
                 float circonferenzaCosciaPaziente = Float.parseFloat(mCirconferenzaCosciaEditText.getText().toString());
-                if (circonferenzaCosciaPaziente < ZERO_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX)
+                if (circonferenzaCosciaPaziente < UNO_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX)
                     mCirconferenzaCosciaEditText.setText("");
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_POLSO:
                 float circonferenzaPolsoPaziente = Float.parseFloat(mCirconferenzaPolsoEditText.getText().toString());
-                if (circonferenzaPolsoPaziente < ZERO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX)
+                if (circonferenzaPolsoPaziente < UNO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX)
                     mCirconferenzaPolsoEditText.setText("");
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_BRACCIO:
                 float circonferenzaBraccioPaziente = Float.parseFloat(mCirconferenzaBraccioEditText.getText().toString());
-                if (circonferenzaBraccioPaziente < ZERO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX)
+                if (circonferenzaBraccioPaziente < UNO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX)
                     mCirconferenzaBraccioEditText.setText("");
                 break;
+
+            default:
+                //Toast.makeText(getActivity(), "Nessun parametro modificato", Toast.LENGTH_SHORT).show();
         }
 
     }

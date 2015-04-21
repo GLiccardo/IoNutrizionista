@@ -16,7 +16,6 @@ public class FragmentRisultati extends Fragment {
 
     private static final String TAG = "ioNutrizionista";
 
-    // TODO: Dichiarare qui tutti gli elementi grafici che saranno individuati nel metodo findViewsById
     private TextView mBordoCellaBarraColorata;
     private TextView mBmiTextView;
     private TextView mPesoCalcolatoIdealeTextView;
@@ -25,10 +24,6 @@ public class FragmentRisultati extends Fragment {
     private TextView mRazioneCaloricaLeggeraTextView;
     private TextView mRazioneCaloricaModerataTextView;
     private TextView mRazioneCaloricaPesanteTextView;
-
-
-
-
 
 
     public FragmentRisultati() {
@@ -63,37 +58,64 @@ public class FragmentRisultati extends Fragment {
         int verificaRisultatiGiaCalcolatiCorrente = 0;
         float bmi = 0;
         float bmiArrotondato = 0;
+        float pesoCalcolatoIdeale = 0;
+        float pesoCalcolatoIdealeArrotondato = 0;
+        int metabolismoBasale = 0;
+
+
+        boolean controlloRicalcolo = ((CalcoloValoriEnergeticiActivity) getActivity()).flagClicButtonCalcola;
+        boolean controlloDatiAnagrafici = ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamAnagraficiInseriti;
+        boolean controlloMisurazioni = ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti;
 
         // Verifico se devo ricalcolare i risultati o meno
-        boolean controlloRicalcolo = ((CalcoloValoriEnergeticiActivity) getActivity()).flagClicButtonCalcola;
         if (controlloRicalcolo) {
-            ((CalcoloValoriEnergeticiActivity) getActivity()).flagRisultatiGiaCalcolati++;
 
-            Toast.makeText(getActivity(), ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni, Toast.LENGTH_SHORT).show();
-            /*
-            // BMI
-            bmi = calcolaBMI();
-            bmiArrotondato = (float) Math.round(bmi * 100) / 100;
-            mBmiTextView.setText(Float.toString(bmiArrotondato));
+            // Verifico se i dati del paziente e le misurazioni sono stati tutti inseriti
+            if (controlloMisurazioni /* && controlloDatiAnagrafici */) { // TODO: Rimuovere commenti
+                //Toast.makeText(getActivity(), "Nessun parametro mancante", Toast.LENGTH_SHORT).show();
 
-            // Barra colorata
-            settaBordoBarraColorata(bmi);
+                ((CalcoloValoriEnergeticiActivity) getActivity()).flagRisultatiGiaCalcolati++;
 
-            int altezzaCm = ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm;
+                // TODO: Recuperare età e sesso dai DatiAnagrafici
+                String sesso = "M";
+                int eta = 27;
+
+                // BMI
+                bmi = calcolaBMI();
+                bmiArrotondato = (float) Math.round(bmi * 100) / 100;
+                mBmiTextView.setText(Float.toString(bmiArrotondato));
+
+                // Barra colorata
+                settaBordoBarraColorata(bmi);
+
+                // Peso Calcolato Ideale
+                pesoCalcolatoIdeale = calcolaPesoCalcolatoIdeale(sesso);
+                pesoCalcolatoIdealeArrotondato = (float) Math.round(pesoCalcolatoIdeale * 10) / 10;
+                mPesoCalcolatoIdealeTextView.setText(Float.toString(pesoCalcolatoIdealeArrotondato));
+
+                // Metabolismo Basale
+                metabolismoBasale = (int) calcolaMetabolismoBasale(sesso, eta);
+                mMetabolismoBasaleTextView.setText(Integer.toString(metabolismoBasale));
 
 
-            // TODO: calcolare tutti i seguenti valori
-            // Peso Calcolato Ideale
-            // Metabolismo Basale
-            // Fabbisogno Energetico
-            // Razione Calorica Giornaliera
+                // TODO: calcolare tutti i seguenti valori
+                // Fabbisogno Energetico
+                // Razione Calorica Giornaliera
 
-            */
+                // TODO: salvare i risultati temporanei nelle variabili "old" per essere visualizzati successivamente
+                salvaRisultatiTemporanei(bmiArrotondato, pesoCalcolatoIdealeArrotondato);
 
-            // Toast.makeText(getActivity(), "Risultato: " + altezzaCm, Toast.LENGTH_SHORT).show();
+            } else {
+                String parametriMancantiIntro = "Parametri mancanti:";
+                //String parametriMancantiDatiAnagrafici = String.valueOf(((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici);
+                String parametriMancantiMisurazioni = String.valueOf(((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni);
+
+                Toast.makeText(getActivity(), parametriMancantiIntro + parametriMancantiMisurazioni, Toast.LENGTH_SHORT).show();
+
+                azzeraRisultatiTemporanei();
+            }
 
         } else {
-            // TODO: implementare un modo per memorizzare in sessione i valori calcolati in modo da visualizzarli se si fa uno switch tra i fragment
             int verificaRisultatiGiaCalcolati = ((CalcoloValoriEnergeticiActivity) getActivity()).flagRisultatiGiaCalcolati;
             if (verificaRisultatiGiaCalcolati > verificaRisultatiGiaCalcolatiCorrente) {
                 verificaRisultatiGiaCalcolatiCorrente = verificaRisultatiGiaCalcolati;
@@ -119,15 +141,48 @@ public class FragmentRisultati extends Fragment {
 
 
     /*
+      Metodo che verifica se un intero è compreso all'interno di un intervallo
+    */
+    public static boolean isBetween(int x, int lower, int upper) {
+        return lower <= x && x <= upper;
+    }
+
+
+    /*
+      Metodo che salva i risultati calcolati in modo da poterli visualizzare successivamente quando
+      si apre il fragment "Risultati" senza aver cliccato sul button "Calcola"
+    */
+    private void salvaRisultatiTemporanei(float bmi, float pesoCalcolatoIdeale) {
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = bmi;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = pesoCalcolatoIdeale;
+    }
+
+
+    /*
+      Metodo che salva i risultati calcolati in modo da poterli visualizzare successivamente quando
+      si apre il fragment "Risultati" senza aver cliccato sul button "Calcola"
+    */
+    private void azzeraRisultatiTemporanei() {
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = 0.0f;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = 0.0f;
+    }
+
+
+    /*
       Metodo che carica i valori dei parametri "risultati" calcolati precedentemente, in modo da
       visualizzarli a ogni refresh della pagina
     */
     private void caricaValori() {
-        mBmiTextView.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).flagRisultatiGiaCalcolati));
+        // BMI e barra colorata
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea != 0) {
+            mBmiTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea));
+            settaBordoBarraColorata(((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea);
+        }
+
+        // Peso Calcolato Ideale
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale != 0)
+            mBmiTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale));
     }
-
-
-
 
 
     /*
@@ -145,35 +200,75 @@ public class FragmentRisultati extends Fragment {
         return (float) ((1.3f * pesoKg) / (Math.pow(altezzaM, 2.5f)));
         // BMI Vecchio: peso (kg) / (Altezza (m)) ^ 2
         // return (float) (pesoKg) / (Math.pow(altezzaM, 2.0f)));
+    }
 
-        /*
-        float bmi = 0.0f;
-        if (mAltezzaEditText.getText().toString().equals("") && mPesoEditText.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA_PESO , Toast.LENGTH_SHORT).show();
-        } else if (mPesoEditText.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), TAG_INSERIRE_PESO, Toast.LENGTH_SHORT).show();
-        } else if (mAltezzaEditText.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA, Toast.LENGTH_SHORT).show();
-        } else {
-            int altezzaCM = Integer.parseInt(mAltezzaEditText.getText().toString());
-            float altezzaM = (float) altezzaCM / 100;
-            float peso = Float.parseFloat(mPesoEditText.getText().toString());
 
-            if (altezzaCM < 80 || altezzaCM > 220) {
-                Toast.makeText(getActivity(), TAG_INSERIRE_ALTEZZA_CORRETTA, Toast.LENGTH_SHORT).show();
-            } else if (peso < 30 || peso > 250) {
-                Toast.makeText(getActivity(), TAG_INSERIRE_PESO_CORRETTO, Toast.LENGTH_SHORT).show();
-            } else {
-                return (float) ((1.3f * peso) / (Math.pow(altezzaM, 2.5f)));
+    /*
+      Metodo che calcola il Peso Calcolato Ideale del paziente in base al sesso passato come parametro
+    */
+    private float calcolaPesoCalcolatoIdeale(String sesso) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaPesoCalcolatoIdeale()");
+
+        int altezzaCm = ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm;
+        float altezzaM = (float) altezzaCm / 100;
+        float pesoRealeKg = ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg;
+        float bmiRiferimento = (sesso.equals("M")) ? 22.5f : 20.6f;
+
+        float pesoIdealeKg = (float) (bmiRiferimento * (Math.pow(altezzaM, 2.0f)));
+        float pesoCalcolatoIdeale = (float) ((pesoRealeKg - pesoIdealeKg) * 0.25 + pesoIdealeKg);
+
+        return pesoCalcolatoIdeale;
+    }
+
+
+    /*
+      Metodo che calcola il Peso Calcolato Ideale del paziente in base al sesso passato come parametro
+    */
+    private float calcolaMetabolismoBasale(String sesso, int eta) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaMetabolismoBasale()");
+
+        float pesoRealeKg = ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg;
+        float metabolismoBasale = 0;
+
+        if (sesso.equals("M")) {
+
+            if (isBetween(eta, 0, 2)) {
+                metabolismoBasale = (59.5f * pesoRealeKg) - 31;
+            } else if (isBetween(eta, 3, 9)) {
+                metabolismoBasale = (22.7f * pesoRealeKg) + 504;
+            } else if (isBetween(eta, 10, 17)) {
+                metabolismoBasale = (17.7f * pesoRealeKg) + 650;
+            } else if (isBetween(eta, 18, 29)) {
+                metabolismoBasale = (15.3f * pesoRealeKg) + 679;
+            } else if (isBetween(eta, 30, 59)) {
+                metabolismoBasale = (11.6f * pesoRealeKg) + 879;
+            } else if (isBetween(eta, 60, 74)) {
+                metabolismoBasale = (11.9f * pesoRealeKg) + 700;
+            } else if (isBetween(eta, 75, 110)) {
+                metabolismoBasale = (8.4f * pesoRealeKg) + 819;
             }
 
-            //BigDecimal bmiNuovo = new BigDecimal(bmi);
-            //float bmiArrotondato = (float) Math.round(bmi * 100) / 100;
-            //Toast.makeText(getActivity(), "Altezza: " + altezzaM + "\nPeso: " + peso + "\nBMI Puro: " + bmi + "\nBMI arrotondato: " + bmiArrotondato, Toast.LENGTH_SHORT).show();
+        } else if (sesso.equals("F")) {
+
+            if (isBetween(eta, 0, 2)) {
+                metabolismoBasale = (58.3f * pesoRealeKg) - 31;
+            } else if (isBetween(eta, 3, 9)) {
+                metabolismoBasale = (20.3f * pesoRealeKg) + 485;
+            } else if (isBetween(eta, 10, 17)) {
+                metabolismoBasale = (13.4f * pesoRealeKg) + 693;
+            } else if (isBetween(eta, 18, 29)) {
+                metabolismoBasale = (14.7f * pesoRealeKg) + 496;
+            } else if (isBetween(eta, 30, 59)) {
+                metabolismoBasale = (8.7f * pesoRealeKg) + 829;
+            } else if (isBetween(eta, 60, 74)) {
+                metabolismoBasale = (9.2f * pesoRealeKg) + 688;
+            } else if (isBetween(eta, 75, 110)) {
+                metabolismoBasale = (9.8f * pesoRealeKg) + 624;
+            }
+
         }
 
-        return bmi;
-        */
+        return metabolismoBasale;
     }
 
 
@@ -228,9 +323,7 @@ public class FragmentRisultati extends Fragment {
         mBordoCellaBarraColorata = (TextView) getView().findViewById(R.id.barra_colorata_40piu);
 
         GradientDrawable backgroundGradient = (GradientDrawable) mBordoCellaBarraColorata.getBackground();
-        backgroundGradient.setStroke(3, getResources().getColor(R.color.nero_chiaro));
-        //backgroundGradient.
-
+        backgroundGradient.setStroke(0, getResources().getColor(R.color.nero_chiaro));
     }
 
 
