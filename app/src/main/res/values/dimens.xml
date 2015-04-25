@@ -3,11 +3,14 @@
     <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_vertical_margin">4dp</dimen>
 
+    <!-- Padding Lista Sezioni -->
+    <dimen name="lista_sezioni_padding_vertical">8dp</dimen>
+    <dimen name="lista_sezioni_margin_vertical">8dp</dimen>
+
     <!-- Sezione Calcolo Valori Energetici -->
     <dimen name="valori_energetici_padding_all_table_layout">4dp</dimen>
     <dimen name="valori_energetici_padding_laterale_edit_text">8dp</dimen>
     <dimen name="valori_energetici_padding_sup_inf_text_view">6dp</dimen>
-
 
     <!-- Margini tra le sezioni della funzionalità1 -->
     <dimen name="margins_sezioni">2dp</dimen>

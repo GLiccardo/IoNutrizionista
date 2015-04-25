@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="@string/button_altro1" />
+        android:text="@string/button_altro1"
+        android:textSize="@dimen/font_size_minuscolo" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="@string/button_altro2" />
+        android:text="@string/button_altro2"
+        android:textSize="@dimen/font_size_minuscolo" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:text="@string/button_calcola" />
+        android:text="@string/button_calcola"
+        android:textSize="@dimen/font_size_minuscolo" />
 
 </LinearLayout>

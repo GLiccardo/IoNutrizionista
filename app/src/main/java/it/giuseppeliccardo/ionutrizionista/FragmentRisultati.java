@@ -11,6 +11,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class FragmentRisultati extends Fragment {
 
@@ -61,6 +70,8 @@ public class FragmentRisultati extends Fragment {
         float pesoCalcolatoIdeale = 0;
         float pesoCalcolatoIdealeArrotondato = 0;
         int metabolismoBasale = 0;
+        int fabbisognoEnergetico = 0;
+        int[] razioneCaloricaGiornaliera;
 
 
         boolean controlloRicalcolo = ((CalcoloValoriEnergeticiActivity) getActivity()).flagClicButtonCalcola;
@@ -71,14 +82,13 @@ public class FragmentRisultati extends Fragment {
         if (controlloRicalcolo) {
 
             // Verifico se i dati del paziente e le misurazioni sono stati tutti inseriti
-            if (controlloMisurazioni /* && controlloDatiAnagrafici */) { // TODO: Rimuovere commenti
+            if (controlloMisurazioni && controlloDatiAnagrafici) {
                 //Toast.makeText(getActivity(), "Nessun parametro mancante", Toast.LENGTH_SHORT).show();
-
                 ((CalcoloValoriEnergeticiActivity) getActivity()).flagRisultatiGiaCalcolati++;
 
-                // TODO: Recuperare età e sesso dai DatiAnagrafici
-                String sesso = "M";
-                int eta = 27;
+                String sesso = ((CalcoloValoriEnergeticiActivity) getActivity()).mSesso;
+                String dataDiNascita = ((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascita;
+                int eta = calcolaEta(dataDiNascita);
 
                 // BMI
                 bmi = calcolaBMI();
@@ -97,20 +107,22 @@ public class FragmentRisultati extends Fragment {
                 metabolismoBasale = (int) calcolaMetabolismoBasale(sesso, eta);
                 mMetabolismoBasaleTextView.setText(Integer.toString(metabolismoBasale));
 
-
-                // TODO: calcolare tutti i seguenti valori
                 // Fabbisogno Energetico
-                // Razione Calorica Giornaliera
+                fabbisognoEnergetico = (int) calcolaFabbisognoEnergetico(sesso, eta, metabolismoBasale);
+                mFabbisognoEnergeticoTextView.setText(Integer.toString(fabbisognoEnergetico));
 
-                // TODO: salvare i risultati temporanei nelle variabili "old" per essere visualizzati successivamente
-                salvaRisultatiTemporanei(bmiArrotondato, pesoCalcolatoIdealeArrotondato);
+                // TODO: Razione Calorica Giornaliera
+
+
+                salvaRisultatiTemporanei(bmiArrotondato, pesoCalcolatoIdealeArrotondato, metabolismoBasale, fabbisognoEnergetico);
 
             } else {
+
                 String parametriMancantiIntro = "Parametri mancanti:";
-                //String parametriMancantiDatiAnagrafici = String.valueOf(((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici);
+                String parametriMancantiDatiAnagrafici = String.valueOf(((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici);
                 String parametriMancantiMisurazioni = String.valueOf(((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni);
 
-                Toast.makeText(getActivity(), parametriMancantiIntro + parametriMancantiMisurazioni, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), parametriMancantiIntro + parametriMancantiDatiAnagrafici + parametriMancantiMisurazioni, Toast.LENGTH_SHORT).show();
 
                 azzeraRisultatiTemporanei();
             }
@@ -141,6 +153,32 @@ public class FragmentRisultati extends Fragment {
 
 
     /*
+      Metodo che usa la libreria esterna Joda Time per calcolare facilmente l'età del paziente.
+      @Param
+        format              > formato italiano della data inserita [dd/MM/yyyy]
+        strDataDiNascita    > dataDiNascita di tipo String impostata tramite il DatePicker
+        dateDataDiNascita   > conversione di strDataDiNascita da String a Date
+        ldDataDiNascita     > conversione di dateDataDiNascita da Date a LocalDate
+        ldDataOdierna       > data corrente di tipo LocalDate
+     */
+    private int calcolaEta(String strDataDiNascita) {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
+        Date dateDataDiNascita = null;
+        try {
+            dateDataDiNascita = format.parse(strDataDiNascita);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        LocalDate ldDataDiNascita = new LocalDate(dateDataDiNascita);
+        LocalDate ldDataOdierna = new LocalDate();
+        Years eta = Years.yearsBetween(ldDataDiNascita, ldDataOdierna);
+
+        return eta.getYears();
+    }
+
+
+    /*
       Metodo che verifica se un intero è compreso all'interno di un intervallo
     */
     public static boolean isBetween(int x, int lower, int upper) {
@@ -152,9 +190,11 @@ public class FragmentRisultati extends Fragment {
       Metodo che salva i risultati calcolati in modo da poterli visualizzare successivamente quando
       si apre il fragment "Risultati" senza aver cliccato sul button "Calcola"
     */
-    private void salvaRisultatiTemporanei(float bmi, float pesoCalcolatoIdeale) {
+    private void salvaRisultatiTemporanei(float bmi, float pesoCalcolatoIdeale, int metabolismoBasale, int fabbisognoEnergetico) {
         ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = bmi;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = pesoCalcolatoIdeale;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale = metabolismoBasale;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico = fabbisognoEnergetico;
     }
 
 
@@ -165,6 +205,8 @@ public class FragmentRisultati extends Fragment {
     private void azzeraRisultatiTemporanei() {
         ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = 0.0f;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = 0.0f;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico = 0;
     }
 
 
@@ -181,7 +223,15 @@ public class FragmentRisultati extends Fragment {
 
         // Peso Calcolato Ideale
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale != 0)
-            mBmiTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale));
+            mPesoCalcolatoIdealeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale));
+
+        // Metabolismo Basale
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale != 0)
+            mMetabolismoBasaleTextView.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale));
+
+        // Fabbisogno Energetico
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico != 0)
+            mFabbisognoEnergeticoTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico));
     }
 
 
@@ -269,6 +319,79 @@ public class FragmentRisultati extends Fragment {
         }
 
         return metabolismoBasale;
+    }
+
+
+    /*
+      Metodo che calcola il fabbisogno energetico in base al sesso, all'età e al metabolismo basale
+      del paziente, passati come parametri al metodo
+    */
+    private float calcolaFabbisognoEnergetico(String sesso, int eta, int metabolismoBasale) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaFabbisgnoEnergetico()");
+
+        float laf = 0;
+
+        // TODO: Implementare un menu in cui si seleziona il metodo per il calcolo del LAF preferito.Qui mettere un IF.
+
+        // Metodo Commission of the European Community
+        if (sesso.equals("M")) {
+
+            if (isBetween(eta, 10, 13))           laf = 1.65f;
+            else if (isBetween(eta, 14, 17))      laf = 1.58f;
+            else if (isBetween(eta, 18, 59))      laf = 1.55f;
+            else if (isBetween(eta, 60, 110))     laf = 1.51f;
+
+        } else if (sesso.equals("F")) {
+
+            if (isBetween(eta, 10, 13))           laf = 1.55f;
+            else if (isBetween(eta, 14, 17))      laf = 1.50f;
+            else if (isBetween(eta, 18, 110))     laf = 1.56f;
+
+        }
+
+
+        // Metodo FAO/WHO
+        /*
+        if (sesso.equals("M")) {
+
+            if (eta == 10))                       laf = 1.76f;
+            else if (eta == 11)                   laf = 1.73f;
+            else if (eta == 12)                   laf = 1.69f;
+            else if (eta == 13)                   laf = 1.67f;
+            else if (eta == 14)                   laf = 1.65f;
+            else if (eta == 15)                   laf = 1.62f;
+            else if (eta == 16 || eta == 17)      laf = 1.60f;
+            else if (isBetween(eta, 18, 59))      laf = 1.55f;
+            else if (isBetween(eta, 60, 110))     laf = 1.45f;
+
+        } else if (sesso.equals("F")) {
+
+            if (eta == 10))                       laf = 1.65f;
+            else if (eta == 11)                   laf = 1.63f;
+            else if (eta == 12)                   laf = 1.60f;
+            else if (eta == 13)                   laf = 1.58f;
+            else if (eta == 14)                   laf = 1.57f;
+            else if (eta == 15)                   laf = 1.54f;
+            else if (eta == 16)                   laf = 1.53f;
+            else if (eta == 17)                   laf = 1.52f;
+            else if (isBetween(eta, 18, 59))      laf = 1.56f;
+            else if (isBetween(eta, 60, 110))     laf = 1.48f;
+
+        }
+        */
+
+        return metabolismoBasale * laf;
+    }
+
+
+    /*
+      Metodo che calcola il fabbisogno energetico in base al sesso, all'età e al metabolismo basale
+      del paziente, passati come parametri al metodo
+    */
+    private void calcolaRazioneCalorica(float pesoCalcolatoIdeale) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaRazioneCalorica()");
+
+
     }
 
 

@@ -2,6 +2,7 @@ package it.giuseppeliccardo.ionutrizionista;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -56,6 +57,34 @@ public class FragmentListaSezioni extends Fragment {
         } catch (NullPointerException exc) {
             exc.printStackTrace();
         }
+
+        setBackgroundAndStrokeIcone();
+
+    }
+
+
+    /*
+      Metodo nel quale vengono settati colore di sfondo e bordi per ciascuna delle icone della lista
+     */
+    private void setBackgroundAndStrokeIcone() {
+
+        // Dati Anagrafici - Light Blue
+        GradientDrawable borderDatiAnagrafici = new GradientDrawable();
+        borderDatiAnagrafici.setColor(getResources().getColor(R.color.light_blue50));
+        borderDatiAnagrafici.setStroke(1, getResources().getColor(R.color.light_blue500));
+        mListaSezioneDatiAnagrafici.setBackground(borderDatiAnagrafici);
+
+        // Misurazioni - Green
+        GradientDrawable borderMisurazioni = new GradientDrawable();
+        borderMisurazioni.setColor(getResources().getColor(R.color.green50));
+        borderMisurazioni.setStroke(1, getResources().getColor(R.color.greenA400));
+        mListaSezioneMisurazioni.setBackground(borderMisurazioni);
+
+        // Risultati - Red
+        GradientDrawable borderRisultati = new GradientDrawable();
+        borderRisultati.setColor(getResources().getColor(R.color.red50));
+        borderRisultati.setStroke(1, getResources().getColor(R.color.red500));
+        mListaSezioneRisultati.setBackground(borderRisultati);
 
     }
 
