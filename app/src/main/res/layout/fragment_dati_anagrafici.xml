@@ -3,6 +3,7 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
+        android:id="@+id/relative_layout_dati_anagrafici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp" >
@@ -140,6 +141,98 @@
                     android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
                     android:inputType="date"
                     android:hint="@string/hint_data_di_nascita"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic" />
+            </TableRow>
+
+        </TableLayout>
+
+        <!-- CONTATTI -->
+
+        <TextView
+            android:id="@+id/text_view_contatti"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:gravity="center"
+            android:background="@color/blue500"
+            android:text="@string/text_view_contatti"
+            android:textSize="@dimen/font_size_grande"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_below="@id/table_layout_dati_anagrafici" />
+
+        <TableLayout
+            android:id="@+id/table_layout_contatti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/valori_energetici_padding_all_table_layout"
+            android:background="@color/blue50"
+            android:layout_below="@+id/text_view_contatti" >
+
+            <TableRow>
+                <TextView
+                    android:text="@string/text_view_telefono_fisso"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_telefono_fisso"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:inputType="phone"
+                    android:hint="@string/hint_telefono_fisso"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="@string/text_view_cellulare"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_cellulare"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:inputType="phone"
+                    android:hint="@string/hint_cellulare"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="@string/text_view_email"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <EditText
+                    android:id="@+id/edit_text_email"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/hint_email"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic" />
             </TableRow>

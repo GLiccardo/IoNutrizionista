@@ -11,13 +11,15 @@
     <string name="misurazioni">Misurazioni</string>
     <string name="risultati">Risultati</string>
 
-    <!-- Funzionalità 1 - Dati Anagrafici-->
+    <!-- Funzionalità 1 - Label -->
     <string name="text_view_dati_anagrafici">Dati Anagrafici</string>
+    <string name="text_view_contatti">Contatti</string>
     <string name="text_view_misurazioni_pesoforma">Pesoforma</string>
     <string name="text_view_misurazioni_circonferenza">Circonferenza</string>
     <string name="text_view_misurazioni_pliche">Pliche</string>
     <string name="text_view_risultati">Risultati</string>
 
+    <!-- Funzionalità 1 - Dati Anagrafici -->
     <string name="text_view_nome">Nome: </string>
     <string name="text_view_cognome">Cognome: </string>
     <string name="hint_nome_paziente">Inserire nome</string>
@@ -30,6 +32,17 @@
     <string name="text_view_data_di_nascita">Data nascita:</string>
     <string name="hint_data_di_nascita">gg/mm/aaaa</string>
 
+    <!-- Funzionalità 1 - Contatti -->
+    <string name="text_view_telefono_fisso">Telefono:</string>
+    <string name="hint_telefono_fisso">Inserire telefono fisso</string>
+
+    <string name="text_view_cellulare">Cellulare:</string>
+    <string name="hint_cellulare">Inserire cellulare</string>
+
+    <string name="text_view_email">Email</string>
+    <string name="hint_email">Inserire email</string>
+
+    <!-- Funzionalità 1 - Misurazioni -->
     <string name="text_view_pesoforma">Pesoforma</string>
     <string name="text_view_pliche">Pliche</string>
     <string name="text_view_circonferenza">Circonferenza</string>
@@ -45,6 +58,7 @@
     <string name="text_view_circonferenza_polso">Polso: </string>
     <string name="text_view_circonferenza_braccio">Braccio: </string>
 
+    <!-- Funzionalità 1 - Risultati -->
     <string name="text_view_bmi">Indice Massa Corporea</string>
     <string name="text_view_peso_calcolato_ideale">Peso Calcolato Ideale</string>
     <string name="text_view_metabolismo_basale">Metabolismo Basale</string>
@@ -53,16 +67,10 @@
     <string name="text_view_razione_calorica_moderata">Razione Calorica Moderata</string>
     <string name="text_view_razione_calorica_pesante">Razione Calorica Pesante</string>
 
+    <!-- Funzionalità 1 - Button -->
     <string name="button_altro1">Altro1</string>
     <string name="button_altro2">Altro2</string>
     <string name="button_calcola">Calcola</string>
-
-    <!-- Unità di misura -->
-    <string name="text_view_cm">cm</string>
-    <string name="text_view_mm">mm</string>
-    <string name="text_view_kg">kg</string>
-    <string name="text_view_kcal">kcal</string>
-    <string name="text_view_kg_m2"><sup>kg</sup>/<sub>m<sup><small>2</small></sup></sub></string>
 
     <!-- Funzionalità 1 - Barra Colorata -->
     <string name="barra_viola_dark">16-</string>
@@ -72,5 +80,12 @@
     <string name="barra_arancione">30~35</string>
     <string name="barra_rosso">35~40</string>
     <string name="barra_rosso_dark">40+</string>
+
+    <!-- Unità di misura -->
+    <string name="text_view_cm">cm</string>
+    <string name="text_view_mm">mm</string>
+    <string name="text_view_kg">kg</string>
+    <string name="text_view_kcal">kcal</string>
+    <string name="text_view_kg_m2"><sup>kg</sup>/<sub>m<sup><small>2</small></sup></sub></string>
 
 </resources>

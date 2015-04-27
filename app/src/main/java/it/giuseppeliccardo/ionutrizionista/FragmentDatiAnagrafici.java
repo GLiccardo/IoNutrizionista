@@ -17,13 +17,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 
@@ -42,10 +40,19 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
     private EditText mDataDiNascitaEditText;
     private RadioGroup mSessoRadioGroup;
     private RadioButton mSessoRadioButton;
+    private EditText mTelefonoFissoEditText;
+    private EditText mCellulareEditText;
+    private EditText mEmailEditText;
 
     private DatePickerDialog mEtaPickerDialog;
     private SimpleDateFormat mDateFormatter;
     private AlertDialog.Builder mBuilder;
+
+    // Esternalizzazione stringhe
+    private static final String EDIT_TEXT_DATA_DI_NASCITA = "Data di Nascita";
+    private static final String EDIT_TEXT_TELEFONO_FISSO = "Telefono Fisso";
+    private static final String EDIT_TEXT_CELLULARE = "Cellulare";
+    private static final String EDIT_TEXT_EMAIL = "Email";
 
 
     /*
@@ -93,6 +100,8 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         // Mostro il DatePicker se clicco sulla EditText relativa all'età
         mostraDatePickerAndCheckValoreData();
 
+        // Controllo se i valori dei parametri inseriti sono corretti
+        checkValoriParametri();
     }
 
 
@@ -126,10 +135,16 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
     private void findViewsById() {
 
         try {
+            // Dati Anagrafici
             mNomeEditText = (EditText) getView().findViewById(R.id.edit_text_nome);
             mCognomeEditText = (EditText) getView().findViewById(R.id.edit_text_cognome);
             mDataDiNascitaEditText = (EditText) getView().findViewById(R.id.edit_text_eta);
             mSessoRadioGroup = (RadioGroup) getView().findViewById(R.id.radio_group_sesso);
+
+            // Contatti
+            mTelefonoFissoEditText = (EditText) getView().findViewById(R.id.edit_text_telefono_fisso);
+            mCellulareEditText = (EditText) getView().findViewById(R.id.edit_text_cellulare);
+            mEmailEditText = (EditText) getView().findViewById(R.id.edit_text_email);
 
         } catch (NullPointerException exc) {
             exc.printStackTrace();
@@ -224,7 +239,7 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         if (hasFocus) {
 
             //Toast.makeText(getActivity(), "Primo click", Toast.LENGTH_SHORT).show();
-            mUltimoParametroModificato = "DataDiNascita";
+            mUltimoParametroModificato = EDIT_TEXT_DATA_DI_NASCITA;
             mEtaPickerDialog.show();
 
         } else if (!hasFocus && !(mDataDiNascitaEditText.getText().toString().equals(""))) {
@@ -308,6 +323,107 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
 
 
     /*
+      Metodo che effettua la validazione dell'email
+     */
+    private boolean emailValidation(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
+    /*
+      Metodo che effettua la validazione di un numero di telefono
+     */
+    private boolean phoneValidation(String phoneNumber) {
+        return android.util.Patterns.PHONE.matcher(phoneNumber).matches();
+    }
+
+
+    /*
+      Metodo che verifica a runtime se i valori inseriti dall'utente nei vari EditText sono corretti.
+      In caso negativo, compare un AlertDialog che notifica l'errore e viene resettato il valore
+      errato inserito dall'utente
+     */
+    private void checkValoriParametri() {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in checkValoriParametri()");
+
+        mUltimoParametroModificato = "";
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Attenzione!!!");
+
+        mTelefonoFissoEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && !(mTelefonoFissoEditText.getText().toString().equals(""))) {
+                    String telefonoFisso = mTelefonoFissoEditText.getText().toString();
+                    if (!hasFocus && !(telefonoFisso.equals(""))) {
+                        if (!phoneValidation(telefonoFisso)) {
+                            // Reset "Telefono Fisso" field
+                            mTelefonoFissoEditText.setText("");
+
+                            // Show alert
+                            builder.setMessage("Numero di telefono errato.\n\n" + "Reinserire valore corretto");
+                            builder.setPositiveButton("OK", null);
+                            AlertDialog dialog = builder.show();
+                            TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                            messageText.setGravity(Gravity.CENTER);
+                            dialog.show();
+                        }
+                    } else if (hasFocus) {
+                        mUltimoParametroModificato = EDIT_TEXT_TELEFONO_FISSO;
+                    }
+                }
+            }
+        });
+
+        mCellulareEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && !(mCellulareEditText.getText().toString().equals(""))) {
+                    String telefonoCellulare = mCellulareEditText.getText().toString();
+                    if (!hasFocus && !(telefonoCellulare.equals(""))) {
+                        if (!phoneValidation(telefonoCellulare)) {
+                            // Reset "Cellulare" field
+                            mCellulareEditText.setText("");
+
+                            // Show alert
+                            builder.setMessage("Numero di telefono errato.\n\n" + "Reinserire valore corretto");
+                            builder.setPositiveButton("OK", null);
+                            AlertDialog dialog = builder.show();
+                            TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                            messageText.setGravity(Gravity.CENTER);
+                            dialog.show();
+                        }
+                    } else if (hasFocus) {
+                        mUltimoParametroModificato = EDIT_TEXT_CELLULARE;
+                    }
+                }
+            }
+        });
+
+        mEmailEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                String email = mEmailEditText.getText().toString();
+                if (!hasFocus && !(email.equals(""))) {
+                    if (!emailValidation(email)) {
+                        // Reset "Email" field
+                        mEmailEditText.setText("");
+
+                        // Show alert
+                        builder.setMessage("Email errata.\n\n" + "Reinserire valore corretto");
+                        builder.setPositiveButton("OK", null);
+                        AlertDialog dialog = builder.show();
+                        TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                        messageText.setGravity(Gravity.CENTER);
+                        dialog.show();
+                    }
+                } else if (hasFocus) {
+                    mUltimoParametroModificato = EDIT_TEXT_EMAIL;
+                }
+            }
+        });
+    }
+
+
+    /*
       Metodo che:
         1.  Verifica se i dati anagrafici sono stati digitati dall'utente nelle varie View
         2a. Se digitati, li assegna alle variabili globali dell'activity host
@@ -320,42 +436,70 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         int radioButtonSelezionato = mSessoRadioGroup.getCheckedRadioButtonId();
         mSessoRadioButton = (RadioButton) getView().findViewById(radioButtonSelezionato);
 
+        // Get Dati Anagrafici
         ((CalcoloValoriEnergeticiActivity) getActivity()).mNome = !(mNomeEditText.getText().toString().equals("")) ? mNomeEditText.getText().toString() : "-1";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCognome = !(mCognomeEditText.getText().toString().equals("")) ? mCognomeEditText.getText().toString() : "-1";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mSesso = (mSessoRadioButton.getText().equals("M")) ? "M" : "F";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascita = !(mDataDiNascitaEditText.getText().toString().equals("")) ? mDataDiNascitaEditText.getText().toString() : "-1";
 
-        /* Come si calcola la data di nascita di tipo "Calendar" a partire da "String"
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascitaCalendar = new GregorianCalendar();
+        // Get Contatti
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mTelefonoFisso = !(mTelefonoFissoEditText.getText().toString().equals("")) ? mTelefonoFissoEditText.getText().toString() : "";
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mCellulare = !(mCellulareEditText.getText().toString().equals("")) ? mCellulareEditText.getText().toString() : "";
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mEmail = !(mEmailEditText.getText().toString().equals("")) ? mEmailEditText.getText().toString() : "";
 
-        try{
-            ((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascitaCalendar.setTime(mDateFormatter.parse(miaDataString));
-        }
-        catch (ParseException e){
-            e.printStackTrace();
-        }
-        */
     }
 
 
     /*
-       Metodo necessario quando si clicca su 'Calcola' dopo aver inserito un valore errato della
-       data di nascita. Va a cancellare la data inserita.
+       Metodo necessario quando si clicca su 'Calcola' dopo aver inserito un valore errato in una
+       delle EditText. Va a cancellare l'ultimo parametro inserito, se errato.
      */
     private void checkUltimoParametroModificato(String parametro) {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in checkUltimoParametroModificato()");
 
-        if (parametro.equals("DataDiNascita")) {
-            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
-            formatDate.setLenient(false);
+        switch (parametro) {
 
-            String dateToValidate = mDataDiNascitaEditText.getText().toString();
+            case EDIT_TEXT_DATA_DI_NASCITA:
+                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ITALY);
+                formatDate.setLenient(false);
 
-            try {
-                Date date = formatDate.parse(dateToValidate);
-            } catch (ParseException exc) {
-                mDataDiNascitaEditText.setText("");
-            }
+                String dateToValidate = mDataDiNascitaEditText.getText().toString();
+
+                try {
+                    Date date = formatDate.parse(dateToValidate);
+                } catch (ParseException exc) {
+                    mDataDiNascitaEditText.setText("");
+                }
+
+                break;
+
+            case EDIT_TEXT_TELEFONO_FISSO:
+                if (!mTelefonoFissoEditText.getText().toString().equals("")) {
+                    String telefonoFisso = mTelefonoFissoEditText.getText().toString();
+                    if (!phoneValidation(telefonoFisso)) {
+                        mTelefonoFissoEditText.setText("");
+                    }
+                }
+                break;
+
+            case EDIT_TEXT_CELLULARE:
+                if (!mCellulareEditText.getText().toString().equals("")) {
+                    String telefonoCellulare = mCellulareEditText.getText().toString();
+                    if (!phoneValidation(telefonoCellulare)) {
+                        mCellulareEditText.setText("");
+                    }
+                }
+                break;
+
+            case EDIT_TEXT_EMAIL:
+                if (!mEmailEditText.getText().toString().equals("")) {
+                    String email = mEmailEditText.getText().toString();
+                    if (!emailValidation(email)) {
+                        mEmailEditText.setText("");
+                    }
+                }
+                break;
+
         }
     }
 }

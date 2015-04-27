@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 
@@ -28,13 +29,16 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public StringBuilder mParametriMancantiDatiAnagrafici;
     public StringBuilder mParametriMancantiMisurazioni;
 
-    public int provaValoriEnergetici1;
+    //public int provaValoriEnergetici1;
     //int prova = ((CalcoloValoriEnergeticiActivity) getActivity()).provaValoriEnergetici1;
 
     public String mNome;
     public String mCognome;
     public String mSesso;
     public String mDataDiNascita;
+    public String mTelefonoFisso;
+    public String mCellulare;
+    public String mEmail;
 
     public int mAltezzaCm;
     public float mPesoKg;
