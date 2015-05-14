@@ -236,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/text_view_circonferenza_addome"
+                    android:text="@string/text_view_circonferenza_girovita"
                     android:textSize="@dimen/font_size_medio"
                     android:textColor="@color/nero" />
                 <EditText
@@ -271,6 +271,36 @@
                     android:textColor="@color/nero" />
                 <EditText
                     android:id="@+id/edit_text_circonferenza_fianchi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:paddingLeft="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:paddingRight="@dimen/valori_energetici_padding_laterale_edit_text"
+                    android:inputType="number|numberDecimal"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textStyle="italic"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/text_view_cm"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow> <!-- Collo -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/text_view_circonferenza_collo"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="@color/nero" />
+                <EditText
+                    android:id="@+id/edit_text_circonferenza_collo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"

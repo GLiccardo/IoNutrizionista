@@ -12,11 +12,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,16 +34,19 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
     private static final String TAG = "ioNutrizionista";
 
     private String mUltimoParametroModificato;
+    private String mElementoSpinnerSelezionato;
 
     private boolean mCheckNome;
     private boolean mCheckCognome;
     private boolean mCheckDataDiNascita;
+    private boolean mCheckOccupazione;
 
     private EditText mNomeEditText;
     private EditText mCognomeEditText;
     private EditText mDataDiNascitaEditText;
     private RadioGroup mSessoRadioGroup;
     private RadioButton mSessoRadioButton;
+    private Spinner mOccupazioneSpinner;
     private EditText mTelefonoFissoEditText;
     private EditText mCellulareEditText;
     private EditText mEmailEditText;
@@ -81,6 +88,23 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         // Ottengo un riferimento alle Views della UI
         findViewsById();
 
+        // Inizializzo Spinner delle occupazioni
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.array_occupazioni, R.layout.spinner_item); //android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mOccupazioneSpinner.setAdapter(adapter);
+        // Imposto un listener per ottenere l'elemento selezionato nello spinner
+        mOccupazioneSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                mElementoSpinnerSelezionato = parent.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+
         // Caso particolare: si clicca su "Calcola" prima di aver aperto il fragment "Misurazioni"
         // In questo caso, i parametri mancanti di "Misurazioni" sarebbero null, ecco perchè è
         // necessario inizializzarlo in questo modo
@@ -93,6 +117,8 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
     public void onResume() {
         super.onResume();
         Log.i(TAG, getClass().getSimpleName() + ": entrato in onResume()");
+
+        // TODO: Cambiare colore linea orizzontale edit text
 
         // Setto i filtri per gli EditText
         setFiltriEditText();
@@ -140,6 +166,7 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
             mCognomeEditText = (EditText) getView().findViewById(R.id.edit_text_cognome);
             mDataDiNascitaEditText = (EditText) getView().findViewById(R.id.edit_text_eta);
             mSessoRadioGroup = (RadioGroup) getView().findViewById(R.id.radio_group_sesso);
+            mOccupazioneSpinner = (Spinner) getView().findViewById(R.id.spinner_occupazione);
 
             // Contatti
             mTelefonoFissoEditText = (EditText) getView().findViewById(R.id.edit_text_telefono_fisso);
@@ -310,6 +337,9 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         mCheckDataDiNascita = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascita);
         if (!mCheckDataDiNascita) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici.append("\nData di Nascita");
 
+        mCheckOccupazione = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mOccupazione);
+        if (!mCheckOccupazione) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici.append("\nOccupazione");
+
 
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiDatiAnagrafici.toString().equals("")) {
             // Tutti i valori sono stati inseriti
@@ -441,8 +471,9 @@ public class FragmentDatiAnagrafici extends Fragment implements View.OnClickList
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCognome = !(mCognomeEditText.getText().toString().equals("")) ? mCognomeEditText.getText().toString() : "-1";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mSesso = (mSessoRadioButton.getText().equals("M")) ? "M" : "F";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mDataDiNascita = !(mDataDiNascitaEditText.getText().toString().equals("")) ? mDataDiNascitaEditText.getText().toString() : "-1";
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mOccupazione = !(mElementoSpinnerSelezionato.equals("")) ? mElementoSpinnerSelezionato : "-1";
 
-        // Get Contatti
+                // Get Contatti
         ((CalcoloValoriEnergeticiActivity) getActivity()).mTelefonoFisso = !(mTelefonoFissoEditText.getText().toString().equals("")) ? mTelefonoFissoEditText.getText().toString() : "";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCellulare = !(mCellulareEditText.getText().toString().equals("")) ? mCellulareEditText.getText().toString() : "";
         ((CalcoloValoriEnergeticiActivity) getActivity()).mEmail = !(mEmailEditText.getText().toString().equals("")) ? mEmailEditText.getText().toString() : "";

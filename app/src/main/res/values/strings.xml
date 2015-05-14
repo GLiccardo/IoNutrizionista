@@ -17,7 +17,8 @@
     <string name="text_view_misurazioni_pesoforma">Pesoforma</string>
     <string name="text_view_misurazioni_circonferenza">Circonferenza</string>
     <string name="text_view_misurazioni_pliche">Pliche</string>
-    <string name="text_view_risultati">Risultati</string>
+    <string name="text_view_risultati_in_evidenza">In evidenza</string>
+    <string name="text_view_risultati_completi">Risultati Completi</string>
 
     <!-- Funzionalità 1 - Dati Anagrafici -->
     <string name="text_view_nome">Nome: </string>
@@ -32,6 +33,8 @@
     <string name="text_view_data_di_nascita">Data nascita:</string>
     <string name="hint_data_di_nascita">gg/mm/aaaa</string>
 
+    <string name="text_view_occupazione">Occupazione:</string>
+
     <!-- Funzionalità 1 - Contatti -->
     <string name="text_view_telefono_fisso">Telefono:</string>
     <string name="hint_telefono_fisso">Inserire telefono fisso</string>
@@ -39,7 +42,7 @@
     <string name="text_view_cellulare">Cellulare:</string>
     <string name="hint_cellulare">Inserire cellulare</string>
 
-    <string name="text_view_email">Email</string>
+    <string name="text_view_email">Email:</string>
     <string name="hint_email">Inserire email</string>
 
     <!-- Funzionalità 1 - Misurazioni -->
@@ -52,20 +55,36 @@
     <string name="text_view_pliche_girovita">Girovita: </string>
     <string name="text_view_pliche_schiena">Schiena: </string>
     <string name="text_view_pliche_braccio">Braccio: </string>
-    <string name="text_view_circonferenza_addome">Addome: </string>
+    <string name="text_view_circonferenza_girovita">Girovita: </string>
     <string name="text_view_circonferenza_fianchi">Fianchi: </string>
+    <string name="text_view_circonferenza_collo">Collo: </string>
     <string name="text_view_circonferenza_coscia">Coscia: </string>
     <string name="text_view_circonferenza_polso">Polso: </string>
     <string name="text_view_circonferenza_braccio">Braccio: </string>
 
     <!-- Funzionalità 1 - Risultati -->
-    <string name="text_view_bmi">Indice Massa Corporea</string>
+    <string name="text_view_stato_salute">Stato Salute</string>
+    <string name="text_view_condizione_fisica">Condizione Fisica</string>
+    <string name="text_view_costituzione">Costituzione</string>
+    <string name="text_view_razione_calorica">Razione Calorica</string>
+
+    <string name="text_view_costituzione_valore">Valore Costituzione</string>
+
+    <string name="text_view_peso_attuale">Peso Attuale</string>
+    <string name="text_view_massa_magra">Massa Magra</string>
+    <string name="text_view_massa_grassa">Massa Grassa</string>
     <string name="text_view_peso_calcolato_ideale">Peso Calcolato Ideale</string>
+    <string name="text_view_peso_obiettivo">Peso Obiettivo</string>
+
+    <string name="text_view_bmi">Indice Massa Corporea</string>
     <string name="text_view_metabolismo_basale">Metabolismo Basale</string>
     <string name="text_view_fabbisogno_energetico">Fabbisogno Energetico</string>
     <string name="text_view_razione_calorica_leggera">Razione Calorica Leggera</string>
     <string name="text_view_razione_calorica_moderata">Razione Calorica Moderata</string>
     <string name="text_view_razione_calorica_pesante">Razione Calorica Pesante</string>
+
+    <string name="text_view_whr_girovita_fianchi">WHR (girovita/fianchi)</string>
+    <string name="text_view_wht_girovita_coscia">WHT (girovita/coscia)</string>
 
     <!-- Funzionalità 1 - Button -->
     <string name="button_altro1">Altro1</string>
@@ -87,5 +106,8 @@
     <string name="text_view_kg">kg</string>
     <string name="text_view_kcal">kcal</string>
     <string name="text_view_kg_m2"><sup>kg</sup>/<sub>m<sup><small>2</small></sup></sub></string>
+    <string name="text_view_cm_cm"><sup>cm</sup>/<sub>cm</sub></string>
+    <string name="text_view_percentuale">%</string>
+
 
 </resources>

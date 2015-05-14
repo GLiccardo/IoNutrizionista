@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_occupazioni">
+        <item>Altro</item>
+        <item>Addetto Vendita</item>
+        <item>Agricoltore</item>
+        <item>Casalinga</item>
+        <item>Dirigente</item>
+        <item>Disoccupato</item>
+        <item>Forze armate</item>
+        <item>Impiegato</item>
+        <item>Libero Professionista</item>
+        <item>Operaio</item>
+        <item>Pescatore</item>
+        <item>Sportivo</item>
+        <item>Tecnico</item>
+    </string-array>
+</resources>

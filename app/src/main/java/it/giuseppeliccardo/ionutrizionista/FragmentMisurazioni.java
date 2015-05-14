@@ -19,60 +19,53 @@ public class FragmentMisurazioni extends Fragment {
 
     private String mUltimoParametroModificato;
 
-    private boolean mCheckAltezza;
-    private boolean mCheckPeso;
-    private boolean mCheckPlicheGirovita;
-    private boolean mCheckPlicheSchiena;
-    private boolean mCheckPlicheBraccio;
-    private boolean mCheckCirconferenzaAddome;
-    private boolean mCheckCirconferenzaFianchi;
-    private boolean mCheckCirconferenzaCoscia;
-    private boolean mCheckCirconferenzaPolso;
-    private boolean mCheckCirconferenzaBraccio;
-
     private EditText mAltezzaEditText;
     private EditText mPesoEditText;
-    private EditText mPlicheGirovitaEditText;
-    private EditText mPlicheSchienaEditText;
-    private EditText mPlicheBraccioEditText;
+    private EditText mPlicaGirovitaEditText;
+    private EditText mPlicaSchienaEditText;
+    private EditText mPlicaBraccioEditText;
     private EditText mCirconferenzaAddomeEditText;
     private EditText mCirconferenzaFianchiEditText;
     private EditText mCirconferenzaCosciaEditText;
     private EditText mCirconferenzaPolsoEditText;
     private EditText mCirconferenzaBraccioEditText;
+    private EditText mCirconferenzaColloEditText;
 
     // TODO: Verificare se le pliche sono valori interi
     // Esternalizzazione valori
     private static final float UNO_MIN = 1;
-    private static final int ALTEZZA_MIN = 80;                  // cm
+    private static final int ALTEZZA_MIN = 70;                  // cm
     private static final int ALTEZZA_MAX = 220;                 // cm
     private static final float PESO_MIN = 25;                   // kg
     private static final float PESO_MAX = 250;                  // kg
     private static final float PLICHE_GIROVITA_MAX = 70;        // mm
     private static final float PLICHE_SCHIENA_MAX = 70;         // mm
     private static final float PLICHE_BRACCIO_MAX = 70;         // mm
-    private static final float CIRCONFERENZA_ADDOME_MIN = 50;   // mm
-    private static final float CIRCONFERENZA_ADDOME_MAX = 180;  // mm
-    private static final float CIRCONFERENZA_FIANCHI_MIN = 70;  // mm
-    private static final float CIRCONFERENZA_FIANCHI_MAX = 150; // mm
-    private static final float CIRCONFERENZA_COSCIA_MIN = 20;   // mm
-    private static final float CIRCONFERENZA_COSCIA_MAX = 80;   // mm
-    private static final float CIRCONFERENZA_POLSO_MIN = 10;    // mm
-    private static final float CIRCONFERENZA_POLSO_MAX = 26;    // mm
-    private static final float CIRCONFERENZA_BRACCIO_MIN = 20;  // mm
-    private static final float CIRCONFERENZA_BRACCIO_MAX = 50;  // mm
+    private static final float CIRCONFERENZA_ADDOME_MIN = 50;   // cm
+    private static final float CIRCONFERENZA_ADDOME_MAX = 180;  // cm
+    private static final float CIRCONFERENZA_FIANCHI_MIN = 50;  // cm
+    private static final float CIRCONFERENZA_FIANCHI_MAX = 160; // cm
+    private static final float CIRCONFERENZA_COSCIA_MIN = 20;   // cm
+    private static final float CIRCONFERENZA_COSCIA_MAX = 140;  // cm
+    private static final float CIRCONFERENZA_POLSO_MIN = 10;    // cm
+    private static final float CIRCONFERENZA_POLSO_MAX = 30;    // cm
+    private static final float CIRCONFERENZA_BRACCIO_MIN = 10;  // cm
+    private static final float CIRCONFERENZA_BRACCIO_MAX = 60;  // cm
+    private static final float CIRCONFERENZA_COLLO_MIN = 20;    // cm
+    private static final float CIRCONFERENZA_COLLO_MAX = 70;    // cm
 
     // Esternalizzazione stringhe
     private static final String EDIT_TEXT_ALTEZZA = "Altezza";
     private static final String EDIT_TEXT_PESO = "Peso";
-    private static final String EDIT_TEXT_PLICHE_GIROVITA = "Pliche Girovita";
-    private static final String EDIT_TEXT_PLICHE_SCHIENA = "Pliche Schiena";
-    private static final String EDIT_TEXT_PLICHE_BRACCIO = "Pliche Braccio";
+    private static final String EDIT_TEXT_PLICHE_GIROVITA = "Plica Girovita";
+    private static final String EDIT_TEXT_PLICHE_SCHIENA = "Plica Schiena";
+    private static final String EDIT_TEXT_PLICHE_BRACCIO = "Plica Braccio";
     private static final String EDIT_TEXT_CIRCONFERENZA_ADDOME = "Circonferenza Addome";
     private static final String EDIT_TEXT_CIRCONFERENZA_FIANCHI = "Circonferenza Fianchi";
     private static final String EDIT_TEXT_CIRCONFERENZA_COSCIA = "Circonferenza Coscia";
     private static final String EDIT_TEXT_CIRCONFERENZA_POLSO = "Circonferenza Polso";
     private static final String EDIT_TEXT_CIRCONFERENZA_BRACCIO = "Circonferenza Braccio";
+    private static final String EDIT_TEXT_CIRCONFERENZA_COLLO = "Circonferenza Collo";
 
 
     /*
@@ -102,7 +95,6 @@ public class FragmentMisurazioni extends Fragment {
         findViewsById();
         // Setto gli hint per gli EditText dei vari parametri
         setHintEditText();
-
     }
 
 
@@ -127,16 +119,12 @@ public class FragmentMisurazioni extends Fragment {
         // Recupero i valori dei parametri inseriti
         getPesoForma();
         getPliche();
-        getCirconferenza();
+        getCirconferenze();
 
         // Verifico se tutti i parametri sono stati inseriti:
         // - [caso positivo] setto il flag a true
         // - [caso negativo] setto il flag a false
-        if (checkInserimentoParametri()) {
-            ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti = true;
-        } else {
-            ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti = false;
-        }
+        ((CalcoloValoriEnergeticiActivity) getActivity()).flagParamMisurazioniInseriti = checkInserimentoParametri();
 
     }
 
@@ -150,14 +138,15 @@ public class FragmentMisurazioni extends Fragment {
         try {
             mAltezzaEditText = (EditText) getView().findViewById(R.id.edit_text_altezza);
             mPesoEditText = (EditText) getView().findViewById(R.id.edit_text_peso);
-            mPlicheGirovitaEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_girovita);
-            mPlicheSchienaEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_schiena);
-            mPlicheBraccioEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_braccio);
+            mPlicaGirovitaEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_girovita);
+            mPlicaSchienaEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_schiena);
+            mPlicaBraccioEditText = (EditText) getView().findViewById(R.id.edit_text_pliche_braccio);
             mCirconferenzaAddomeEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_addome);
             mCirconferenzaFianchiEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_fianchi);
             mCirconferenzaCosciaEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_coscia);
             mCirconferenzaPolsoEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_polso);
             mCirconferenzaBraccioEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_braccio);
+            mCirconferenzaColloEditText = (EditText) getView().findViewById(R.id.edit_text_circonferenza_collo);
         } catch (NullPointerException exc) {
             exc.printStackTrace();
         }
@@ -174,15 +163,15 @@ public class FragmentMisurazioni extends Fragment {
         mAltezzaEditText.setHint(ALTEZZA_MIN + " - " + ALTEZZA_MAX);
         mAltezzaEditText.setHint(ALTEZZA_MIN + " - " + ALTEZZA_MAX);
         mPesoEditText.setHint(PESO_MIN + " - " + PESO_MAX);
-        mPlicheGirovitaEditText.setHint(UNO_MIN + " - " + PLICHE_GIROVITA_MAX);
-        mPlicheSchienaEditText.setHint(UNO_MIN + " - " + PLICHE_SCHIENA_MAX);
-        mPlicheBraccioEditText.setHint(UNO_MIN + " - " + PLICHE_BRACCIO_MAX);
+        mPlicaGirovitaEditText.setHint(UNO_MIN + " - " + PLICHE_GIROVITA_MAX);
+        mPlicaSchienaEditText.setHint(UNO_MIN + " - " + PLICHE_SCHIENA_MAX);
+        mPlicaBraccioEditText.setHint(UNO_MIN + " - " + PLICHE_BRACCIO_MAX);
         mCirconferenzaAddomeEditText.setHint(CIRCONFERENZA_ADDOME_MIN + " - " + CIRCONFERENZA_ADDOME_MAX);
         mCirconferenzaFianchiEditText.setHint(CIRCONFERENZA_FIANCHI_MIN + " - " + CIRCONFERENZA_FIANCHI_MAX);
         mCirconferenzaCosciaEditText.setHint(CIRCONFERENZA_COSCIA_MIN + " - " + CIRCONFERENZA_COSCIA_MAX);
         mCirconferenzaPolsoEditText.setHint(CIRCONFERENZA_POLSO_MIN + " - " + CIRCONFERENZA_POLSO_MAX);
         mCirconferenzaBraccioEditText.setHint(CIRCONFERENZA_BRACCIO_MIN + " - " + CIRCONFERENZA_BRACCIO_MAX);
-
+        mCirconferenzaColloEditText.setHint(CIRCONFERENZA_COLLO_MIN + " - " + CIRCONFERENZA_COLLO_MAX);
     }
 
 
@@ -245,14 +234,14 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Pliche Girovita: 1 - 70 mm
-        mPlicheGirovitaEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        // Plica Girovita: 1 - 70 mm
+        mPlicaGirovitaEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && !(mPlicheGirovitaEditText.getText().toString().equals(""))) {
-                    float plicheGirovitaPaziente = Float.parseFloat(mPlicheGirovitaEditText.getText().toString());
+                if (!hasFocus && !(mPlicaGirovitaEditText.getText().toString().equals(""))) {
+                    float plicheGirovitaPaziente = Float.parseFloat(mPlicaGirovitaEditText.getText().toString());
                     if (plicheGirovitaPaziente < UNO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX) {
-                        // Reset "Pliche Girovita" field
-                        mPlicheGirovitaEditText.setText("");
+                        // Reset "Plica Girovita" field
+                        mPlicaGirovitaEditText.setText("");
 
                         // Show alert
                         builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_GIROVITA_MAX + " mm\n\nReinserire valore corretto");
@@ -268,14 +257,14 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Pliche Schiena: 1 - 70 mm
-        mPlicheSchienaEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        // Plica Schiena: 1 - 70 mm
+        mPlicaSchienaEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && !(mPlicheSchienaEditText.getText().toString().equals(""))) {
-                    float plicheSchienaPaziente = Float.parseFloat(mPlicheSchienaEditText.getText().toString());
+                if (!hasFocus && !(mPlicaSchienaEditText.getText().toString().equals(""))) {
+                    float plicheSchienaPaziente = Float.parseFloat(mPlicaSchienaEditText.getText().toString());
                     if (plicheSchienaPaziente < UNO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX) {
-                        // Reset "Pliche Schiena" field
-                        mPlicheSchienaEditText.setText("");
+                        // Reset "Plica Schiena" field
+                        mPlicaSchienaEditText.setText("");
 
                         // Show alert
                         builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_SCHIENA_MAX + " mm\n\nReinserire valore corretto");
@@ -291,14 +280,14 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Pliche Braccio: 1 - 70 mm
-        mPlicheBraccioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        // Plica Braccio: 1 - 70 mm
+        mPlicaBraccioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus && !(mPlicheBraccioEditText.getText().toString().equals(""))) {
-                    float plicheBraccioPaziente = Float.parseFloat(mPlicheBraccioEditText.getText().toString());
+                if (!hasFocus && !(mPlicaBraccioEditText.getText().toString().equals(""))) {
+                    float plicheBraccioPaziente = Float.parseFloat(mPlicaBraccioEditText.getText().toString());
                     if (plicheBraccioPaziente < UNO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX) {
-                        // Reset "Pliche Braccio" field
-                        mPlicheBraccioEditText.setText("");
+                        // Reset "Plica Braccio" field
+                        mPlicaBraccioEditText.setText("");
 
                         // Show alert
                         builder.setMessage("Valori consentiti:\n\n" + UNO_MIN + " - " + PLICHE_BRACCIO_MAX + " mm\n\nReinserire valore corretto");
@@ -314,13 +303,13 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Circonferenza Addome: 50 - 180 mm
+        // Circonferenza Addome: 50 - 180 cm
         mCirconferenzaAddomeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaAddomeEditText.getText().toString().equals(""))) {
                     float circonferenzaAddomePaziente = Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString());
                     if (circonferenzaAddomePaziente < CIRCONFERENZA_ADDOME_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX) {
-                        // Reset "Pliche Braccio" field
+                        // Reset "Circonferenza Addome" field
                         mCirconferenzaAddomeEditText.setText("");
 
                         // Show alert
@@ -337,13 +326,13 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Circonferenza Fianchi: 70 - 150 mm
+        // Circonferenza Fianchi: 70 - 150 cm
         mCirconferenzaFianchiEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaFianchiEditText.getText().toString().equals(""))) {
                     float circonferenzaFianchiPaziente = Float.parseFloat(mCirconferenzaFianchiEditText.getText().toString());
                     if (circonferenzaFianchiPaziente < CIRCONFERENZA_FIANCHI_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX) {
-                        // Reset "Pliche Braccio" field
+                        // Reset "Circonferenza Fianchi" field
                         mCirconferenzaFianchiEditText.setText("");
 
                         // Show alert
@@ -360,13 +349,36 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Circonferenza Coscia: 20 - 80 mm
+        // Circonferenza Collo: 30 - 70 cm
+        mCirconferenzaColloEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && !(mCirconferenzaColloEditText.getText().toString().equals(""))) {
+                    float circonferenzaColloPaziente = Float.parseFloat(mCirconferenzaColloEditText.getText().toString());
+                    if (circonferenzaColloPaziente < CIRCONFERENZA_COLLO_MIN || circonferenzaColloPaziente > CIRCONFERENZA_COLLO_MAX) {
+                        // Reset "Circonferenza Collo" field
+                        mCirconferenzaColloEditText.setText("");
+
+                        // Show alert
+                        builder.setMessage("Valori consentiti:\n\n" + CIRCONFERENZA_COLLO_MIN + " - " + CIRCONFERENZA_COLLO_MAX + " mm\n\nReinserire valore corretto");
+                        builder.setPositiveButton("OK", null);
+                        AlertDialog dialog = builder.show();
+                        TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+                        messageText.setGravity(Gravity.CENTER);
+                        dialog.show();
+                    }
+                } else if (hasFocus) {
+                    mUltimoParametroModificato = EDIT_TEXT_CIRCONFERENZA_COLLO;
+                }
+            }
+        });
+
+        // Circonferenza Coscia: 20 - 80 cm
         mCirconferenzaCosciaEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaCosciaEditText.getText().toString().equals(""))) {
                     float circonferenzaCosciaPaziente = Float.parseFloat(mCirconferenzaCosciaEditText.getText().toString());
                     if (circonferenzaCosciaPaziente < CIRCONFERENZA_COSCIA_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX) {
-                        // Reset "Pliche Braccio" field
+                        // Reset "Circonferenza Coscia" field
                         mCirconferenzaCosciaEditText.setText("");
 
                         // Show alert
@@ -383,13 +395,13 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Circonferenza Polso: 10 - 26 mm
+        // Circonferenza Polso: 10 - 26 cm
         mCirconferenzaPolsoEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaPolsoEditText.getText().toString().equals(""))) {
                     float circonferenzaPolsoPaziente = Float.parseFloat(mCirconferenzaPolsoEditText.getText().toString());
                     if (circonferenzaPolsoPaziente < CIRCONFERENZA_POLSO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX) {
-                        // Reset "Pliche Braccio" field
+                        // Reset "Circonferenza Polso" field
                         mCirconferenzaPolsoEditText.setText("");
 
                         // Show alert
@@ -406,13 +418,13 @@ public class FragmentMisurazioni extends Fragment {
             }
         });
 
-        // Circonferenza Braccio: 20 - 50 mm
+        // Circonferenza Braccio: 20 - 50 cm
         mCirconferenzaBraccioEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !(mCirconferenzaBraccioEditText.getText().toString().equals(""))) {
                     float circonferenzaBraccioPaziente = Float.parseFloat(mCirconferenzaBraccioEditText.getText().toString());
                     if (circonferenzaBraccioPaziente < CIRCONFERENZA_BRACCIO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX) {
-                        // Reset "Pliche Braccio" field
+                        // Reset "Circonferenza Braccio" field
                         mCirconferenzaBraccioEditText.setText("");
 
                         // Show alert
@@ -434,17 +446,15 @@ public class FragmentMisurazioni extends Fragment {
     /*
       Metodo che viene invocato in "checkInserimentoParametri()".
       Serve per verificare se l'elemento è stato inserito.
-      Se è stato inserito allora ritorno true
-      Se non è stato inserito (cioè == -1) allora ritorna false
+      - Ritorna TRUE se è stato inserito (!= -1)
+      - Ritorna FALSE se non è stato inserito (== -1)
      */
     private boolean checkInserimentoSingoloParametro(int valoreInt) {
-        boolean res = (valoreInt != -1);
-        return res;
+        return (valoreInt != -1);
     }
 
     private boolean checkInserimentoSingoloParametro(float valoreFloat) {
-        boolean res = (valoreFloat != -1);
-        return res;
+        return (valoreFloat != -1);
     }
 
 
@@ -461,56 +471,41 @@ public class FragmentMisurazioni extends Fragment {
 
         ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni = new StringBuilder("");
 
-        mCheckAltezza = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm);
-        if (!mCheckAltezza) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nAltezza");
+        boolean checkAltezza = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm);
+        if (!checkAltezza) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nAltezza");
 
-        mCheckPeso = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg);
-        if (!mCheckPeso) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPeso");
+        boolean checkPeso = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg);
+        if (!checkPeso) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPeso");
 
-        mCheckPlicheGirovita = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheGirovita);
-        if (!mCheckPlicheGirovita) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Girovita");
+        boolean checkPlicheGirovita = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheGirovita);
+        if (!checkPlicheGirovita) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Girovita");
 
-        mCheckPlicheSchiena = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheSchiena);
-        if (!mCheckPlicheSchiena) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Schiena");
+        boolean checkPlicheSchiena = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheSchiena);
+        if (!checkPlicheSchiena) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Schiena");
 
-        mCheckPlicheBraccio = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheBraccio);
-        if (!mCheckPlicheBraccio) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Braccio");
+        boolean checkPlicheBraccio = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheBraccio);
+        if (!checkPlicheBraccio) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nPlica Braccio");
 
-        mCheckCirconferenzaAddome = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaAddome);
-        if (!mCheckCirconferenzaAddome) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Addome");
+        boolean checkCirconferenzaAddome = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaGirovita);
+        if (!checkCirconferenzaAddome) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Addome");
 
-        mCheckCirconferenzaFianchi = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaFianchi);
-        if (!mCheckCirconferenzaFianchi) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Fianchi");
+        boolean checkCirconferenzaFianchi = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaFianchi);
+        if (!checkCirconferenzaFianchi) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Fianchi");
 
-        mCheckCirconferenzaCoscia = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCoscia);
-        if (!mCheckCirconferenzaCoscia) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Coscia");
+        boolean checkCirconferenzaCollo = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCollo);
+        if (!checkCirconferenzaCollo) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Collo");
 
-        mCheckCirconferenzaPolso = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaPolso);
-        if (!mCheckCirconferenzaPolso) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Polso");
+        boolean checkCirconferenzaCoscia = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCoscia);
+        if (!checkCirconferenzaCoscia) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Coscia");
 
-        mCheckCirconferenzaBraccio = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaBraccio);
-        if (!mCheckCirconferenzaBraccio) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Braccio");
+        boolean checkCirconferenzaPolso = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaPolso);
+        if (!checkCirconferenzaPolso) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Polso");
 
-        if (((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.toString().equals("")) {
-            // Tutti i valori sono stati inseriti
-            return true;
-        } else {
-            //Toast.makeText(getActivity(), mStringaToast, Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        boolean checkCirconferenzaBraccio = checkInserimentoSingoloParametro(((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaBraccio);
+        if (!checkCirconferenzaBraccio) ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.append("\nCirconferenza Braccio");
 
-    }
-
-
-    /*
-      Metodo che:
-        1.  Verifica se i dati anagrafici sono stati digitati dall'utente nelle varie View
-        2a. Se digitati, li assegna alle variabili globali dell'activity host
-        2b. Se non digitati, assegna il valore -1 alle variabili globali dell'activity host
-     */
-    private void getDatiAnagrafici() {
-        Log.i(TAG, getClass().getSimpleName() + ": entrato in getDatiAnagrafici()");
-
+        // Ritorna TRUE se tutti i valori sono stati inseriti, altrimenti FALSE
+        return ((CalcoloValoriEnergeticiActivity) getActivity()).mParametriMancantiMisurazioni.toString().equals("");
     }
 
 
@@ -538,9 +533,9 @@ public class FragmentMisurazioni extends Fragment {
     private void getPliche() {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in getPliche()");
 
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheBraccio = !(mPlicheBraccioEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicheBraccioEditText.getText().toString()) : -1;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheGirovita = !(mPlicheGirovitaEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicheGirovitaEditText.getText().toString()) : -1;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheSchiena = !(mPlicheSchienaEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicheSchienaEditText.getText().toString()) : -1;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheBraccio = !(mPlicaBraccioEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicaBraccioEditText.getText().toString()) : -1;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheGirovita = !(mPlicaGirovitaEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicaGirovitaEditText.getText().toString()) : -1;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPlicheSchiena = !(mPlicaSchienaEditText.getText().toString().equals("")) ? Float.parseFloat(mPlicaSchienaEditText.getText().toString()) : -1;
     }
 
 
@@ -550,12 +545,13 @@ public class FragmentMisurazioni extends Fragment {
         2a. Se digitati, li assegna alle variabili globali dell'activity host
         2b. Se non digitati, assegna il valore -1 alle variabili globali dell'activity host
      */
-    private void getCirconferenza() {
-        Log.i(TAG, getClass().getSimpleName() + ": entrato in getCirconferenza()");
+    private void getCirconferenze() {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in getCirconferenze()");
 
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaAddome = !(mCirconferenzaAddomeEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString()) : -1;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaGirovita = !(mCirconferenzaAddomeEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString()) : -1;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaBraccio = !(mCirconferenzaBraccioEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaBraccioEditText.getText().toString()) : -1;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCoscia = !(mCirconferenzaCosciaEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaCosciaEditText.getText().toString()) : -1;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCollo = !(mCirconferenzaColloEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaColloEditText.getText().toString()) : -1;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaFianchi = !(mCirconferenzaFianchiEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaFianchiEditText.getText().toString()) : -1;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaPolso = !(mCirconferenzaPolsoEditText.getText().toString().equals("")) ? Float.parseFloat(mCirconferenzaPolsoEditText.getText().toString()) : -1;
 
@@ -588,33 +584,33 @@ public class FragmentMisurazioni extends Fragment {
                 break;
 
             case EDIT_TEXT_PLICHE_GIROVITA:
-                if (!mPlicheGirovitaEditText.getText().toString().equals("")) {
-                    float plicheGirovitaPaziente = Float.parseFloat(mPlicheGirovitaEditText.getText().toString());
+                if (!mPlicaGirovitaEditText.getText().toString().equals("")) {
+                    float plicheGirovitaPaziente = Float.parseFloat(mPlicaGirovitaEditText.getText().toString());
                     if (plicheGirovitaPaziente < UNO_MIN || plicheGirovitaPaziente > PLICHE_GIROVITA_MAX)
-                        mPlicheGirovitaEditText.setText("");
+                        mPlicaGirovitaEditText.setText("");
                 }
                 break;
 
             case EDIT_TEXT_PLICHE_SCHIENA:
-                if (!mPlicheSchienaEditText.getText().toString().equals("")) {
-                    float plicheSchienaPaziente = Float.parseFloat(mPlicheSchienaEditText.getText().toString());
+                if (!mPlicaSchienaEditText.getText().toString().equals("")) {
+                    float plicheSchienaPaziente = Float.parseFloat(mPlicaSchienaEditText.getText().toString());
                     if (plicheSchienaPaziente < UNO_MIN || plicheSchienaPaziente > PLICHE_SCHIENA_MAX)
-                        mPlicheSchienaEditText.setText("");
+                        mPlicaSchienaEditText.setText("");
                 }
                 break;
 
             case EDIT_TEXT_PLICHE_BRACCIO:
-                if (!mPlicheBraccioEditText.getText().toString().equals("")) {
-                    float plicheBraccioPaziente = Float.parseFloat(mPlicheBraccioEditText.getText().toString());
+                if (!mPlicaBraccioEditText.getText().toString().equals("")) {
+                    float plicheBraccioPaziente = Float.parseFloat(mPlicaBraccioEditText.getText().toString());
                     if (plicheBraccioPaziente < UNO_MIN || plicheBraccioPaziente > PLICHE_BRACCIO_MAX)
-                        mPlicheBraccioEditText.setText("");
+                        mPlicaBraccioEditText.setText("");
                 }
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_ADDOME:
                 if (!mCirconferenzaAddomeEditText.getText().toString().equals("")) {
                     float circonferenzaAddomePaziente = Float.parseFloat(mCirconferenzaAddomeEditText.getText().toString());
-                    if (circonferenzaAddomePaziente < UNO_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX)
+                    if (circonferenzaAddomePaziente < CIRCONFERENZA_ADDOME_MIN || circonferenzaAddomePaziente > CIRCONFERENZA_ADDOME_MAX)
                         mCirconferenzaAddomeEditText.setText("");
                 }
                 break;
@@ -622,15 +618,23 @@ public class FragmentMisurazioni extends Fragment {
             case EDIT_TEXT_CIRCONFERENZA_FIANCHI:
                 if (!mCirconferenzaFianchiEditText.getText().toString().equals("")) {
                     float circonferenzaFianchiPaziente = Float.parseFloat(mCirconferenzaFianchiEditText.getText().toString());
-                    if (circonferenzaFianchiPaziente < UNO_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX)
+                    if (circonferenzaFianchiPaziente < CIRCONFERENZA_FIANCHI_MIN || circonferenzaFianchiPaziente > CIRCONFERENZA_FIANCHI_MAX)
                         mCirconferenzaFianchiEditText.setText("");
+                }
+                break;
+
+            case EDIT_TEXT_CIRCONFERENZA_COLLO:
+                if (!mCirconferenzaColloEditText.getText().toString().equals("")) {
+                    float circonferenzaColloPaziente = Float.parseFloat(mCirconferenzaColloEditText.getText().toString());
+                    if (circonferenzaColloPaziente < CIRCONFERENZA_COLLO_MIN || circonferenzaColloPaziente > CIRCONFERENZA_COSCIA_MAX)
+                        mCirconferenzaColloEditText.setText("");
                 }
                 break;
 
             case EDIT_TEXT_CIRCONFERENZA_COSCIA:
                 if (!mCirconferenzaCosciaEditText.getText().toString().equals("")) {
                     float circonferenzaCosciaPaziente = Float.parseFloat(mCirconferenzaCosciaEditText.getText().toString());
-                    if (circonferenzaCosciaPaziente < UNO_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX)
+                    if (circonferenzaCosciaPaziente < CIRCONFERENZA_COSCIA_MIN || circonferenzaCosciaPaziente > CIRCONFERENZA_COSCIA_MAX)
                         mCirconferenzaCosciaEditText.setText("");
                 }
                 break;
@@ -638,7 +642,7 @@ public class FragmentMisurazioni extends Fragment {
             case EDIT_TEXT_CIRCONFERENZA_POLSO:
                 if (!mCirconferenzaPolsoEditText.getText().toString().equals("")) {
                     float circonferenzaPolsoPaziente = Float.parseFloat(mCirconferenzaPolsoEditText.getText().toString());
-                    if (circonferenzaPolsoPaziente < UNO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX)
+                    if (circonferenzaPolsoPaziente < CIRCONFERENZA_POLSO_MIN || circonferenzaPolsoPaziente > CIRCONFERENZA_POLSO_MAX)
                         mCirconferenzaPolsoEditText.setText("");
                 }
                 break;
@@ -646,7 +650,7 @@ public class FragmentMisurazioni extends Fragment {
             case EDIT_TEXT_CIRCONFERENZA_BRACCIO:
                 if (!mCirconferenzaBraccioEditText.getText().toString().equals("")) {
                     float circonferenzaBraccioPaziente = Float.parseFloat(mCirconferenzaBraccioEditText.getText().toString());
-                    if (circonferenzaBraccioPaziente < UNO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX)
+                    if (circonferenzaBraccioPaziente < CIRCONFERENZA_BRACCIO_MIN || circonferenzaBraccioPaziente > CIRCONFERENZA_BRACCIO_MAX)
                         mCirconferenzaBraccioEditText.setText("");
                 }
                 break;

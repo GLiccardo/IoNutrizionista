@@ -91,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="3.5"
+                    android:paddingLeft="2dp"
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal" >
                     <RadioButton
@@ -143,6 +144,22 @@
                     android:hint="@string/hint_data_di_nascita"
                     android:textSize="@dimen/font_size_medio"
                     android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="@string/text_view_occupazione"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/font_size_medio"
+                    android:textColor="#ff000000" />
+                <Spinner
+                    android:id="@+id/spinner_occupazione"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6.5" />
             </TableRow>
 
         </TableLayout>

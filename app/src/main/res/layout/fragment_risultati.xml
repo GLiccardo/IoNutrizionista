@@ -7,26 +7,28 @@
         android:layout_height="wrap_content"
         android:padding="4dp" >
 
+        <!-- Riassunto risultati -->
         <TextView
-            android:id="@+id/text_view_risultati"
+            android:id="@+id/text_view_risultati_in_evidenza"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:padding="4dp"
             android:gravity="center"
             android:background="@color/red500"
-            android:text="@string/text_view_risultati"
+            android:text="@string/text_view_risultati_in_evidenza"
             android:textSize="@dimen/font_size_grande"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TableLayout
-            android:id="@+id/table_layout_risultati"
+            android:id="@+id/table_layout_risultati_in_evidenza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/valori_energetici_padding_all_table_layout"
             android:background="@color/red50"
-            android:layout_below="@+id/text_view_risultati" >
+            android:layout_below="@+id/text_view_risultati_in_evidenza" >
 
+            <!-- Barra colorata -->
             <TableRow
                 android:layout_marginBottom="@dimen/padding_sezioni_contenuto_top_bottom"
                 android:paddingTop="8dp"
@@ -123,6 +125,225 @@
                     android:textStyle="bold" />
             </TableRow>
 
+            <!-- Categoria: Sottopeso, Normopeso, Sovrappeso, Obeso -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5.5"
+                    android:maxLines="1"
+                    android:text="@string/text_view_stato_salute"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/redA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_stato_salute"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.5"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+            </TableRow>
+
+            <!-- Categoria: Sottopeso, Normopeso, Sovrappeso, Obeso -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5.5"
+                    android:maxLines="1"
+                    android:text="@string/text_view_condizione_fisica"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/redA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_condizione_fisica"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.5"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+            </TableRow>
+
+            <!-- Costituzione: longilineo, normolineo, brevilineo -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5.5"
+                    android:text="@string/text_view_costituzione"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/redA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_costituzione"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.5"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="start"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+            </TableRow>
+
+            <!-- Separatore -->
+            <TableRow
+                android:paddingLeft="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingRight="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/red100"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp" />
+            </TableRow>
+
+            <!-- Metabolismo Basale BMR -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:text="@string/text_view_metabolismo_basale"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/redA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_metabolismo_basale_1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Razione Calorica -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:maxLines="1"
+                    android:text="@string/text_view_razione_calorica"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/redA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_razione_calorica"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+        </TableLayout>
+
+        <!-- Risultati -->
+        <TextView
+            android:id="@+id/text_view_risultati"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:gravity="center"
+            android:background="@color/deep_orange500"
+            android:text="@string/text_view_risultati_completi"
+            android:textSize="@dimen/font_size_grande"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_below="@id/table_layout_risultati_in_evidenza" />
+
+        <TableLayout
+            android:id="@+id/table_layout_risultati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/valori_energetici_padding_all_table_layout"
+            android:background="@color/deep_orange50"
+            android:layout_below="@+id/text_view_risultati" >
+
+            <!-- Valore Costituzione -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:maxLines="1"
+                    android:text="@string/text_view_costituzione_valore"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_costituzione_valore"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_cmcm"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_cm_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Separatore -->
+            <TableRow
+                android:paddingLeft="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingRight="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/deep_orange100"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp" />
+            </TableRow>
+
             <!-- Indice Massa Corporea -->
             <TableRow
                 android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
@@ -134,7 +355,7 @@
                     android:maxLines="1"
                     android:text="@string/text_view_bmi"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
                     android:id="@+id/text_view_bmi"
@@ -155,36 +376,6 @@
                     android:textStyle="italic" />
             </TableRow>
 
-            <!-- Peso Calcolato Ideale -->
-            <TableRow
-                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
-                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view">
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="6.8"
-                    android:text="@string/text_view_peso_calcolato_ideale"
-                    android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
-                    android:textStyle="bold|italic" />
-                <TextView
-                    android:id="@+id/text_view_peso_calcolato_ideale"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.9"
-                    android:paddingRight="4dp" android:paddingEnd="4dp"
-                    android:gravity="end"
-                    android:textColor="@color/nero"
-                    android:textStyle="bold|italic" />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.3"
-                    android:text="@string/text_view_kg"
-                    android:textSize="@dimen/font_size_minuscolo"
-                    android:textStyle="italic" />
-            </TableRow>
-
             <!-- Metabolismo Basale BMR -->
             <TableRow
                 android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
@@ -195,10 +386,10 @@
                     android:layout_weight="6.8"
                     android:text="@string/text_view_metabolismo_basale"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
-                    android:id="@+id/text_view_metabolismo_basale"
+                    android:id="@+id/text_view_metabolismo_basale_2"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1.9"
@@ -225,7 +416,7 @@
                     android:layout_weight="6.8"
                     android:text="@string/text_view_fabbisogno_energetico"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
                     android:id="@+id/text_view_fabbisogno_energetico"
@@ -256,7 +447,7 @@
                     android:maxLines="1"
                     android:text="@string/text_view_razione_calorica_leggera"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
                     android:id="@+id/text_view_razione_calorica_leggera"
@@ -286,7 +477,7 @@
                     android:layout_weight="6.8"
                     android:text="@string/text_view_razione_calorica_moderata"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
                     android:id="@+id/text_view_razione_calorica_moderata"
@@ -316,7 +507,7 @@
                     android:layout_weight="6.8"
                     android:text="@string/text_view_razione_calorica_pesante"
                     android:textSize="@dimen/font_size_piccolo"
-                    android:textColor="@color/redA700"
+                    android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
                     android:id="@+id/text_view_razione_calorica_pesante"
@@ -332,6 +523,281 @@
                     android:layout_width="0dp"
                     android:layout_weight="1.3"
                     android:text="@string/text_view_kcal"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Separatore -->
+            <TableRow
+                android:paddingLeft="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingRight="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/deep_orange100"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp" />
+            </TableRow>
+
+            <!-- Peso attuale -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:maxLines="1"
+                    android:text="@string/text_view_peso_attuale"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_peso_attuale"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Massa magra -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.5"
+                    android:maxLines="1"
+                    android:text="@string/text_view_massa_magra"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_massa_magra_percentuale"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.8"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_percentuale"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/text_view_massa_magra_peso"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.7"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Massa grassa -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.5"
+                    android:maxLines="1"
+                    android:text="@string/text_view_massa_grassa"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_massa_grassa_percentuale"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.8"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="@string/text_view_percentuale"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+                <TextView
+                    android:id="@+id/text_view_massa_grassa_peso"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.7"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Peso Calcolato Ideale -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:text="@string/text_view_peso_calcolato_ideale"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_peso_calcolato_ideale"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Peso Obiettivo -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:text="@string/text_view_peso_obiettivo"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_peso_obiettivo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_kg"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Separatore -->
+            <TableRow
+                android:paddingLeft="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingRight="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/deep_orange100"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp" />
+            </TableRow>
+
+            <!-- Rapporto WHR: Cirocnferenza Girovita / Circonferenza Fianchi -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:maxLines="1"
+                    android:text="@string/text_view_whr_girovita_fianchi"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_whr_girovita_fianchi"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_cm_cm"
+                    android:textSize="@dimen/font_size_minuscolo"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Rapporto WHT: Cirocnferenza Girovita / Circonferenza Coscia -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="6.8"
+                    android:maxLines="1"
+                    android:text="@string/text_view_wht_girovita_coscia"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_wht_girovita_coscia"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.9"
+                    android:paddingRight="4dp" android:paddingEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:text="@string/text_view_cm_cm"
                     android:textSize="@dimen/font_size_minuscolo"
                     android:textStyle="italic" />
             </TableRow>

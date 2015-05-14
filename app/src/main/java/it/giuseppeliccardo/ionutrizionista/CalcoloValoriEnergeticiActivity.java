@@ -36,6 +36,7 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public String mCognome;
     public String mSesso;
     public String mDataDiNascita;
+    public String mOccupazione;
     public String mTelefonoFisso;
     public String mCellulare;
     public String mEmail;
@@ -45,19 +46,23 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public float mPlicheGirovita;
     public float mPlicheSchiena;
     public float mPlicheBraccio;
-    public float mCirconferenzaAddome;
+    public float mCirconferenzaGirovita;
     public float mCirconferenzaFianchi;
     public float mCirconferenzaCoscia;
     public float mCirconferenzaPolso;
     public float mCirconferenzaBraccio;
+    public float mCirconferenzaCollo;
 
+    // Risultati in evidenza "temporanei"
+    public float mCostituzione;
+    public float[] mMassaMagra;
+    public float[] mMassaGrassa;
+    // Risultati completi "temporanei"
     public float mIndiceMassaCorporea;
     public float mPesoCalcolatoIdeale;
     public int mMetabolismoBasale;
     public int mFabbisognoEnergetico;
-    public int mRazioneCaloricaLeggera;
-    public int mRazioneCaloricaModerata;
-    public int mRazioneCaloricaPesante;
+    public int[] mRazioneCaloricaGiornaliera;
 
 
     @Override
