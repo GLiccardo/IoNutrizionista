@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -46,12 +47,27 @@ public class FragmentRisultati extends Fragment {
     private TextView mMassaMagraPesoTextView;
     private TextView mMassaGrassaPercentualeTextView;
     private TextView mMassaGrassaPesoTextView;
-    private TextView mPesoCalcolatoIdealeTextView;
+    private TextView mPesoIdealeTextView;
     private TextView mPesoObiettivoTextView;
-    private TextView mGirovitaFianchiWHR;
-    private TextView mGirovitaCosciaWHT;
+    private TextView mGirovitaFianchiWHRTextView;
+    private TextView mRischioSaluteWHRTextView;
+    private TextView mGirovitaCosciaWHTTextView;
+    private TextView mRischioSaluteWHTTextView;
 
-    // Esternalizzazione stringhe
+    // Esternalizzazione stringhe HashMap
+    private static final String MAP_COSTITUZIONE = "Costituzione";
+    private static final String MAP_BMI = "Bmi";
+    private static final String MAP_METABOLISMO_BASALE = "Metabolismo_Basale";
+    private static final String MAP_FABBISOGNO_ENERGETICO = "Fabbisogno_Energetico";
+    private static final String MAP_RAZIONE_CALORICA = "Razione_Calorica";
+    private static final String MAP_MASSA_MAGRA = "Massa_Magra";
+    private static final String MAP_MASSA_GRASSA = "Massa_Grassa";
+    private static final String MAP_PESO_IDEALE = "Peso_Ideale";
+    private static final String MAP_PESO_OBIETTIVO = "Peso_Obiettivo";
+    private static final String MAP_WHR = "Whr";
+    private static final String MAP_WHT = "Wht";
+
+    // Esternalizzazione stringhe Risultati
     private static final String STATO_SALUTE_SOTTOPESO_GRAVE = "Sottopeso grave";
     private static final String STATO_SALUTE_SOTTOPESO = "Sottopeso lieve";
     private static final String STATO_SALUTE_NORMOPESO = "Normopeso";
@@ -67,6 +83,9 @@ public class FragmentRisultati extends Fragment {
     private static final String COSTITUZIONE_BREVILINEA = "Brevilinea";
     private static final String COSTITUZIONE_NORMOLINEA = "Normolinea";
     private static final String COSTITUZIONE_LONGILINEA = "Longilinea";
+    private static final String RISCHIO_SALUTE_BASSO = "Basso";
+    private static final String RISCHIO_SALUTE_MEDIO = "Medio";
+    private static final String RISCHIO_SALUTE_ALTO = "Alto";
 
 
     public FragmentRisultati() {
@@ -112,10 +131,11 @@ public class FragmentRisultati extends Fragment {
         float pesoAttuale;
         float[] massaMagra;
         float[] massaGrassa;
-        float pesoCalcolatoIdeale;
+        float pesoIdeale;
         float pesoObiettivo;
         float girovitaFianchiWHR;
         float girovitaCosciaWHT;
+        HashMap<String, Object> elencoRisultati;
 
         // Verifico se devo ricalcolare i risultati o meno
         if (controlloRicalcolo) {
@@ -165,11 +185,16 @@ public class FragmentRisultati extends Fragment {
                 mMassaGrassaPercentualeTextView.setText(Float.toString(massaGrassa[0]));
                 mMassaGrassaPesoTextView.setText(Float.toString(massaGrassa[1]));
 
-                // Peso Calcolato Ideale
-                pesoCalcolatoIdeale = (float) Math.round(calcolaPesoCalcolatoIdeale(sesso) * 10) / 10;
-                mPesoCalcolatoIdealeTextView.setText(Float.toString(pesoCalcolatoIdeale));
+                // Condizione Fisica
+                stampaCondizioneFisica(sesso, massaGrassa);
 
-                // TODO: Peso obiettivo
+                // Peso Ideale
+                pesoIdeale = (float) Math.round(calcolaPesoIdeale(sesso) * 10) / 10;
+                mPesoIdealeTextView.setText(Float.toString(pesoIdeale));
+
+                // Peso obiettivo
+                pesoObiettivo = (float) Math.round(calcolaPesoObiettivo(pesoIdeale) * 10) / 10;
+                mPesoObiettivoTextView.setText(Float.toString(pesoObiettivo));
 
                 // Metabolismo Basale
                 metabolismoBasale = (int) calcolaMetabolismoBasale(sesso, eta);
@@ -181,7 +206,7 @@ public class FragmentRisultati extends Fragment {
                 mFabbisognoEnergeticoTextView.setText(Integer.toString(fabbisognoEnergetico));
 
                 // Razione Calorica Giornaliera
-                razioneCaloricaGiornaliera = calcolaRazioneCalorica(bmi, pesoCalcolatoIdeale);
+                razioneCaloricaGiornaliera = calcolaRazioneCalorica(bmi, pesoIdeale);
                 mRazioneCaloricaLeggeraTextView.setText(Integer.toString(razioneCaloricaGiornaliera[0]));
                 mRazioneCaloricaModerataTextView.setText(Integer.toString(razioneCaloricaGiornaliera[1]));
                 mRazioneCaloricaPesanteTextView.setText(Integer.toString(razioneCaloricaGiornaliera[2]));
@@ -191,13 +216,32 @@ public class FragmentRisultati extends Fragment {
                 else if (livelloAttivitaFisica == 2)    mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[1]));
                 else if (livelloAttivitaFisica == 3)    mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[2]));
 
-                // TODO: WHR - Rapporto Girovita Fianchi
+                // WHR - Rapporto Girovita Fianchi
+                girovitaFianchiWHR = (float) Math.round(calcolaWHR() * 10) / 10;
+                mGirovitaFianchiWHRTextView.setText(Float.toString(girovitaFianchiWHR));
+                stampaRischioSaluteWHR(girovitaFianchiWHR, sesso);
 
-                // TODO: WHT - Rapporto Girovita Coscia
+                // WHT - Rapporto Girovita Coscia
+                girovitaCosciaWHT = (float) Math.round(calcolaWHT() * 10) / 10;
+                mGirovitaCosciaWHTTextView.setText(Float.toString(girovitaCosciaWHT));
+                stampaRischioSaluteWHT(girovitaCosciaWHT, sesso);
 
-                // TODO: Creare un array con tutti i valori da salvare e passarlo al metodo salvaRisultatiTemporanei
+                // Creo una hashmap (chiave-valore) per salvare le caratteristiche del paziente
+                elencoRisultati = new HashMap<>();
+                elencoRisultati.put(MAP_COSTITUZIONE, costituzione);
+                elencoRisultati.put(MAP_BMI, bmi);
+                elencoRisultati.put(MAP_METABOLISMO_BASALE, metabolismoBasale);
+                elencoRisultati.put(MAP_FABBISOGNO_ENERGETICO, fabbisognoEnergetico);
+                elencoRisultati.put(MAP_RAZIONE_CALORICA, razioneCaloricaGiornaliera);
+                elencoRisultati.put(MAP_MASSA_MAGRA, massaMagra);
+                elencoRisultati.put(MAP_MASSA_GRASSA, massaGrassa);
+                elencoRisultati.put(MAP_PESO_IDEALE, pesoIdeale);
+                elencoRisultati.put(MAP_PESO_OBIETTIVO, pesoObiettivo);
+                elencoRisultati.put(MAP_WHR, girovitaFianchiWHR);
+                elencoRisultati.put(MAP_WHT, girovitaCosciaWHT);
+
                 // Salvo i risultati temporanei che saranno, eventualmente, ricaricati
-                salvaRisultatiTemporanei(costituzione, massaMagra, massaGrassa, bmi, pesoCalcolatoIdeale, pesoObiettivo, metabolismoBasale, fabbisognoEnergetico, razioneCaloricaGiornaliera);
+                salvaRisultatiTemporanei(elencoRisultati);
 
             } else {
 
@@ -239,17 +283,21 @@ public class FragmentRisultati extends Fragment {
       Metodo che salva i risultati calcolati in modo da poterli visualizzare successivamente quando
       si apre il fragment "Risultati" senza aver cliccato sul button "Calcola"
     */
-    private void salvaRisultatiTemporanei(float costituzione, float[] massaMagra, float[] massaGrassa, float bmi, float pesoCalcolatoIdeale, float pesoObiettivo, int metabolismoBasale, int fabbisognoEnergetico, int[] razioneCaloricaGiornaliera) {
-        // TODO: Aggiungere costituzione e gli altri
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mCostituzione = costituzione;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra = massaMagra;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa = massaGrassa;
+    private void salvaRisultatiTemporanei(HashMap elencoRisultati) {
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mCostituzione = (float) elencoRisultati.get(MAP_COSTITUZIONE);
 
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = bmi;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = pesoCalcolatoIdeale;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale = metabolismoBasale;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico = fabbisognoEnergetico;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera = razioneCaloricaGiornaliera;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = (float) elencoRisultati.get(MAP_BMI);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale = (int) elencoRisultati.get(MAP_METABOLISMO_BASALE);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico = (int) elencoRisultati.get(MAP_FABBISOGNO_ENERGETICO);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera = (int[]) elencoRisultati.get(MAP_RAZIONE_CALORICA);
+
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra = (float[]) elencoRisultati.get(MAP_MASSA_MAGRA);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa = (float[]) elencoRisultati.get(MAP_MASSA_GRASSA);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoIdeale = (float) elencoRisultati.get(MAP_PESO_IDEALE);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoObiettivo = (float) elencoRisultati.get(MAP_PESO_OBIETTIVO);
+
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaFianchiWHR = (float) elencoRisultati.get(MAP_WHR);
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaCosciaWHT = (float) elencoRisultati.get(MAP_WHT);
     }
 
 
@@ -258,20 +306,24 @@ public class FragmentRisultati extends Fragment {
       si clicca su "Calcola"
     */
     private void azzeraRisultatiTemporanei() {
-        // TODO: Aggiungere costituzione e gli altri
         ((CalcoloValoriEnergeticiActivity) getActivity()).mCostituzione = 0;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[0] = 0;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[1] = 0;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[0] = 0;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[1] = 0;
 
         ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea = 0;
-        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale = 0;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale = 0;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico = 0;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[0] = 0;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[1] = 0;
         ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[2] = 0;
+
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[0] = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[1] = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[0] = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[1] = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoIdeale = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoObiettivo = 0;
+
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaFianchiWHR = 0;
+        ((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaCosciaWHT = 0;
     }
 
 
@@ -280,46 +332,18 @@ public class FragmentRisultati extends Fragment {
       visualizzarli a ogni refresh della pagina
     */
     private void caricaValori() {
-        // TODO: Aggiungere costituzione e gli altri
-
         String sesso = ((CalcoloValoriEnergeticiActivity) getActivity()).mSesso;
         String occupazione = ((CalcoloValoriEnergeticiActivity) getActivity()).mOccupazione;
         int livelloAttivitaFisica = calcolaLivelloAttivita(occupazione);
 
-        // Costituzione
+        // Costituzione & Valore Costituzione
         float costituzione = ((CalcoloValoriEnergeticiActivity) getActivity()).mCostituzione;
         if (costituzione != 0) {
             mCostituzioneValoreTextView.setText(Float.toString(costituzione));
             stampaCostituzione(costituzione, sesso);
         }
 
-        // Peso Attuale
-        mPesoAttualeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg));
-
-        // Massa Magra
-        float massaMagra, massaMagraPercentuale;
-        if (((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[0] != 0) {
-            massaMagra = ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[0];
-            massaMagraPercentuale = (float) Math.round(massaMagra * 100) / 100;
-            //massaMagraKg = (float) Math.round(massaMagra[1] * 10) / 10;
-            mMassaMagraPercentualeTextView.setText(Float.toString(massaMagraPercentuale));
-        }
-
-        // Massa Grassa
-        float massaGrassa, massaGrassaPercentuale;
-        if (((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[0] != 0) {
-            massaGrassa = ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[0];
-            massaGrassaPercentuale = (float) Math.round(massaGrassa * 100) / 100;
-            mMassaGrassaPercentualeTextView.setText(Float.toString(massaGrassaPercentuale));
-        }
-
-        // Razione Calorica Consigliata
-        int[] razioneCaloricaGiornaliera = ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera;
-        if (livelloAttivitaFisica == 1)         mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[0]));
-        else if (livelloAttivitaFisica == 2)    mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[1]));
-        else if (livelloAttivitaFisica == 3)    mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[2]));
-
-        // BMI e barra colorata
+        // BMI, Stato Salute & Barra colorata
         float bmi = ((CalcoloValoriEnergeticiActivity) getActivity()).mIndiceMassaCorporea;
         if (bmi != 0) {
             mBmiTextView.setText(Float.toString(bmi));
@@ -327,13 +351,39 @@ public class FragmentRisultati extends Fragment {
             stampaStatoSalute(bmi);
         }
 
-        // Peso Calcolato Ideale
-        if (((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale != 0) {
-            mPesoCalcolatoIdealeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale));
-            mPesoIdealeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoCalcolatoIdeale));
+        // Razione Calorica Consigliata
+        int[] razioneCaloricaGiornaliera = ((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera;
+        if (livelloAttivitaFisica == 1)
+            mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[0]));
+        else if (livelloAttivitaFisica == 2)
+            mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[1]));
+        else if (livelloAttivitaFisica == 3)
+            mRazioneCaloricaTextView.setText(Integer.toString(razioneCaloricaGiornaliera[2]));
+
+        // Peso Attuale
+        mPesoAttualeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg));
+
+        // Peso Ideale
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mPesoIdeale != 0)
+            mPesoIdealeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoIdeale));
+
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mPesoObiettivo != 0)
+            mPesoObiettivoTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mPesoObiettivo));
+
+        // Massa Magra
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra.length != 0) {
+            mMassaMagraPercentualeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[0]));
+            mMassaMagraPesoTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMassaMagra[1]));
         }
 
-        // Metabolismo Basale
+        // Massa Grassa & Condizione Fisica
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa.length != 0) {
+            mMassaGrassaPercentualeTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[0]));
+            mMassaGrassaPesoTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa[1]));
+            stampaCondizioneFisica(sesso, ((CalcoloValoriEnergeticiActivity) getActivity()).mMassaGrassa);
+        }
+
+        // Metabolismo Basale (2 TextView)
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale != 0) {
             mMetabolismoBasaleTextView1.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale));
             mMetabolismoBasaleTextView2.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mMetabolismoBasale));
@@ -341,7 +391,7 @@ public class FragmentRisultati extends Fragment {
 
         // Fabbisogno Energetico
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico != 0)
-            mFabbisognoEnergeticoTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico));
+            mFabbisognoEnergeticoTextView.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mFabbisognoEnergetico));
 
         // Razione Calorica Giornaliera
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[0] != 0)
@@ -350,6 +400,19 @@ public class FragmentRisultati extends Fragment {
             mRazioneCaloricaModerataTextView.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[1]));
         if (((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[2] != 0)
             mRazioneCaloricaPesanteTextView.setText(Integer.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mRazioneCaloricaGiornaliera[2]));
+
+        // WHR - Rapporto Girovita Fianchi
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaFianchiWHR != 0) {
+            mGirovitaFianchiWHRTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaFianchiWHR));
+            stampaRischioSaluteWHR(((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaFianchiWHR, sesso);
+        }
+
+        // WHT - Rapporto Girovita Coscia
+        if (((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaCosciaWHT != 0) {
+            mGirovitaCosciaWHTTextView.setText(Float.toString(((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaCosciaWHT));
+            stampaRischioSaluteWHT(((CalcoloValoriEnergeticiActivity) getActivity()).mGirovitaCosciaWHT, sesso);
+        }
+
     }
 
 
@@ -446,10 +509,115 @@ public class FragmentRisultati extends Fragment {
 
 
     /*
+      Metodo che stampa la condizione fisica del paziente in base al bmi.
+    */
+    private void stampaCondizioneFisica(String sesso, float[] massaGrassa) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in stampaCondizioneFisica()");
+
+        if (sesso.equals("M")) {
+
+            if (isBetween(massaGrassa[0], 0, 4f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_PERICOLO_SALUTE);
+            } else if (isBetween(massaGrassa[0], 4f, 13f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_OTTIMA);
+            } else if (isBetween(massaGrassa[0], 13f, 18f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_BUONA);
+            } else if (isBetween(massaGrassa[0], 18f, 25f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_SCARSA);
+            } else if (isBetween(massaGrassa[0], 25f, 100f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_OBESITA);
+            }
+
+        } if (sesso.equals("F")) {
+
+            if (isBetween(massaGrassa[0], 0, 13f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_PERICOLO_SALUTE);
+            } else if (isBetween(massaGrassa[0], 13f, 20f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_OTTIMA);
+            } else if (isBetween(massaGrassa[0], 20f, 25f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_BUONA);
+            } else if (isBetween(massaGrassa[0], 25f, 31f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_SCARSA);
+            } else if (isBetween(massaGrassa[0], 31f, 100f)) {
+                mCondizioneFisicaTextView.setText(CONDIZIONE_FISICA_OBESITA);
+            }
+
+        }
+    }
+
+
+
+    /*
+      Metodo che stampa il rischio per la salute in base al valore del rapporto tra la circonferenza
+      del girovita e quella dei fianchi.
+    */
+    private void stampaRischioSaluteWHR(float girovitaFianchiWHR, String sesso) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in stampaRischioSaluteWHR()");
+
+        if (sesso.equals("M")) {
+
+            if (isBetween(girovitaFianchiWHR, 0f, 0.95f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_BASSO);
+            } else if (isBetween(girovitaFianchiWHR, 0.95f, 1f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_MEDIO);
+            } else if (isBetween(girovitaFianchiWHR, 1f, 5f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_ALTO);
+            }
+
+        }
+        if (sesso.equals("F")) {
+
+            if (isBetween(girovitaFianchiWHR, 0f, 0.80f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_BASSO);
+            } else if (isBetween(girovitaFianchiWHR, 0.80f, 0.85f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_MEDIO);
+            } else if (isBetween(girovitaFianchiWHR, 0.85f, 5f)) {
+                mRischioSaluteWHRTextView.setText(RISCHIO_SALUTE_ALTO);
+            }
+
+        }
+
+    }
+
+
+    /*
+      Metodo che stampa il rischio per la salute in base al valore del rapporto tra la circonferenza
+      del girovita e quella dei fianchi.
+    */
+    private void stampaRischioSaluteWHT(float girovitaCosciaWHT, String sesso) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in stampaRischioSaluteWHT()");
+
+        if (sesso.equals("M")) {
+
+            if (isBetween(girovitaCosciaWHT, 0f, 1.68f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_BASSO);
+            } else if (isBetween(girovitaCosciaWHT, 1.68f, 1.78f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_MEDIO);
+            } else if (isBetween(girovitaCosciaWHT, 1.78f, 5f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_ALTO);
+            }
+
+        }
+        if (sesso.equals("F")) {
+
+            if (isBetween(girovitaCosciaWHT, 0f, 1.40f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_BASSO);
+            } else if (isBetween(girovitaCosciaWHT, 1.40f, 1.50f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_MEDIO);
+            } else if (isBetween(girovitaCosciaWHT, 1.50f, 5f)) {
+                mRischioSaluteWHTTextView.setText(RISCHIO_SALUTE_ALTO);
+            }
+
+        }
+
+    }
+
+
+    /*
       Metodo che calcola il BMI del paziente
     */
     private float calcolaCostituzione() {
-        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaBMI()");
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaCostituzione()");
 
         int altezzaCm = ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm;
         float circonferenzaPolso = ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaPolso;
@@ -574,23 +742,31 @@ public class FragmentRisultati extends Fragment {
     /*
       Metodo che calcola il Peso Calcolato Ideale del paziente in base al sesso passato come parametro
     */
-    private float calcolaPesoCalcolatoIdeale(String sesso) {
-        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaPesoCalcolatoIdeale()");
+    private float calcolaPesoIdeale(String sesso) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaPesoIdeale()");
 
-        int altezzaCm = ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm;
-        float altezzaM = (float) altezzaCm / 100;
-        float pesoRealeKg = ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg;
+        float altezzaM = (float) ((CalcoloValoriEnergeticiActivity) getActivity()).mAltezzaCm / 100;
         float bmiRiferimento = (sesso.equals("M")) ? 22.5f : 20.6f;
 
-        float pesoIdealeKg = (float) (bmiRiferimento * (Math.pow(altezzaM, 2.0f)));
-        float pesoCalcolatoIdeale = (float) ((pesoRealeKg - pesoIdealeKg) * 0.25 + pesoIdealeKg);
-
-        return pesoCalcolatoIdeale;
+        return (float) (bmiRiferimento * (Math.pow(altezzaM, 2.0f)));
     }
 
 
     /*
-      Metodo che calcola il Peso Calcolato Ideale del paziente in base al sesso passato come parametro
+      Metodo che calcola il Peso Obiettivo (Peso Calcolato Ideale) del paziente in base al peso
+      ideale passato come parametro
+    */
+    private float calcolaPesoObiettivo(float pesoIdeale) {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaPesoObiettivo()");
+
+        float pesoReale = ((CalcoloValoriEnergeticiActivity) getActivity()).mPesoKg;
+
+        return (float) ((pesoReale - pesoIdeale) * 0.25 + pesoIdeale);
+    }
+
+
+    /*
+      Metodo che calcola il metabolismo basale in base al sesso e all'età passati come parametri
     */
     private float calcolaMetabolismoBasale(String sesso, int eta) {
         Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaMetabolismoBasale()");
@@ -755,6 +931,34 @@ public class FragmentRisultati extends Fragment {
 
 
     /*
+      Metodo che calcola il WHR, cioè il rapporto tra la circonferenza del girovita e quella
+      dei fianchi.
+    */
+    private float calcolaWHR() {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaWHR()");
+
+        float girovita = ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaGirovita;
+        float fianchi = ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaFianchi;
+
+        return girovita / fianchi;
+    }
+
+
+    /*
+      Metodo che calcola il WHT, cioè il rapporto tra la circonferenza del girovita e quella
+      della coscia.
+    */
+    private float calcolaWHT() {
+        Log.i(TAG, getClass().getSimpleName() + ": entrato in calcolaWHT()");
+
+        float girovita = ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaGirovita;
+        float coscia = ((CalcoloValoriEnergeticiActivity) getActivity()).mCirconferenzaCoscia;
+
+        return girovita / coscia;
+    }
+
+
+    /*
        Metodo che in base al valore di BMI ricevuto come parametro, evidenza il bordo della TextView
        corretta all'interno della barra colorata.
      */
@@ -818,11 +1022,13 @@ public class FragmentRisultati extends Fragment {
             mMassaMagraPesoTextView = (TextView) getView().findViewById(R.id.text_view_massa_magra_peso);
             mMassaGrassaPercentualeTextView = (TextView) getView().findViewById(R.id.text_view_massa_grassa_percentuale);
             mMassaGrassaPesoTextView = (TextView) getView().findViewById(R.id.text_view_massa_grassa_peso);
-            mPesoCalcolatoIdealeTextView = (TextView) getView().findViewById(R.id.text_view_peso_calcolato_ideale);
+            mPesoIdealeTextView = (TextView) getView().findViewById(R.id.text_view_peso_ideale);
             mPesoObiettivoTextView = (TextView) getView().findViewById(R.id.text_view_peso_obiettivo);
 
-            mGirovitaFianchiWHR = (TextView) getView().findViewById(R.id.text_view_whr_girovita_fianchi);
-            mGirovitaCosciaWHT = (TextView) getView().findViewById(R.id.text_view_wht_girovita_coscia);
+            mGirovitaFianchiWHRTextView = (TextView) getView().findViewById(R.id.text_view_whr_girovita_fianchi);
+            mRischioSaluteWHRTextView = (TextView) getView().findViewById(R.id.text_view_whr_valutazione);
+            mGirovitaCosciaWHTTextView = (TextView) getView().findViewById(R.id.text_view_wht_girovita_coscia);
+            mRischioSaluteWHTTextView = (TextView) getView().findViewById(R.id.text_view_wht_valutazione);
 
         } catch (NullPointerException exc) {
             exc.printStackTrace();

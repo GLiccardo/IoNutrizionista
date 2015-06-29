@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -53,16 +54,18 @@ public class CalcoloValoriEnergeticiActivity extends ActionBarActivity {
     public float mCirconferenzaBraccio;
     public float mCirconferenzaCollo;
 
-    // Risultati in evidenza "temporanei"
+    // Risultati "temporanei"
     public float mCostituzione;
-    public float[] mMassaMagra;
-    public float[] mMassaGrassa;
-    // Risultati completi "temporanei"
     public float mIndiceMassaCorporea;
-    public float mPesoCalcolatoIdeale;
     public int mMetabolismoBasale;
     public int mFabbisognoEnergetico;
     public int[] mRazioneCaloricaGiornaliera;
+    public float[] mMassaMagra;
+    public float[] mMassaGrassa;
+    public float mPesoIdeale;
+    public float mPesoObiettivo;
+    public float mGirovitaFianchiWHR;
+    public float mGirovitaCosciaWHT;
 
 
     @Override

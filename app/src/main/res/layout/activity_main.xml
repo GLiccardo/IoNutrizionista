@@ -3,152 +3,162 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="100" >
+    android:weightSum="10" >
 
     <LinearLayout
-        android:id="@+id/titolo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="11"
+        android:layout_weight="4.8"
         android:orientation="horizontal"
-        android:background="#fffbff6c"
-        android:baselineAligned="false" >
-    </LinearLayout>
+        android:background="@color/red500" >
 
-    <LinearLayout
-        android:id="@+id/primo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="21.5"
-        android:orientation="horizontal"
-        android:weightSum="100"
-        android:background="#ffff615b"
-        android:baselineAligned="false" >
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:src="@drawable/image1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/nord_ovest"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="#ffdbdbdb"
-            android:paddingLeft="5dp"
-            android:paddingStart="5dp"
-            android:paddingRight="25dp"
-            android:paddingEnd="25dp" />
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:background="@color/orange500" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Parte 01" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:src="@drawable/ic_launcher"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"
+                android:padding="25dp"
+                android:background="@color/red100" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:background="@color/red400"
+                android:gravity="center"
+                android:text="@string/text_view_quadrante_nordovest"
+                android:textSize="@dimen/font_size_enorme"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/secondo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="21.5"
-        android:orientation="horizontal"
-        android:background="#ff8aff7e">
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:src="@drawable/image1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/nord_est"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="#ffdbdbdb"
-            android:paddingLeft="5dp"
-            android:paddingStart="5dp"
-            android:paddingRight="25dp"
-            android:paddingEnd="25dp" />
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:background="@color/blue500" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="01" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:src="@mipmap/cronologia_lightblue400"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"
+                android:padding="17dp"
+                android:background="@color/light_blue100" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:maxLines="1"
+                android:background="@color/light_blue400"
+                android:gravity="center"
+                android:text="@string/text_view_quadrante_nordest"
+                android:textSize="@dimen/font_size_enorme"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/terzo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="21.5"
-        android:background="#ff769bff"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:src="@drawable/image1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="#ffdbdbdb"
-            android:paddingLeft="5dp"
-            android:paddingStart="5dp"
-            android:paddingRight="25dp"
-            android:paddingEnd="25dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Titolo della sezione 3" />
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/quarto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.5"
+        android:layout_weight="4.8"
         android:orientation="horizontal"
-        android:background="#ffffaff3">
+        android:background="@color/red500" >
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:src="@drawable/image1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/sud_ovest"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="#ffdbdbdb"
-            android:paddingLeft="5dp"
-            android:paddingStart="5dp"
-            android:paddingRight="25dp"
-            android:paddingEnd="25dp" />
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:background="@color/orange500" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Testo numero 4" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:src="@mipmap/idea_greena400"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"
+                android:padding="20dp"
+                android:background="@color/greenA100"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:background="@color/greenA400"
+                android:gravity="center"
+                android:text="@string/text_view_quadrante_sudovest"
+                android:textSize="@dimen/font_size_enorme"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sud_est"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:background="@color/blue500" >
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:src="@mipmap/contatti_v1_orange400"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.75"
+                android:padding="25dp"
+                android:background="@color/orange100" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:maxLines="1"
+                android:background="@color/orange400"
+                android:gravity="center"
+                android:text="@string/text_view_quadrante_sudest"
+                android:textSize="@dimen/font_size_enorme"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/coda"
+
+    <!-- Crediti -->
+    <TextView
+        android:id="@+id/crediti"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="0.4"
         android:orientation="horizontal"
-        android:background="#fffbff6c"
-        android:baselineAligned="false" >
-    </LinearLayout>
+        android:background="#222222"
+        android:gravity="center"
+        android:text="@string/text_view_crediti"
+        android:textSize="@dimen/font_size_medio"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"/>
+
 
 </LinearLayout>

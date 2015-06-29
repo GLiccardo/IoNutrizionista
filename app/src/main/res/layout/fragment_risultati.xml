@@ -132,7 +132,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="5.5"
+                    android:layout_weight="5.3"
                     android:maxLines="1"
                     android:text="@string/text_view_stato_salute"
                     android:textSize="@dimen/font_size_piccolo"
@@ -142,22 +142,25 @@
                     android:id="@+id/text_view_stato_salute"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="4.5"
-                    android:paddingRight="4dp" android:paddingEnd="4dp"
-                    android:gravity="start"
+                    android:layout_weight="4.0"
+                    android:gravity="end"
                     android:singleLine="true"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7" />
             </TableRow>
 
-            <!-- Categoria: Sottopeso, Normopeso, Sovrappeso, Obeso -->
+            <!-- Categoria: Pericolo Salute, Ottima, Buona, Scarsa, Obesità -->
             <TableRow
                 android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
                 android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="5.5"
+                    android:layout_weight="5.3"
                     android:maxLines="1"
                     android:text="@string/text_view_condizione_fisica"
                     android:textSize="@dimen/font_size_piccolo"
@@ -167,12 +170,15 @@
                     android:id="@+id/text_view_condizione_fisica"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="4.5"
-                    android:paddingRight="4dp" android:paddingEnd="4dp"
-                    android:gravity="start"
+                    android:layout_weight="4.0"
+                    android:gravity="end"
                     android:singleLine="true"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7" />
             </TableRow>
 
             <!-- Costituzione: longilineo, normolineo, brevilineo -->
@@ -182,7 +188,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="5.5"
+                    android:layout_weight="5.3"
                     android:text="@string/text_view_costituzione"
                     android:textSize="@dimen/font_size_piccolo"
                     android:textColor="@color/redA700"
@@ -191,11 +197,14 @@
                     android:id="@+id/text_view_costituzione"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="4.5"
-                    android:paddingRight="4dp" android:paddingEnd="4dp"
-                    android:gravity="start"
+                    android:layout_weight="4.0"
+                    android:gravity="end"
                     android:textColor="@color/nero"
                     android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7" />
             </TableRow>
 
             <!-- Separatore -->
@@ -674,12 +683,12 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="6.8"
-                    android:text="@string/text_view_peso_calcolato_ideale"
+                    android:text="@string/text_view_peso_ideale"
                     android:textSize="@dimen/font_size_piccolo"
                     android:textColor="@color/deep_orangeA700"
                     android:textStyle="bold|italic" />
                 <TextView
-                    android:id="@+id/text_view_peso_calcolato_ideale"
+                    android:id="@+id/text_view_peso_ideale"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1.9"
@@ -771,6 +780,34 @@
                     android:textStyle="italic" />
             </TableRow>
 
+            <!-- Categoria: Molto alto, alto, nella media, buono, ottimo -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5.3"
+                    android:maxLines="1"
+                    android:text="@string/text_view_whr_rischio_salute"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_whr_valutazione"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.3"
+                    android:gravity="end"
+                    android:singleLine="true"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4" />
+            </TableRow>
+
             <!-- Rapporto WHT: Cirocnferenza Girovita / Circonferenza Coscia -->
             <TableRow
                 android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
@@ -800,6 +837,34 @@
                     android:text="@string/text_view_cm_cm"
                     android:textSize="@dimen/font_size_minuscolo"
                     android:textStyle="italic" />
+            </TableRow>
+
+            <!-- Categoria: Molto alto, alto, nella media, buono, ottimo -->
+            <TableRow
+                android:paddingTop="@dimen/valori_energetici_padding_sup_inf_text_view"
+                android:paddingBottom="@dimen/valori_energetici_padding_sup_inf_text_view" >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5.3"
+                    android:maxLines="1"
+                    android:text="@string/text_view_wht_rischio_salute"
+                    android:textSize="@dimen/font_size_piccolo"
+                    android:textColor="@color/deep_orangeA700"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/text_view_wht_valutazione"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="4.3"
+                    android:gravity="end"
+                    android:singleLine="true"
+                    android:textColor="@color/nero"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4" />
             </TableRow>
 
         </TableLayout>

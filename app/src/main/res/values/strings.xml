@@ -2,9 +2,16 @@
 <resources>
 
     <string name="app_name">IoNutrizionista</string>
-    <string name="action_settings">Impostazioni</string>
     <string name="title_activity_calcolo_valori_energetici">Valori Energetici</string>
     <string name="title_activity_calcolo_valori_energetici_v2">Valori Energetici</string>
+    <string name="action_settings">Impostazioni</string>
+
+    <!-- Main Activity -->
+    <string name="text_view_quadrante_nordovest">Calcolo Valori Energetici</string>
+    <string name="text_view_quadrante_nordest">Cronologia</string>
+    <string name="text_view_quadrante_sudovest">Suggerimenti &amp; Raccomandazioni</string>
+    <string name="text_view_quadrante_sudest">Contatti</string>
+    <string name="text_view_crediti">Napples ®2015 Giuseppe Liccardo</string>
 
     <!-- Label Icone Lista Sezioni -->
     <string name="dati_paziente">Dati Paziente</string>
@@ -73,7 +80,7 @@
     <string name="text_view_peso_attuale">Peso Attuale</string>
     <string name="text_view_massa_magra">Massa Magra</string>
     <string name="text_view_massa_grassa">Massa Grassa</string>
-    <string name="text_view_peso_calcolato_ideale">Peso Calcolato Ideale</string>
+    <string name="text_view_peso_ideale">Peso Ideale</string>
     <string name="text_view_peso_obiettivo">Peso Obiettivo</string>
 
     <string name="text_view_bmi">Indice Massa Corporea</string>
@@ -84,7 +91,9 @@
     <string name="text_view_razione_calorica_pesante">Razione Calorica Pesante</string>
 
     <string name="text_view_whr_girovita_fianchi">WHR (girovita/fianchi)</string>
+    <string name="text_view_whr_rischio_salute">Rischio salute WHR</string>
     <string name="text_view_wht_girovita_coscia">WHT (girovita/coscia)</string>
+    <string name="text_view_wht_rischio_salute">Rischio salute WHT</string>
 
     <!-- Funzionalità 1 - Button -->
     <string name="button_altro1">Altro1</string>
@@ -108,6 +117,5 @@
     <string name="text_view_kg_m2"><sup>kg</sup>/<sub>m<sup><small>2</small></sup></sub></string>
     <string name="text_view_cm_cm"><sup>cm</sup>/<sub>cm</sub></string>
     <string name="text_view_percentuale">%</string>
-
 
 </resources>

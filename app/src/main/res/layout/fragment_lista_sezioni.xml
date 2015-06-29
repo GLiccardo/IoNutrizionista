@@ -19,8 +19,7 @@
             android:src="@mipmap/dati_anagrafici_lightblue500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="TODO" />
+            android:layout_gravity="center" />
 
 
         <TextView
@@ -52,8 +51,7 @@
             android:src="@mipmap/misurazioni_greena400"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="TODO" />
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/text_view_lista_misurazioni"
@@ -84,8 +82,7 @@
             android:src="@mipmap/risultati_red500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="TODO" />
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/text_view_lista_risultati"
