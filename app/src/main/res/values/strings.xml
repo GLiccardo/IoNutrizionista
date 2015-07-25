@@ -7,11 +7,12 @@
     <string name="action_settings">Impostazioni</string>
 
     <!-- Main Activity -->
-    <string name="text_view_quadrante_nordovest">Calcolo Valori Energetici</string>
-    <string name="text_view_quadrante_nordest">Cronologia</string>
-    <string name="text_view_quadrante_sudovest">Suggerimenti &amp; Raccomandazioni</string>
-    <string name="text_view_quadrante_sudest">Contatti</string>
+    <string name="text_view_quadrante_nordovest">Calcolo\nValori Energetici</string>
+    <string name="text_view_quadrante_nordest">Cronologia\n(Coming soon)</string>
+    <string name="text_view_quadrante_sudovest">Suggerimenti &amp; Raccomandazioni (Coming soon)</string>
+    <string name="text_view_quadrante_sudest">Contatti\n(Coming soon)</string>
     <string name="text_view_crediti">Napples ®2015 Giuseppe Liccardo</string>
+    <string name="text_view_versione">v0.1.0</string>
 
     <!-- Label Icone Lista Sezioni -->
     <string name="dati_paziente">Dati Paziente</string>
